@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_17_223811) do
+ActiveRecord::Schema.define(version: 2020_11_17_230554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 2020_11_17_223811) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "distances", force: :cascade do |t|
+    t.bigint "start_spot_id", null: false
+    t.bigint "end_spot_id", null: false
+    t.float "value"
+    t.integer "travel_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_spot_id"], name: "index_distances_on_end_spot_id"
+    t.index ["start_spot_id"], name: "index_distances_on_start_spot_id"
   end
 
   create_table "spots", force: :cascade do |t|
@@ -45,5 +56,7 @@ ActiveRecord::Schema.define(version: 2020_11_17_223811) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "distances", "spots", column: "end_spot_id"
+  add_foreign_key "distances", "spots", column: "start_spot_id"
   add_foreign_key "spots", "areas"
 end
