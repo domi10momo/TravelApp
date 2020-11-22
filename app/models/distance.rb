@@ -4,11 +4,11 @@ class Distance < ApplicationRecord
   require 'uri'
   require 'json'
   POINT_NUMBER_2 = 2  #２地点
-  POIUT_NUMBER_5 = 5  #course内の地点数（5地点）
+  POINT_NUMBER_5 = 5  #course内の地点数（5地点）
   belongs_to :spot
 
   def get_course_list(areas, spots)
-    all_course = self.get_permutation(areas, spots, POIUT_NUMBER_5)
+    all_course = self.get_permutation(areas, spots, POINT_NUMBER_5)
     binding.pry
   end
 
