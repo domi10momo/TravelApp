@@ -1,0 +1,11 @@
+<h1>マイページ</h1>
+<%= @user.email %>
+
+<%= link_to "モデルコースを選択する", '#' %>
+
+<%= link_to "行きたい観光地を選択する", spots_path %>
+<% @want_spots.each do |spot| %>
+  <p><%= spot.name %></p>
+<% end %>
+
+<%= link_to "予定, 記録一覧", '#' %>
