@@ -1,3 +1,4 @@
-<% @model_courses.each do |model_course| %>
-  <%= model_course.score %>
+<h2>どの地域に行きたいですか？</h2>
+<% @areas.each do |area| %>
+  <p><%= link_to area.name, model_course_path(area.id) %></p>
 <% end %>

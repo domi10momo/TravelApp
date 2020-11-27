@@ -1,0 +1,7 @@
+<% @model_courses.each do |model_course| %>
+  <%= @courses_list_in_area[model_course.course_number].each do |order| %>
+    <p><%= @spots.find(order).name %></p>
+  <% end %>
+  <%= model_course.score %>
+  <%= link_to "このコースを選択する", '#' %>
+<% end %>

@@ -9,7 +9,6 @@ class Distance < ApplicationRecord
 
   def get_course_list(areas, spots)
     all_course = self.get_permutation(areas, spots, POINT_NUMBER_5)
-    binding.pry
   end
 
   def csv_export(areas, spots)

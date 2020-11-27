@@ -2,9 +2,17 @@ class ModelCoursesController < ApplicationController
   before_action :input_data, only: [:index]
 
   def index
-    areas, spots = fetch_areas_and_spots
+    @areas, @spots = fetch_areas_and_spots
     @distance = Distance.new()
-    all_course_list = @distance.get_course_list(areas, spots)
+    @all_courses_list = @distance.get_course_list(@areas, @spots)
+    @model_courses = ModelCourse.all
+  end
+
+  def show
+    @areas, @spots = fetch_areas_and_spots
+    @distance = Distance.new()
+    all_courses_list = @distance.get_course_list(@areas, @spots)
+    @courses_list_in_area = all_courses_list[params[:id].to_i - 1]
     @model_courses = ModelCourse.all
     binding.pry
   end
