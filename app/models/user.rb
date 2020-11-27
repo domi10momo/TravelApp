@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :spots, dependent: :destroy
   has_many :wants, dependent: :destroy
   has_many :wanted_spots, through: :wants, source: :spot
+  has_many :my_schedules
 end
