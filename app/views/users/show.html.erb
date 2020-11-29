@@ -9,3 +9,9 @@
 <% end %>
 
 <p><%= link_to "予定, 記録一覧", '#' %></p>
+<% @my_schedules.each do |schedule| %>
+  <p><%= schedule.date %></p>
+  <% @my_travel_courses.each do |spot| %>
+    <%= @spots.find(spot.spot_id).name %>　→　
+  <% end %>
+<% end %>
