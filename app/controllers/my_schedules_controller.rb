@@ -35,6 +35,12 @@ class MySchedulesController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def destroy
+    schedule = MySchedule.find(params[:id])
+    schedule.destroy
+    redirect_to user_path(current_user)
+  end
+
   private
   def my_schedule_params
     params.permit(:date).merge(user_id: current_user.id)
