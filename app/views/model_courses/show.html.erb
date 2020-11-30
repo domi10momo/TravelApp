@@ -9,7 +9,7 @@
     <p><%= @spots.find(order).name %></p>
   <% end %>
   <%= model_course.score %>
-  <%= f.hidden_field :model_course, value: @courses_in_area[model_course.course_number] %>
+   <%= f.hidden_field :model_course, value: @courses_in_area[model_course.course_number] %>
   <%= f.submit "このコースを選択する" %>
 <% end %>
 <% end %>
