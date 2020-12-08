@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_17_230554) do
+ActiveRecord::Schema.define(version: 2020_11_27_084106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,38 @@ ActiveRecord::Schema.define(version: 2020_11_17_230554) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_spot_id"], name: "index_distances_on_end_spot_id"
     t.index ["start_spot_id"], name: "index_distances_on_start_spot_id"
+  end
+
+  create_table "model_courses", force: :cascade do |t|
+    t.bigint "area_id", null: false
+    t.integer "course_number"
+    t.float "score"
+    t.float "distance"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["area_id"], name: "index_model_courses_on_area_id"
+  end
+
+  create_table "my_schedules", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "date"
+    t.boolean "gone", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_my_schedules_on_user_id"
+  end
+
+  create_table "my_travel_courses", force: :cascade do |t|
+    t.bigint "my_schedule_id", null: false
+    t.integer "order"
+    t.bigint "spot_id", null: false
+    t.string "impression"
+    t.string "image"
+    t.boolean "gone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["my_schedule_id"], name: "index_my_travel_courses_on_my_schedule_id"
+    t.index ["spot_id"], name: "index_my_travel_courses_on_spot_id"
   end
 
   create_table "spots", force: :cascade do |t|
@@ -56,7 +88,22 @@ ActiveRecord::Schema.define(version: 2020_11_17_230554) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "wants", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "spot_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spot_id"], name: "index_wants_on_spot_id"
+    t.index ["user_id"], name: "index_wants_on_user_id"
+  end
+
   add_foreign_key "distances", "spots", column: "end_spot_id"
   add_foreign_key "distances", "spots", column: "start_spot_id"
+  add_foreign_key "model_courses", "areas"
+  add_foreign_key "my_schedules", "users"
+  add_foreign_key "my_travel_courses", "my_schedules"
+  add_foreign_key "my_travel_courses", "spots"
   add_foreign_key "spots", "areas"
+  add_foreign_key "wants", "spots"
+  add_foreign_key "wants", "users"
 end

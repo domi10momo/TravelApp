@@ -17,5 +17,4 @@ puts 'Insert Spot'
 CSV.foreach('db/csv_data/spot.csv') do |row|
   Spot.create({ id: @@count += 1, area_id: row[0], name: row[1] })
 end
-binding.pry
 puts "Finish Spot"

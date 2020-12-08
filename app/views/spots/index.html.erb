@@ -1,0 +1,11 @@
+<h1>観光地一覧</h1>
+<%= link_to "マイページへ戻る", user_path(current_user.id) %>
+<hr>
+<% @spots.each do |spot| %>
+  <p>市町村名：<%= spot.area.name %></p>
+  <p>観光地名：<%= spot.name %></p>
+  <p>
+    <%= render 'want', spot: spot %>
+  </p>
+  <hr>
+<% end %>

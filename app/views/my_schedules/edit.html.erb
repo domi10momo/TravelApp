@@ -1,0 +1,7 @@
+<%= form_with model: @schedule, url: my_schedule_path(@schedule), method: :patch, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label "旅行日を選択してください", class: 'control-label' %>
+    <%= f.date_field :date, class: 'form-control' %>
+    <%= f.submit "変更" %>
+  </div>
+<% end %>

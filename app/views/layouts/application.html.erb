@@ -5,14 +5,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
+      <button type="button" class="btn btn-success">Primary</button>
       <% if user_signed_in? %>
-        <%= link_to 'プロフィール変更', edit_user_registration_path %>
+        <%= link_to 'プロフィール変更', edit_user_registration_path, class: "btn btn-outline-primary btn-sm" %>
         <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to 'サインアップ', new_user_registration_path %>
