@@ -2,7 +2,7 @@ class CreateMySchedules < ActiveRecord::Migration[6.0]
   def change
     create_table :my_schedules do |t|
       t.references :user, null: false, foreign_key: true
-      t.date :date
+      t.date :date, null: false
       t.boolean :gone, default: false
 
       t.timestamps

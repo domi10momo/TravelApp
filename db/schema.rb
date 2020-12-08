@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_084106) do
 
   create_table "my_schedules", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.date "date"
+    t.date "date", null: false
     t.boolean "gone", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

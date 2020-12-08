@@ -1,5 +1,5 @@
 class SpotsController < ApplicationController
   def index
-    @spots = Spot.includes(:area)
+    @spots = Spot.all_spots
   end
 end
