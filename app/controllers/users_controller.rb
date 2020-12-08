@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  helper_method :devided_my_travel_course
+  
   def index
     @users = User.all
   end
@@ -9,5 +11,9 @@ class UsersController < ApplicationController
     @want_spots = @user.wanted_spots
     @my_schedules = MySchedule.where(user_id: current_user.id)
     @my_travel_courses = MyTravelCourse.where(my_schedule_id: @my_schedules.ids)
+  end
+
+  def devided_my_travel_course(schedule)
+    @my_travel_courses.where(my_schedule_id: schedule.id)
   end
 end

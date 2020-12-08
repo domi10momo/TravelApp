@@ -11,7 +11,7 @@
 <p><%= link_to "予定, 記録一覧", '#' %></p>
 <% @my_schedules.each do |schedule| %>
   <p><%= schedule.date %></p>
-  <% @my_travel_courses.each do |spot| %>
+  <% devided_my_travel_course(schedule).each do |spot| %>
     <%= @spots.find(spot.spot_id).name %> → 
   <% end %>
   <%= link_to "日時の修正", edit_my_schedule_path(schedule.id) %>
