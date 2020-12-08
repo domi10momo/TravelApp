@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :spots do
     resource :wants, only: [:create, :destroy]
   end
-  root to: "users#show"
+  root to: "users#index"
 end
