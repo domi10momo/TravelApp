@@ -21,7 +21,7 @@ class MySchedulesController < ApplicationController
         spot_id: spot.to_i
       )
     end
-    redirect_to root_path
+    redirect_to user_path(current_user)
   end
 
   def edit
