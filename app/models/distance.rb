@@ -5,7 +5,7 @@ class Distance < ApplicationRecord
   require 'json'
   POINT_NUMBER_2 = 2  #２地点
   POINT_NUMBER_5 = 5  #course内の地点数（5地点）
-  belongs_to :spot
+  belongs_to :spot, optional: true
 
   class << self
     def get_course_list(areas, spots)
