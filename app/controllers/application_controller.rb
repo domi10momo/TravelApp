@@ -5,15 +5,13 @@ class ApplicationController < ActionController::Base
     user_path(resource)
   end
 
-  def featch_course_lists
-    areas, spots = fetch_areas_and_spots
-    distance = Distance.new()
-    return areas, spots, distance.get_course_list(areas, spots)
+  def featch_course_lists(areas, spots)
+    Distance.get_course_list(areas, spots)
   end
 
   def fetch_areas_and_spots
     areas = Area.includes(:spots)
-    spots = Spot.includes(:area)
+    spots = Spot.all_spots
     return areas, spots
   end
 end

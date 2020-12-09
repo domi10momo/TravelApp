@@ -1,6 +1,7 @@
 require 'csv'
 
 puts 'Delete Data'
+Distance.delete_all
 Spot.delete_all
 Area.delete_all
 puts 'Finished Delete'
@@ -17,4 +18,17 @@ puts 'Insert Spot'
 CSV.foreach('db/csv_data/spot.csv') do |row|
   Spot.create({ id: @@count += 1, area_id: row[0], name: row[1] })
 end
-puts "Finish Spot"
+puts 'Finish SPot'
+
+puts "Insert Spot"
+@@count = 0
+CSV.foreach('db/csv_data/distance.csv') do |row|
+  Distance.create!({
+    id: @@count += 1,
+    start_spot_id: row[0].to_i,
+    end_spot_id: row[1].to_i,
+    value: row[2].to_f,
+    travel_time: row[3].to_i
+  })
+end
+puts 'Finish Distance'

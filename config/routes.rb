@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :users
   resources :model_courses
   resources :my_schedules
-  resources :my_travel_courses, only: [:index, :create]
+  resources :distances, only: [:index]
+  resources :my_travel_courses, only: [:show, :edit, :update]
   resources :spots do
     resource :wants, only: [:create, :destroy]
   end

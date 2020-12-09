@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_084106) do
+ActiveRecord::Schema.define(version: 2020_12_08_103814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 2020_11_27_084106) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cource_routes", force: :cascade do |t|
+    t.bigint "model_course_id", null: false
+    t.integer "order"
+    t.bigint "spot_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["model_course_id"], name: "index_cource_routes_on_model_course_id"
+    t.index ["spot_id"], name: "index_cource_routes_on_spot_id"
   end
 
   create_table "distances", force: :cascade do |t|
@@ -44,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_084106) do
 
   create_table "my_schedules", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.date "date"
+    t.date "date", null: false
     t.boolean "gone", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -97,6 +107,8 @@ ActiveRecord::Schema.define(version: 2020_11_27_084106) do
     t.index ["user_id"], name: "index_wants_on_user_id"
   end
 
+  add_foreign_key "cource_routes", "model_courses"
+  add_foreign_key "cource_routes", "spots"
   add_foreign_key "distances", "spots", column: "end_spot_id"
   add_foreign_key "distances", "spots", column: "start_spot_id"
   add_foreign_key "model_courses", "areas"
