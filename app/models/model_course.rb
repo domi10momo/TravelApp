@@ -8,7 +8,6 @@ class ModelCourse < ApplicationRecord
   class << self
     #以下で、1000コースの中から距離が短い100コースをcourse_routesテーブルへ格納
     def init_path_array(spots_per_area)
-      #population.times.map{[*0...(all_spot_num)].shuffle}
       first_id = spots_per_area.first.id
       last_id = spots_per_area.last.id
       all_population = INITIAL_MODELCOURSE_NUM.times
@@ -20,8 +19,7 @@ class ModelCourse < ApplicationRecord
     end
 
     def path_length(path)
-      #path.each_cons(2).map{|i, j| $distance_array[i][j]}.inject(&:+)
-      a = path.each_cons(2).map{|start_id, end_id|
+      length = path.each_cons(2).map{|start_id, end_id|
         Distance.find_by(start_spot_id: start_id, end_spot_id: end_id).value
       }.inject(:+)
     end
@@ -32,23 +30,31 @@ class ModelCourse < ApplicationRecord
         path_pop = init_path_array(spots_per_area).dup
         path_pop.sort!{|a,b| path_length(a)<=>path_length(b)}
         path_pop.pop(INITIAL_MODELCOURSE_NUM - MODELCORSES_PER_AREA_NUM)
-        path_pop.each do |path|
-          distance = path_length(path)
-          model_course = ModelCourse.create!(
-            area_id: area.id,
-            score: distance,
-            distance: distance
-          )
-          @@spot_count = 0
-          path.each do |spot|
-            CourseRoute.create!(
-              model_course_id: model_course.id,
-              order: @@spot_count += 1,
-              spot_id: Spot.find(spot).id
-            )
-          end
+        path_pop.each do |a_path|
+          create_model_courses(area, a_path)
+          create_course_routes(model_course, a_path)
         end
-      end    
+      end
+    end
+
+    def create_model_courses(area, a_path)
+      distance = path_length(a_path)
+      model_course = ModelCourse.create!(
+        area_id: area.id,
+        score: distance,
+        distance: distance
+      )
+    end
+
+    def create_course_routes(model_course, a_path)
+      @@spot_count = 0
+      path.each do |spot|
+        CourseRoute.create!(
+          model_course_id: model_course.id,
+          order: @@spot_count += 1,
+          spot_id: Spot.find(spot).id
+        )
+      end
     end
   end
 end

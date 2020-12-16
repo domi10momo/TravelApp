@@ -1,8 +1,5 @@
 <%= form_with model: @my_schedule, url: my_schedules_path, local: true do |f| %>
-  <div class="form-group">
-    <%= f.label "旅行日を選択してください", class: 'control-label' %>
-    <%= f.date_field :date, class: 'form-control' %>
-  </div>
+  <%= render 'shared/calendar_date', f: f %>
   
   <% @courses_in_area.each do |course| %>
     <% @model_course_routes.where(model_course_id: course.id).each do |course_spot| %>

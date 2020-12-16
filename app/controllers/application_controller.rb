@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     user_path(resource)
   end
 
-  def featch_course_lists(areas, spots)
+  def fetch_course_lists(areas, spots)
     Distance.get_course_list(areas, spots)
   end
 

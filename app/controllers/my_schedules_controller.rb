@@ -29,7 +29,6 @@ class MySchedulesController < ApplicationController
   def update
     schedule = MySchedule.find(params[:id])
     schedule.update(my_schedule_edit_params)
-    binding.pry
     redirect_to user_path(current_user)
   end
 
