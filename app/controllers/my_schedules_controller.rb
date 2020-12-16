@@ -12,7 +12,6 @@ class MySchedulesController < ApplicationController
 
     choice_course = ModelCourse.find(params[:course_id])
     choice_route = CourseRoute.where(model_course_id: choice_course)
-    binding.pry
     choice_route.each do |spot|
       MyTravelCourse.create!(
         my_schedule_id: my_schedule.id,
