@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'my_travel_courses/create'
-  get 'distance/index'
+  get '/model_courses/make_course', to: 'model_courses#make_course'
   devise_for :users
   resources :users
   resources :model_courses

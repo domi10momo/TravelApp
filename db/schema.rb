@@ -21,14 +21,14 @@ ActiveRecord::Schema.define(version: 2020_12_08_103814) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "cource_routes", force: :cascade do |t|
+  create_table "course_routes", force: :cascade do |t|
     t.bigint "model_course_id", null: false
     t.integer "order"
     t.bigint "spot_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["model_course_id"], name: "index_cource_routes_on_model_course_id"
-    t.index ["spot_id"], name: "index_cource_routes_on_spot_id"
+    t.index ["model_course_id"], name: "index_course_routes_on_model_course_id"
+    t.index ["spot_id"], name: "index_course_routes_on_spot_id"
   end
 
   create_table "distances", force: :cascade do |t|
@@ -107,8 +107,8 @@ ActiveRecord::Schema.define(version: 2020_12_08_103814) do
     t.index ["user_id"], name: "index_wants_on_user_id"
   end
 
-  add_foreign_key "cource_routes", "model_courses"
-  add_foreign_key "cource_routes", "spots"
+  add_foreign_key "course_routes", "model_courses"
+  add_foreign_key "course_routes", "spots"
   add_foreign_key "distances", "spots", column: "end_spot_id"
   add_foreign_key "distances", "spots", column: "start_spot_id"
   add_foreign_key "model_courses", "areas"
