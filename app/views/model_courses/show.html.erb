@@ -4,12 +4,12 @@
     <%= f.date_field :date, class: 'form-control' %>
   </div>
   
-<% @model_courses.each do |model_course| %>
-  <%= @courses_in_area[model_course.course_number].each do |order| %>
-    <p><%= @spots.find(order).name %></p>
+  <% @courses_in_area.each do |course| %>
+    <% @model_course_routes.where(model_course_id: course.id).each do |course_spot| %>
+      <p><%= @spots.find(course_spot.spot_id).name %></p>
+    <% end %>
+    <%= course.score %>
+    <%= f.hidden_field :course_id, value: course.id %>
+    <%= f.submit "このコースを選択する" %>
   <% end %>
-  <%= model_course.score %>
-   <%= f.hidden_field :model_course, value: @courses_in_area[model_course.course_number] %>
-  <%= f.submit "このコースを選択する" %>
-<% end %>
 <% end %>

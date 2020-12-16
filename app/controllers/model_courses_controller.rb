@@ -6,11 +6,11 @@ class ModelCoursesController < ApplicationController
 
   def show
     @areas, @spots = fetch_areas_and_spots
-    featch_course_lists(@areas, @spots)
+    #featch_course_lists(@areas, @spots)
     #選択したエリアのコースリストを選択
-    @courses_in_area = ModelCourse.where(area_id: params[:id].to_i)
-    binding.pry    
-    @model_course_routes = CourseRoute.all
+    @courses_in_area = ModelCourse.where(area_id: params[:id].to_i)  
+    @model_course_routes = CourseRoute.includes(:model_course)
+                                      .where(model_course_id: @courses_in_area.ids)
   end
 
   def make_course

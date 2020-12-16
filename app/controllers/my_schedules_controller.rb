@@ -4,21 +4,20 @@ class MySchedulesController < ApplicationController
   end
   
   def create
-    choice_course = my_schedule_params
     if params[:date]
       my_schedule = MySchedule.create!(my_schedule_params)
     else
-      binding.pry
       redirect_to :back
     end
 
-    choice_course = params[:model_course].split(" ")
-    @@order = 0
-    choice_course.each do |spot|
+    choice_course = ModelCourse.find(params[:course_id])
+    choice_route = CourseRoute.where(model_course_id: choice_course)
+    binding.pry
+    choice_route.each do |spot|
       MyTravelCourse.create!(
         my_schedule_id: my_schedule.id,
-        order: @@order + 1,
-        spot_id: spot.to_i
+        order: spot.order,
+        spot_id: spot.spot_id
       )
     end
     redirect_to user_path(current_user)
