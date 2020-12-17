@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :model_courses
   resources :my_schedules
+  resources :course_routes, only: [:show]
   resources :distances, only: [:index]
   resources :my_travel_courses, only: [:show, :edit, :update]
   resources :spots do

@@ -1,0 +1,9 @@
+<%= form_with model: @my_schedule, url: my_schedules_path, local: true do |f| %>
+  <%= render 'shared/calendar_date', f: f %>
+  
+  <% @course_route.each do |course_spot| %>
+    <p><%= @spots.find(course_spot.spot_id).name %></p>
+  <% end %>
+  <%= f.hidden_field :course_id, value: params[:id] %>
+  <%= f.submit "このコースを選択する" %>
+<% end %>

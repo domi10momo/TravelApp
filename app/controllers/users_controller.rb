@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @spots = Spot.all_spots
     @want_spots = @user.wanted_spots
     @my_schedules = MySchedule.where(user_id: current_user.id)
-    @my_travel_courses = MyTravelCourse.where(my_schedule_id: @my_schedules.ids)
+    @my_travel_courses = MyTravelCourse.includes(:my_schedule)
   end
 
   def devided_my_travel_course(schedule)

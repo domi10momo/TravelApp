@@ -9,9 +9,10 @@ class MySchedulesController < ApplicationController
     else
       redirect_to :back
     end
-
-    choice_course = ModelCourse.find(params[:course_id])
-    choice_route = CourseRoute.where(model_course_id: choice_course)
+    # choice_course = ModelCourse.find(params[:course_id])
+    # choice_route = CourseRoute.where(model_course_id: choice_course)
+    choice_route = CourseRoute.where(model_course_id: params[:course_id])
+    
     choice_route.each do |spot|
       MyTravelCourse.create!(
         my_schedule_id: my_schedule.id,

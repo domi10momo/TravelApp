@@ -11,14 +11,17 @@
 <p><%= link_to "予定, 記録一覧", '#' %></p>
 <% @my_schedules.each do |schedule| %>
   <p><%= schedule.date %></p>
-  <% devided_my_travel_course(schedule).each do |spot| %>
+  <% @my_travel_courses.where(my_schedule_id: schedule.id).each do |spot| %>
     <%= @spots.find(spot.spot_id).name %> → 
   <% end %>
-  <%= link_to "日時の修正", edit_my_schedule_path(schedule.id) %>
-  <%= link_to "コースの修正", "#" %>
-  <%= link_to "予定の削除",
+  <div>
+    <%= link_to "日時の修正", edit_my_schedule_path(schedule.id) %>
+    <%= link_to "コースの修正", "#" %>
+    <%= link_to "予定の削除",
       my_schedule_path(schedule.id),
       method: :delete,
       data:{ confirm: "削除しますか？" }
-  %>
+    %>
+    <%= link_to "記録の入力"%>
+  </div>
 <% end %>
