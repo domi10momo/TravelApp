@@ -10,9 +10,9 @@
 
 <p><%= link_to "予定, 記録一覧", '#' %></p>
 <% @my_schedules.each do |schedule| %>
-  <p><%= schedule.date %></p>
+  <p>日程：<%= schedule.date %></p>
   <% @my_travel_courses.where(my_schedule_id: schedule.id).each do |spot| %>
-    <%= @spots.find(spot.spot_id).name %> → 
+    <p><%= spot.order %>.  <%= @spots.find(spot.spot_id).name %></p>
   <% end %>
   <div>
     <%= link_to "日時の修正", edit_my_schedule_path(schedule.id) %>
@@ -24,4 +24,5 @@
     %>
     <%= link_to "記録の入力"%>
   </div>
+  <hr>
 <% end %>
