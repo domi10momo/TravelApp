@@ -6,9 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(current_user.id)
     @spots = Spot.all_spots
-    @want_spots = @user.wanted_spots
+    @want_spots = current_user.wanted_spots
     @my_schedules = MySchedule.where(user_id: current_user.id)
     @my_travel_courses = MyTravelCourse.includes(:my_schedule)
   end
