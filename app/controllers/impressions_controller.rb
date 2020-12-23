@@ -10,7 +10,6 @@ class ImpressionsController < ApplicationController
 
   def create
     @choice_spot = MyTravelCourse.find(params[:format])
-    binding.pry
     Impression.create!(
       my_schedule_id: @choice_spot.my_schedule_id,
       spot_id: @choice_spot.spot_id,
