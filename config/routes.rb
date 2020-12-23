@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :course_routes, only: [:show]
   resources :distances, only: [:index]
   resources :my_travel_courses, only: [:show, :edit, :update]
+  resources :impressions
   resources :spots do
     resource :wants, only: [:create, :destroy]
   end
