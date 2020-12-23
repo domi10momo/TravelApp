@@ -1,4 +1,9 @@
 class MyTravelCoursesController < ApplicationController
+  def show
+    @spots = Spot.all_spots
+    @course = MyTravelCourse.where(my_schedule_id: params[:id])
+  end
+
   def edit
     @travel_spots = MyTravelCourse.where(my_schedule_id: params[:id])
   end

@@ -1,0 +1,7 @@
+<% @course.each do |spot| %>
+  <p>
+    <%= spot.order %>. <%= @spots.find(spot.spot_id).name %>
+    <%= link_to "感想の入力", "#" %>
+  </p>
+<% end %>
+<%= link_to "詳細を見る", "#" %>

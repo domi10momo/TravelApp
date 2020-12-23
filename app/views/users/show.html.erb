@@ -10,7 +10,12 @@
 
 <p><%= link_to "予定, 記録一覧", '#' %></p>
 <% @my_schedules.each do |schedule| %>
-  <p>日程：<%= schedule.date %></p>
+  <p>
+    日程：<%= schedule.date %> 
+    <button class="btn btn-info m-2 flag-btn" disabled >
+      <%= MyTravelCourse.gone_text(schedule.gone) %>
+    </button>
+  </p>
   <% @my_travel_courses.where(my_schedule_id: schedule.id).each do |spot| %>
     <p><%= spot.order %>.  <%= @spots.find(spot.spot_id).name %></p>
   <% end %>
@@ -22,7 +27,7 @@
       method: :delete,
       data:{ confirm: "削除しますか？" }
     %>
-    <%= link_to "記録の入力"%>
+    <%= link_to "記録の入力", my_travel_course_path(schedule.id)%>
   </div>
   <hr>
 <% end %>
