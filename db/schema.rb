@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_19_073721) do
+ActiveRecord::Schema.define(version: 2020_12_23_015937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 2020_12_19_073721) do
     t.index ["start_spot_id"], name: "index_distances_on_start_spot_id"
   end
 
+  create_table "impressions", force: :cascade do |t|
+    t.bigint "my_schedule_id", null: false
+    t.bigint "spot_id", null: false
+    t.string "text"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["my_schedule_id"], name: "index_impressions_on_my_schedule_id"
+    t.index ["spot_id"], name: "index_impressions_on_spot_id"
+  end
+
   create_table "model_courses", force: :cascade do |t|
     t.bigint "area_id", null: false
     t.float "score"
@@ -64,9 +75,6 @@ ActiveRecord::Schema.define(version: 2020_12_19_073721) do
     t.bigint "my_schedule_id", null: false
     t.integer "order"
     t.bigint "spot_id", null: false
-    t.string "impression"
-    t.string "image"
-    t.boolean "gone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["my_schedule_id"], name: "index_my_travel_courses_on_my_schedule_id"
@@ -110,6 +118,8 @@ ActiveRecord::Schema.define(version: 2020_12_19_073721) do
   add_foreign_key "course_routes", "spots"
   add_foreign_key "distances", "spots", column: "end_spot_id"
   add_foreign_key "distances", "spots", column: "start_spot_id"
+  add_foreign_key "impressions", "my_schedules"
+  add_foreign_key "impressions", "spots"
   add_foreign_key "model_courses", "areas"
   add_foreign_key "my_schedules", "users"
   add_foreign_key "my_travel_courses", "my_schedules"
