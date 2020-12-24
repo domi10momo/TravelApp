@@ -17,6 +17,8 @@
         <%= link_to 'プロフィール変更', edit_user_registration_path, class: "btn btn-outline-primary btn-sm" %>
         <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
         <%= link_to 'マイページへ', user_path(current_user) %>
+        <%= link_to '観光地一覧', spots_path %>
+        <%= link_to '感想一覧', impressions_path %>
       <% else %>
         <%= link_to 'サインアップ', new_user_registration_path %>
         <%= link_to 'ログイン', new_user_session_path %>

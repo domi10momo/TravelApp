@@ -1,2 +1,7 @@
-<h1>Impressions#index</h1>
-<p>Find me in app/views/impressions/index.html.erb</p>
+<% @impressions.each do |impression| %>
+  <p>旅行日：<%= MySchedule.find(impression.my_schedule_id).date %></p>
+  <p>観光地名：<%= Spot.find(impression.spot_id).name %></p>
+  <p>感想：<%= impression.text %></p>
+  <p>投稿時間：<%= impression.created_at %>
+  <hr>
+<% end %>

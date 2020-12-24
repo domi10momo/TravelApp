@@ -4,11 +4,8 @@ class MyTravelCourse < ApplicationRecord
 
   class << self
     def gone_text(gone_flag)
-      if gone_flag
-        "旅行に行きました"
-      else
-        "まだ旅行に行ってません"
-      end
+      return "旅行に行きました" if gone_flag
+      "まだ旅行に行ってません"
     end
   end
 end
