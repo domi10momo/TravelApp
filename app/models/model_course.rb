@@ -31,7 +31,7 @@ class ModelCourse < ApplicationRecord
         path_pop.sort!{|a,b| path_length(a)<=>path_length(b)}
         path_pop.pop(INITIAL_MODELCOURSE_NUM - MODELCORSES_PER_AREA_NUM)
         path_pop.each do |a_path|
-          create_model_courses(area, a_path)
+          model_course = create_model_courses(area, a_path)
           create_course_routes(model_course, a_path)
         end
       end
@@ -48,7 +48,7 @@ class ModelCourse < ApplicationRecord
 
     def create_course_routes(model_course, a_path)
       @@spot_count = 0
-      path.each do |spot|
+      a_path.each do |spot|
         CourseRoute.create!(
           model_course_id: model_course.id,
           order: @@spot_count += 1,

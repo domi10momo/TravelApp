@@ -2,7 +2,6 @@ class ImpressionsController < ApplicationController
   def index
     @impressions = Impression.includes(:my_schedule).order("created_at DESC")
     #@impressions = Impression.joins(:my_schedule).includes(:my_schedule).order("my_schedules.date DESC")
-    binding.pry
   end
 
   def new
