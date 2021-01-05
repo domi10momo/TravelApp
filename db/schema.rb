@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_071528) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "description"
+    t.string "address"
     t.index ["area_id"], name: "index_spots_on_area_id"
   end
 
