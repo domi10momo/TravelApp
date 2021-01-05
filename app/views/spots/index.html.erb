@@ -4,6 +4,7 @@
 <% @spots.each do |spot| %>
   <p>市町村名：<%= spot.area.name %></p>
   <p>観光地名：<%= spot.name %></p>
+  <p>情報：<%= spot.description %>
   <p>
     <%= render 'want', spot: spot %>
   </p>
