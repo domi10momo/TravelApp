@@ -6,6 +6,6 @@ class CourseRoutesController < ApplicationController
 
   private
   def course_id
-    params[:id]
+    params.require(:id)
   end
 end
