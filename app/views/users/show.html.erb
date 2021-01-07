@@ -1,42 +1,44 @@
 <div class="container">
+  <%= render 'shared/flash' %>
+  <h1>マイページ</h1>
+  <%= current_user.email %>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6">
+      <div class="card border-dark mb-3">
+        <p><%= link_to "行きたい観光地を選択する", spots_path %></p>
+        <% @want_spots.each do |spot| %>
+          <p><%= spot.name %></p>
+        <% end %>
+      </div>
+    </div>
 
-<h1>マイページ</h1>
-<%= current_user.email %>
-<div class="row">
-      <div class="col-12 col-md-6 col-lg-6">
-        <div class="card border-dark mb-3">
-<p><%= link_to "行きたい観光地を選択する", spots_path %></p>
-<% @want_spots.each do |spot| %>
-  <p><%= spot.name %></p>
-<% end %>
+    <div class="col-12 col-md-6 col-lg-6">
+      <div class="card border-dark mb-3">
+        <p><%= link_to "モデルコースを選択する", model_courses_path %></p>
+        <p><%= link_to "予定, 記録一覧", '#' %></p>
+        <% @my_schedules.each do |schedule| %>
+          <p>
+            日程：<%= schedule.date %> 
+            <button class="btn btn-info m-2 flag-btn" disabled >
+              <%= MyTravelCourse.gone_text(schedule.gone) %>
+            </button>
+          </p>
+          <% @my_travel_courses.where(my_schedule_id: schedule.id).each do |spot| %>
+            <p><%= spot.order %>.  <%= @spots.find(spot.spot_id).name %></p>
+          <% end %>
+          <div>
+            <%= link_to "日時の修正", edit_my_schedule_path(schedule.id) %>
+            <%= link_to "コースの修正", "#" %>
+            <%= link_to "予定の削除",
+              my_schedule_path(schedule.id),
+              method: :delete,
+              data:{ confirm: "削除しますか？" }
+            %>
+            <%= link_to "記録の入力", my_travel_course_path(schedule.id)%>
+          </div>
+          <hr>
+        <% end %>
+      </div>
+    </div>
   </div>
-  </div>
-
-      <div class="col-12 col-md-6 col-lg-6">
-        <div class="card border-dark mb-3">
-<p><%= link_to "モデルコースを選択する", model_courses_path %></p>
-<p><%= link_to "予定, 記録一覧", '#' %></p>
-<% @my_schedules.each do |schedule| %>
-  <p>
-    日程：<%= schedule.date %> 
-    <button class="btn btn-info m-2 flag-btn" disabled >
-      <%= MyTravelCourse.gone_text(schedule.gone) %>
-    </button>
-  </p>
-  <% @my_travel_courses.where(my_schedule_id: schedule.id).each do |spot| %>
-    <p><%= spot.order %>.  <%= @spots.find(spot.spot_id).name %></p>
-  <% end %>
-  <div>
-    <%= link_to "日時の修正", edit_my_schedule_path(schedule.id) %>
-    <%= link_to "コースの修正", "#" %>
-    <%= link_to "予定の削除",
-      my_schedule_path(schedule.id),
-      method: :delete,
-      data:{ confirm: "削除しますか？" }
-    %>
-    <%= link_to "記録の入力", my_travel_course_path(schedule.id)%>
-  </div>
-  <hr>
-<% end %>
-  </div>
-  </div>
+</div>

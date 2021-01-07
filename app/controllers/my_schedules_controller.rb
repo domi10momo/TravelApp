@@ -4,7 +4,7 @@ class MySchedulesController < ApplicationController
   end
   
   def create
-    if params[:date]
+    if my_schedule_params[:date]
       my_schedule = MySchedule.create!(my_schedule_params)
     else
       redirect_to :back
@@ -18,6 +18,9 @@ class MySchedulesController < ApplicationController
       )
     end
     redirect_to user_path(current_user)
+  rescue ActiveRecord::NotNullViolation => e
+    flash[:danger] = "日付が指定されていません。入力し直してください"
+    redirect_to course_route_path(params[:course_id])
   end
 
   def edit
