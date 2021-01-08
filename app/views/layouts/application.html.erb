@@ -23,6 +23,7 @@
         <%= link_to 'サインアップ', new_user_registration_path %>
         <%= link_to 'ログイン', new_user_session_path %>
       <% end %>
+      <%= Date.current.strftime("%Y年 %m月 %d日") %>
     </header>
     <%= yield %>
   </body>
