@@ -1,15 +1,8 @@
-<%= form_with model: @my_schedule, url: my_schedules_path, local: true do |f| %>
-  <div class="form-group">
-    <%= f.label "旅行日を選択してください", class: 'control-label' %>
-    <%= f.date_field :date, class: 'form-control' %>
-  </div>
-  
-<% @model_courses.each do |model_course| %>
-  <%= @courses_in_area[model_course.course_number].each do |order| %>
-    <p><%= @spots.find(order).name %></p>
+<% @courses_in_area.each do |course| %>
+  <% @model_course_routes.where(model_course_id: course.id).each do |course_spot| %>
+    <p><%= @spots.find(course_spot.spot_id).name %></p>
   <% end %>
-  <%= model_course.score %>
-   <%= f.hidden_field :model_course, value: @courses_in_area[model_course.course_number] %>
-  <%= f.submit "このコースを選択する" %>
-<% end %>
+  <%= course.score %>
+  <%= link_to "詳細を見る", course_route_path(course) %>
+  <hr>
 <% end %>

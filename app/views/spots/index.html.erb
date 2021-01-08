@@ -1,11 +1,15 @@
 <h1>観光地一覧</h1>
 <%= link_to "マイページへ戻る", user_path(current_user.id) %>
 <hr>
-<% @spots.each do |spot| %>
-  <p>市町村名：<%= spot.area.name %></p>
-  <p>観光地名：<%= spot.name %></p>
-  <p>
-    <%= render 'want', spot: spot %>
-  </p>
-  <hr>
-<% end %>
+<div class="row">
+  <% @spots.each do |spot| %>
+    <div class="col-12 col-md-4 col-lg-4">
+      <div class="card border-dark mb-3" style="margin: 1rem">
+        <h3><%= spot.name %></h3>
+        <p>市町村名：<%= spot.area.name %></p>
+        <p>情報：<%= spot.description %></p>
+        <p><%= render 'want', spot: spot %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

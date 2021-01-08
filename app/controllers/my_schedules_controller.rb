@@ -4,39 +4,37 @@ class MySchedulesController < ApplicationController
   end
   
   def create
-    choice_course = my_schedule_params
-    if params[:date]
+    if my_schedule_params[:date]
       my_schedule = MySchedule.create!(my_schedule_params)
     else
-      binding.pry
       redirect_to :back
     end
-
-    choice_course = params[:model_course].split(" ")
-    @@order = 0
-    choice_course.each do |spot|
+    choice_route = CourseRoute.where(model_course_id: create_model_course_id) 
+    choice_route.each do |spot|
       MyTravelCourse.create!(
         my_schedule_id: my_schedule.id,
-        order: @@order + 1,
-        spot_id: spot.to_i
+        order: spot.order,
+        spot_id: spot.spot_id
       )
     end
     redirect_to user_path(current_user)
+  rescue ActiveRecord::NotNullViolation => e
+    flash[:danger] = "日付が指定されていません。入力し直してください"
+    redirect_to course_route_path(create_model_course_id)
   end
 
   def edit
-    @schedule = MySchedule.find(params[:id])
+    @schedule = MySchedule.find(my_schedule_id)
   end
 
   def update
-    schedule = MySchedule.find(params[:id])
+    schedule = MySchedule.find(my_schedule_id)
     schedule.update(my_schedule_edit_params)
-    binding.pry
     redirect_to user_path(current_user)
   end
 
   def destroy
-    schedule = MySchedule.find(params[:id])
+    schedule = MySchedule.find(my_schedule_id)
     schedule.destroy
     redirect_to user_path(current_user)
   end
@@ -54,5 +52,13 @@ class MySchedulesController < ApplicationController
 
   def my_travel_course
     params.permit(:model_course)
+  end
+
+  def create_model_course_id
+    params.require(:course_id)
+  end
+
+  def my_schedule_id
+    params.require(:id)
   end
 end

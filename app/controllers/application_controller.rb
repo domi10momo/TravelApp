@@ -1,17 +1,18 @@
 class ApplicationController < ActionController::Base
-  helper_method :fetch_course_lists
+  protect_from_forgery with: :exception
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  add_flash_types :success, :info, :warning, :danger
 
   def after_sign_in_path_for(resource)
     user_path(resource)
   end
 
-  def featch_course_lists(areas, spots)
-    Distance.get_course_list(areas, spots)
-  end
+  protected
 
-  def fetch_areas_and_spots
-    areas = Area.includes(:spots)
-    spots = Spot.all_spots
-    return areas, spots
+  def configure_permitted_parameters
+    added_attrs = [ :email, :nickname, :password, :password_confirmation ]
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+    devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
 end

@@ -1,26 +1,31 @@
 class ModelCoursesController < ApplicationController
-  before_action :input_data, only: [:index]
+  before_action :fetch_areas_and_spots
 
   def index
-    @areas, spots, @all_courses_list = featch_course_lists
     @model_courses = ModelCourse.all
   end
 
   def show
-    areas, @spots, all_courses_list = featch_course_lists
     #選択したエリアのコースリストを選択
-    @courses_in_area = all_courses_list[params[:id].to_i - 1]
-    @model_courses = ModelCourse.all
+    @courses_in_area = ModelCourse.where(area_id: area_id)  
+    @model_course_routes = CourseRoute.includes(:model_course)
+                                      .where(model_course_id: @courses_in_area.ids)
+  end
+
+  def make_course
+    ModelCourse.make_model_course(@areas, @spots)
   end
 
   private
-  def input_data
-    #サンプルデータを5つ作成
-    ModelCourse.delete_all
-    ModelCourse.create(area_id: 1, course_number: 1, score: 50, distance: 100)
-    ModelCourse.create(area_id: 1, course_number: 2, score: 70, distance: 75)
-    ModelCourse.create(area_id: 1, course_number: 3, score: 85, distance: 60)
-    ModelCourse.create(area_id: 1, course_number: 4, score: 90, distance: 55)
-    ModelCourse.create(area_id: 1, course_number: 5, score: 95, distance: 45)
+
+  def area_id
+    params[:id].to_i
   end
+
+  def fetch_areas_and_spots
+    @areas = Area.includes(:spots)
+    @spots = Spot.all_spots
+    return @areas, @spots
+  end
+
 end

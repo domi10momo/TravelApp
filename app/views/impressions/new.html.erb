@@ -1,0 +1,14 @@
+<h1>OK</h1>
+<%= form_with model: @choice_spot, url: impressions_path(@choice_spot), method: :post, local: true do |f| %>
+  <h1>日付：<%= @gone_date %>
+  <h1>観光地名：<%= @spot_name %></h1>
+  <div class="field">
+    <%= f.label :text, "感想の入力" %>
+    <%= f.text_area :text %>
+  </div>
+
+  <div class="field">
+    <%= "画像のアップロード" %>
+  </div>
+  <%= f.submit "登録" %>
+<% end %>

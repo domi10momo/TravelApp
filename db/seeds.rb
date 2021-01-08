@@ -16,11 +16,17 @@ puts 'Finish Area'
 puts 'Insert Spot'
 @@count = 0
 CSV.foreach('db/csv_data/spot.csv') do |row|
-  Spot.create({ id: @@count += 1, area_id: row[0], name: row[1] })
+  Spot.create({
+    id: @@count += 1,
+    area_id: row[0],
+    name: row[1],
+    address: row[2],
+    description: row[3]
+  })
 end
 puts 'Finish SPot'
 
-puts "Insert Spot"
+puts "Insert Distance"
 @@count = 0
 CSV.foreach('db/csv_data/distance.csv') do |row|
   Distance.create!({

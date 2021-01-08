@@ -1,0 +1,9 @@
+<p>
+  日程：<%= schedule.date %> 
+  <button class="btn btn-info m-2 flag-btn" disabled >
+    <%= MyTravelCourse.gone_text(schedule.gone) %>
+  </button>
+</p>
+<% @my_travel_courses.where(my_schedule_id: schedule.id).each do |spot| %>
+  <p><%= spot.order %>.  <%= @spots.find(spot.spot_id).name %></p>
+<% end %>

@@ -1,6 +1,8 @@
 class DistancesController < ApplicationController
   def index
-    areas, spots, @all_course_list = featch_course_lists
-    Distance.csv_export(areas, spots)
+    @areas = Area.includes(:spots)
+    @spots = Spot.all_spots
+    @all_course_list = Distance.get_course_list(@areas, @spots)
+    Distance.csv_export(@areas, @spots)
   end
 end
