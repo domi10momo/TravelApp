@@ -10,7 +10,7 @@
       <div class="overflow-auto card border-dark mb-3">
         <h3>行きたい観光地一覧</h3>
         <% @want_spots.each do |spot| %>
-          <p><%= spot.name %></p>
+          <p><%= link_to spot.name,  spot_path(spot) %></p>
         <% end %>
       </div>
     </div>

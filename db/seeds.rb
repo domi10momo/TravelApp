@@ -22,7 +22,8 @@ CSV.foreach('db/csv_data/spot.csv') do |row|
     area_id: row[0],
     name: row[1],
     address: row[2],
-    description: row[3]
+    image: row[3],
+    description: row[4]
   })
 end
 puts 'Finish SPot'
@@ -49,7 +50,7 @@ areas.each do |area|
   path_pop.pop(ModelCourse::INITIAL_MODELCOURSE_NUM - ModelCourse::MODELCORSES_PER_AREA_NUM)
   path_pop.each do |a_path|
     model_course = ModelCourse.create_model_courses(area, a_path)
-    ModelCourse.create_course_routes(model_course, a_path)
+    CourseRoute.create_course_routes(model_course, a_path)
   end
 end
 puts "Finish ModelCourse"

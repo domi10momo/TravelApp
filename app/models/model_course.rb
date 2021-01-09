@@ -24,19 +24,6 @@ class ModelCourse < ApplicationRecord
       }.inject(:+)
     end
 
-    def make_model_course(areas, spots)
-      areas.each do |area|
-        spots_per_area = Spot.where(area_id: area.id)
-        path_pop = init_path_array(spots_per_area).dup
-        path_pop.sort!{|a,b| path_length(a)<=>path_length(b)}
-        path_pop.pop(INITIAL_MODELCOURSE_NUM - MODELCORSES_PER_AREA_NUM)
-        path_pop.each do |a_path|
-          model_course = create_model_courses(area, a_path)
-          create_course_routes(model_course, a_path)
-        end
-      end
-    end
-
     def create_model_courses(area, a_path)
       distance = path_length(a_path)
       model_course = ModelCourse.create!(
@@ -44,17 +31,6 @@ class ModelCourse < ApplicationRecord
         score: distance,
         distance: distance
       )
-    end
-
-    def create_course_routes(model_course, a_path)
-      @@spot_count = 0
-      a_path.each do |spot|
-        CourseRoute.create!(
-          model_course_id: model_course.id,
-          order: @@spot_count += 1,
-          spot_id: Spot.find(spot).id
-        )
-      end
     end
   end
 end
