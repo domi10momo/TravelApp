@@ -12,10 +12,6 @@ class ModelCoursesController < ApplicationController
                                       .where(model_course_id: @courses_in_area.ids)
   end
 
-  def make_course
-    ModelCourse.make_model_course(@areas, @spots)
-  end
-
   private
 
   def area_id
