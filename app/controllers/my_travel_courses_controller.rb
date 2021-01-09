@@ -1,7 +1,7 @@
 class MyTravelCoursesController < ApplicationController
   def show
     @spots = Spot.all_spots
-    @course = MyTravelCourse.where(my_schedule_id: my_schedule_id)
+    @course = MyTravelCourse.schedule_id(my_schedule_id)
     @schedule = MySchedule.find(params[:id])
   end
 
@@ -19,7 +19,7 @@ class MyTravelCoursesController < ApplicationController
   end
 
   def gone_flag
-    MySchedule.find(format_params).update(gone: true)
+    MySchedule.is_gone(format_params)
     redirect_to my_travel_course_path(format_params)
   end
 

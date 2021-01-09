@@ -1,8 +1,8 @@
 <% @courses_in_area.each do |course| %>
-  <% @model_course_routes.where(model_course_id: course.id).each do |course_spot| %>
-    <p><%= @spots.find(course_spot.spot_id).name %></p>
+  <% @model_routes.course(course.id).each do |course_spot| %>
+    <p><%= @spots.id_name(course_spot) %></p>
   <% end %>
-  <%= course.score %>
+  合計移動距離： <%= course.score.round(2) %> km
   <%= link_to "詳細を見る", course_route_path(course) %>
   <hr>
 <% end %>
