@@ -1,0 +1,3 @@
+<%= form_with model: @travel_spot, url: my_travel_course_path(@travel_spot), method: :patch, local: true do |f| %>
+  <%= render 'shared/all_spots_list', f: f %>
+<% end %>

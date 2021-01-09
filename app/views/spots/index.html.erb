@@ -1,6 +1,4 @@
 <h1>観光地一覧</h1>
 <%= link_to "マイページへ戻る", user_path(current_user.id) %>
 <hr>
-<div class="row">
-  <%= render partial: 'shared/all_spots_list', collection: @spots, as: "spot" %>
-</div>
+<%= render 'shared/all_spots_list' %>

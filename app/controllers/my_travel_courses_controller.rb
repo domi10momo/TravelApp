@@ -6,12 +6,15 @@ class MyTravelCoursesController < ApplicationController
   end
 
   def edit
-    @travel_spots = MyTravelCourse.where(my_schedule_id: my_schedule_id)
+    @spots = Spot.all_spots
+    @travel_spot = MyTravelCourse.find(travel_spot_id)
+    binding.pry
   end
 
   def update
-    travel_spots = MyTravelCourse.where(my_schedule_id: my_schedule_id)
-                                 .update(my_course_edit_params)
+    binding.pry
+    MyTravelCourse.find(params[:course_id])
+                  .update(spot_id: params[:spot_id])
     redirect_to user_path(current_user)
   end
 
@@ -22,6 +25,10 @@ class MyTravelCoursesController < ApplicationController
 
   private
   def my_schedule_id
+    params.require(:id)
+  end
+
+  def travel_spot_id
     params.require(:id)
   end
 

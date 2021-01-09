@@ -3,7 +3,9 @@
     <%= spot.order %>. <%= @spots.find(spot.spot_id).name %>
     <% if @schedule.gone %>
       <%= link_to "感想の入力", new_impression_path(spot) %>
+    <% else %>
+      <%= link_to "コースの修正", edit_my_travel_course_path(spot) %>
     <% end %>
   </p>
 <% end %>
-<%= button_to "感想入力に進む", my_travel_courses_gone_flag_path(@schedule) %>
+<%= button_to "旅行終了", my_travel_courses_gone_flag_path(@schedule) %>
