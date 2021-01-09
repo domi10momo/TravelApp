@@ -26,12 +26,13 @@
           <%= render 'show_course', schedule: dont_gone_schedule %>
           <div>
             <%= link_to "日時の修正", edit_my_schedule_path(dont_gone_schedule.id) %>
-            <%= link_to "コースの修正", "#" %>
             <%= link_to "予定の削除",
               my_schedule_path(dont_gone_schedule.id),
               method: :delete,
               data:{ confirm: "削除しますか？" }
             %>
+
+            <%= link_to "旅行詳細", my_travel_course_path(dont_gone_schedule.id) %>
           </div>
           <hr>
         <% end %>
