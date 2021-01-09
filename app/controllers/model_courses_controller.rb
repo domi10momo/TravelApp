@@ -8,8 +8,7 @@ class ModelCoursesController < ApplicationController
   def show
     #選択したエリアのコースリストを選択
     @courses_in_area = ModelCourse.where(area_id: area_id)  
-    @model_course_routes = CourseRoute.includes(:model_course)
-                                      .where(model_course_id: @courses_in_area.ids)
+    @model_routes = CourseRoute.course_ids(@courses_in_area)
   end
 
   private

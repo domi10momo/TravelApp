@@ -1,6 +1,6 @@
 <% @impressions.each do |impression| %>
-  <p>投稿者：<%= User.find(gone_schedule(impression).user_id).nickname %></p>
-  <p>旅行日：<%= gone_schedule(impression).date %></p>
+  <p>投稿者：<%= User.id_name(MySchedule.find_id(impression)) %></p>
+  <p>旅行日：<%= MySchedule.find_id(impression).date %></p>
   <p>観光地名：<%= Spot.find(impression.spot_id).name %></p>
   <p>感想：<%= impression.text %></p>
   <p>投稿時間：<%= impression.created_at.to_s(:datetime_jp) %>

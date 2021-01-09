@@ -1,7 +1,7 @@
 class CourseRoutesController < ApplicationController
   def show
     @spots = Spot.includes(:area)
-    @course_route = CourseRoute.where(model_course_id: course_id)
+    @course_route = CourseRoute.course(course_id)
   end
 
   private

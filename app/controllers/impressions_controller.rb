@@ -1,12 +1,12 @@
 class ImpressionsController < ApplicationController
   def index
-    @impressions = Impression.includes(:my_schedule).order("created_at DESC")
+    @impressions = Impression.order(created_at: "DESC")
   end
 
   def new
     @choice_spot = MyTravelCourse.find(param_format)
-    @gone_date = MySchedule.find_by(id: @choice_spot.my_schedule_id).date
-    @spot_name = Spot.find(@choice_spot.spot_id).name
+    @gone_date = MySchedule.travel_date(@choice_spot)
+    @spot_name = Spot.id_name(@choice_spot)
   end
 
   def create

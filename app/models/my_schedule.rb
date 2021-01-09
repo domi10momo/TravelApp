@@ -3,17 +3,14 @@ class MySchedule < ApplicationRecord
   belongs_to :user
   has_many :impressions
   scope :me, -> (user) { where(user_id: user.id) }
-  scope :is_gone, -> (gone) { where(gone: gone) }
-  scope :sort_asc, -> { order(order: "ASC").limit(5) }
-
+  scope :gone_flag, -> (gone) { where(gone: gone) }
+  scope :is_gone, -> (format) { find(format).update(gone: true) }
+  scope :find_id, -> (model) { find(model.my_schedule_id) }
+  scope :travel_date, -> (model) { find_id(model).date}
 
   class << self
     def user_schedules(user, gone)
-      me(user).is_gone(gone).to_a
-    end
-
-    def sort_order
-      sort_asc
+      me(user).gone_flag(gone).to_a
     end
   end
 end

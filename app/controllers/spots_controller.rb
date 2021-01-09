@@ -4,7 +4,7 @@ class SpotsController < ApplicationController
   end
 
   def show
-    @spot = Spot.find(show_param.to_i)
+    @spot = Spot.find(show_param)
   end
 
   private

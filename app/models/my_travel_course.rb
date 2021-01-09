@@ -1,7 +1,7 @@
 class MyTravelCourse < ApplicationRecord
   belongs_to :my_schedule
   belongs_to :spot
-  scope :schedule_id, -> (schedule) { where(my_schedule_id: schedule.id).order(order: "ASC") }
+  scope :schedule_id, -> (schedule_id) { where(my_schedule_id: schedule_id).order(order: "ASC") }
 
 
   class << self
