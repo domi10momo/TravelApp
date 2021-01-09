@@ -1,6 +1,6 @@
 <% @course.each do |spot| %>
   <p>
-    <%= spot.order %>. <%= @spots.find(spot.spot_id).name %>
+    <%= spot.order %>. <%= @spots.id_name %>
     <% if @schedule.gone %>
       <%= link_to "感想の入力", new_impression_path(spot) %>
     <% else %>

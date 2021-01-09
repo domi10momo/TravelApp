@@ -4,6 +4,7 @@ class Spot < ApplicationRecord
   has_many :wanted_users, through: :wants, source: :user
   has_many :distances, dependent: :destroy
   has_many :course_routes, dependent: :destroy
+  scope :id_name -> (spot) { find(spot.spot_id).name }
 
   def wanted_by?(user)
     wants.where(user_id: user.id).exists?
