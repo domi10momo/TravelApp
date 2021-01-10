@@ -1,0 +1,35 @@
+#inherit_from: .rubocop_todo.yml
+require:
+  - rubocop-rails
+
+AllCops:
+  Exclude:
+    - 'vendor/**' # default.ymlに設定されている項目
+    - 'tools/**'  # 追加したい項目
+    - 'config/**/*'
+    - 'config.ru'
+    - 'app/controllers/users/**'
+    - 'app/mailers/**'
+    - 'bin/**'
+    - 'Gemfile'
+    - 'node_modules/**/*'
+    - 'db/**/*'
+    - 'test/**/*'
+    - 'spec/**/*'
+    - 'app/models/**/*'
+
+# クラスのコメント必須を無視
+Style/Documentation:
+  Enabled: false
+
+# 文字列の囲み文字はダブルクオートを使う
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# コメント言語が英語か確認を無視
+Style/AsciiComments:
+  Enabled: false
+
+# 「frozen_string_literal: true」を追加しない
+Style/FrozenStringLiteralComment:
+  Enabled: false
