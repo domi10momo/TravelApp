@@ -9,7 +9,7 @@ class SpotsController < ApplicationController
 
   private
 
-    def show_param
-      params.require(:id)
-    end
+  def show_param
+    params.require(:id)
+  end
 end

@@ -22,11 +22,11 @@ class ImpressionsController < ApplicationController
 
   private
 
-    def param_format
-      params.require(:format)
-    end
+  def param_format
+    params.require(:format)
+  end
 
-    def param_text
-      params.require(:my_travel_course)[:text]
-    end
+  def param_text
+    params.require(:my_travel_course)[:text]
+  end
 end

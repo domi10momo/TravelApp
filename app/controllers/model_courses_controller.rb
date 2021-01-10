@@ -6,8 +6,8 @@ class ModelCoursesController < ApplicationController
   end
 
   def show
-    #選択したエリアのコースリストを選択
-    @courses_in_area = ModelCourse.where(area_id: area_id)  
+    # 選択したエリアのコースリストを選択
+    @courses_in_area = ModelCourse.where(area_id: area_id)
     @model_routes = CourseRoute.course_ids(@courses_in_area)
   end
 
@@ -20,7 +20,6 @@ class ModelCoursesController < ApplicationController
   def fetch_areas_and_spots
     @areas = Area.includes(:spots)
     @spots = Spot.all_spots
-    return @areas, @spots
+    [@areas, @spots]
   end
-
 end

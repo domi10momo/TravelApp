@@ -5,6 +5,7 @@ class CourseRoutesController < ApplicationController
   end
 
   private
+
   def course_id
     params.require(:id)
   end
