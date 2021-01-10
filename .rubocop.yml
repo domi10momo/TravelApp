@@ -8,15 +8,13 @@ AllCops:
     - 'tools/**'  # 追加したい項目
     - 'config/**/*'
     - 'config.ru'
-    - 'app/controllers/users/**'
-    - 'app/mailers/**'
     - 'bin/**'
     - 'Gemfile'
     - 'node_modules/**/*'
     - 'db/**/*'
     - 'test/**/*'
     - 'spec/**/*'
-    - 'app/models/**/*'
+    # - 'app/models/**/*'
 
 # クラスのコメント必須を無視
 Style/Documentation:
@@ -33,3 +31,11 @@ Style/AsciiComments:
 # 「frozen_string_literal: true」を追加しない
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+#クラスがネスト形式,コンパクト形式指定しない
+ClassAndModuleChildren:
+  Enabled: false
+
+# メソッドの行数が 10 行から20行までに変更
+Metrics/MethodLength:
+  Max: 20
