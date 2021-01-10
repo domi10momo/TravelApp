@@ -9,8 +9,7 @@ class MySchedulesController < ApplicationController
     else
       redirect_to :back
     end
-    choice_route = CourseRoute.course(create_model_course_id)
-    my_travel_course_create(choice_route, my_schedule)
+    my_travel_course_create(my_schedule)
     redirect_to user_path(current_user)
   rescue ActiveRecord::NotNullViolation
     null_date(create_model_course_id)
@@ -56,7 +55,8 @@ class MySchedulesController < ApplicationController
     params.require(:id)
   end
 
-  def my_travel_course_create(choice_route, my_schedule)
+  def my_travel_course_create(my_schedule)
+    choice_route = CourseRoute.course(create_model_course_id)
     choice_route.each do |spot|
       MyTravelCourse.create!(
         my_schedule_id: my_schedule.id,
