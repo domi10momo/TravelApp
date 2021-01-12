@@ -14,8 +14,8 @@ class ImpressionsController < ApplicationController
     Impression.create!(
       my_schedule_id: @choice_spot.my_schedule_id,
       spot_id: @choice_spot.spot_id,
-      text: param_text,
-      image: nil
+      text: params_impression[:text],
+      image: params_impression[:image]
     )
     redirect_to impressions_path
   end
@@ -26,7 +26,7 @@ class ImpressionsController < ApplicationController
     params.require(:format)
   end
 
-  def param_text
-    params.require(:my_travel_course)[:text]
+  def params_impression
+    params.require(:my_travel_course).permit(:text, :image)
   end
 end
