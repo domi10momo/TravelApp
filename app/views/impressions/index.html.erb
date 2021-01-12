@@ -1,8 +1,20 @@
+
 <% @impressions.each do |impression| %>
-  <p>投稿者：<%= User.id_name(MySchedule.find_id(impression)) %></p>
-  <p>旅行日：<%= MySchedule.find_id(impression).date %></p>
-  <p>観光地名：<%= Spot.find(impression.spot_id).name %></p>
-  <p>感想：<%= impression.text %></p>
-  <p>投稿時間：<%= impression.created_at.to_s(:datetime_jp) %>
-  <hr>
+  <div class="row">
+    <div class="col-12 col-md-4 col-lg-4 impression-text">
+      <p>投稿者：<%= User.id_name(MySchedule.find_id(impression)) %></p>
+      <p>旅行日：<%= MySchedule.find_id(impression).date %></p>
+      <p>観光地名：<%= Spot.find(impression.spot_id).name %></p>
+      <p>感想：<%= impression.text %></p>
+      <p>投稿時間：<%= impression.created_at.to_s(:datetime_jp) %></p>
+    </div>
+    <div class="col-12 col-md-4 col-lg-4">
+      <% if impression.image? %> 
+        <p><%= image_tag impression.image.url, :size => '350x350' %></p>
+      <% else %>
+        <p><%= image_tag "no_image_square.jpg", :size => '350x350' %></p>
+      <% end %>
+    </div>
+    <hr>
+  </div>
 <% end %>
