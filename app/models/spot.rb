@@ -6,6 +6,7 @@ class Spot < ApplicationRecord
   has_many :course_routes, dependent: :destroy
   scope :id_name, ->(spot) { find(spot.spot_id).name }
   scope :id_description, ->(spot) { find(spot.spot_id).description }
+  scope :id_image, ->(spot) { find(spot.spot_id).image }
 
   def wanted_by?(user)
     wants.where(user_id: user.id).exists?
