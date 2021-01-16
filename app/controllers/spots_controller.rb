@@ -4,7 +4,8 @@ class SpotsController < ApplicationController
   end
 
   def show
-    @spot = Spot.find(show_param)
+    @spot = gon.spot = Spot.find(show_param)
+    @map_url = "https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_API_KEY']}"
   end
 
   private

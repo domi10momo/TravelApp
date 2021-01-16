@@ -8,4 +8,18 @@
       <p><%= render 'want', spot: @spot %></p>
     </div>
   </div>
+  <div class="col-12 col-md-4 col-lg-4">
+    <div class="col-md-9" id="map" value="<%= @spot.name %>"style="width:620px; height:400px"></div>
+    <script type="text/javascript">
+      elementMap = document.getElementById("map")
+
+      function initMap() {
+        geocoder = new google.maps.Geocoder()
+        makePinOnMap(elementMap)
+      }
+    </script>
+    <script async defer type="text/javascript"
+      src="<%= @map_url %>&callback=initMap">
+    </script>
+  </div>
 </div>
