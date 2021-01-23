@@ -2,7 +2,7 @@
   <% @model_routes.course(course.id).each do |course_spot| %>
     <p><%= @spots.id_name(course_spot) %></p>
   <% end %>
-  合計移動距離： <%= course.score.round(2) %> km
+  スコア： <%= course.score.round(2) %> km
   <%= link_to "詳細を見る", course_route_path(course) %>
   <hr>
 <% end %>
