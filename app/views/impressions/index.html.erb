@@ -10,11 +10,11 @@
     </div>
     <div class="col-12 col-md-4 col-lg-4">
       <% if impression.image? %> 
-        <p><%= image_tag impression.image.url, :size => '350x350' %></p>
+        <p><%= image_tag impression.image.url, :size => '250x250' %></p>
       <% else %>
-        <p><%= image_tag "no_image_square.jpg", :size => '350x350' %></p>
+        <p><%= image_tag "no_image_square.jpg", :size => '250x250' %></p>
       <% end %>
     </div>
-    <hr>
   </div>
+  <hr>
 <% end %>

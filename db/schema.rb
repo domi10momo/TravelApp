@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_21_192821) do
+ActiveRecord::Schema.define(version: 2020_12_23_071528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 2021_01_21_192821) do
     t.float "distance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "travel_time"
     t.index ["area_id"], name: "index_model_courses_on_area_id"
   end
 
@@ -78,6 +77,7 @@ ActiveRecord::Schema.define(version: 2021_01_21_192821) do
     t.bigint "spot_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "fill_in_impression", default: false, null: false
     t.index ["my_schedule_id"], name: "index_my_travel_courses_on_my_schedule_id"
     t.index ["spot_id"], name: "index_my_travel_courses_on_spot_id"
   end
