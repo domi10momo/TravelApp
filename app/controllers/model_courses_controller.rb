@@ -9,6 +9,8 @@ class ModelCoursesController < ApplicationController
     # 選択したエリアのコースリストを選択
     @courses_in_area = ModelCourse.where(area_id: area_id)
     @model_routes = CourseRoute.course_ids(@courses_in_area)
+    @want_spots = current_user.wanted_spots
+    @courses_in_area = Want.create_calc_course_score(@courses_in_area, @model_routes, @want_spots)
   end
 
   private

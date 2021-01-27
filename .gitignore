@@ -39,3 +39,4 @@ log/
 vendor/
 .env
 spec/examples.txt
+public/uploads

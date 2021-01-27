@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_071528) do
     t.bigint "spot_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "fill_in_impression", default: false, null: false
     t.index ["my_schedule_id"], name: "index_my_travel_courses_on_my_schedule_id"
     t.index ["spot_id"], name: "index_my_travel_courses_on_spot_id"
   end
