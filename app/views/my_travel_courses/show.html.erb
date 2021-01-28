@@ -9,6 +9,7 @@
   </p>
   <% if spot.fill_in_impression %>
     <textarea><%= Impression.find_by(my_schedule_id: @schedule.id, spot_id: spot.spot_id).text %></textarea>
+    <%= image_tag Impression.find_by(my_schedule_id: @schedule.id, spot_id: spot.spot_id).image, :size => '150x150' %>
   <% end %>
 <% end %>
 <%= button_to "旅行終了", my_travel_courses_gone_flag_path(@schedule) %>
