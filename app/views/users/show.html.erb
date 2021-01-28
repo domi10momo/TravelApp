@@ -3,15 +3,20 @@
   <h2><%= current_user.nickname %>さんのマイページ</h2>
   
   <div class="row">
-    <div class="col-12 col-md-6 col-lg-6">
+    <div class="col-12 col-md-10 col-lg-10">
       <div class="text-center">
         <p><%= link_to "行きたい観光地を選択する", spots_path %></p>
       </div>
       <div class="overflow-auto card border-dark mb-3">
         <h3>行きたい観光地一覧</h3>
-        <% @want_spots.each do |spot| %>
-          <p><%= link_to spot.name,  spot_path(spot) %></p>
-        <% end %>
+        <div class="row">
+          <% @want_spots.each do |spot| %>
+            <div class="col col-lg-3 card">
+              <%= image_tag spot.image, :size => '150x150' %>
+              <p><%= link_to spot.name,  spot_path(spot) %></p>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

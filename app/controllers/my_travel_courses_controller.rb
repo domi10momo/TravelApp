@@ -2,7 +2,7 @@ class MyTravelCoursesController < ApplicationController
   def show
     @spots = Spot.all_spots
     @course = MyTravelCourse.schedule_id(my_schedule_id)
-    @schedule = MySchedule.find(params[:id])
+    @schedule = MySchedule.find(my_schedule_id)
   end
 
   def edit
