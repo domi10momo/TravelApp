@@ -1,9 +1,11 @@
 <div class="container">
   <%= render 'shared/flash' %>
-  <h2><%= current_user.nickname %>さんのマイページ</h2>
+  <div class="text-center">
+    <h2><%= current_user.nickname %>さんのマイページ</h2>
+  </div>
   
   <div class="row">
-    <div class="col-12 col-md-10 col-lg-10">
+    <div class="col-12 col-md-10 col-lg-10 mx-5">
       <div class="text-center">
         <p><%= link_to "行きたい観光地を選択する", spots_path %></p>
       </div>
@@ -12,8 +14,10 @@
         <div class="row">
           <% @want_spots.each do |spot| %>
             <div class="col col-lg-3 card">
-              <%= image_tag spot.image, :size => '150x150' %>
-              <p><%= link_to spot.name,  spot_path(spot) %></p>
+              <div class="mx-auto">
+                <%= image_tag spot.image, :size => '150x150' %>
+                <p><%= link_to spot.name,  spot_path(spot) %></p>
+              </div>
             </div>
           <% end %>
         </div>
@@ -28,16 +32,22 @@
       </div>
       <div class="card border-dark mb-3 overflow-auto mx-auto"style="width:500px; height:400px;">
         <% @gone_false_schedules.each do |dont_gone_schedule| %>
-          <%= render 'show_course', schedule: dont_gone_schedule %>
-          <div>
-            <%= link_to "日時の修正", edit_my_schedule_path(dont_gone_schedule.id) %>
-            <%= link_to "予定の削除",
-              my_schedule_path(dont_gone_schedule.id),
-              method: :delete,
-              data:{ confirm: "削除しますか？" }
-            %>
-
-            <%= link_to "旅行詳細", my_travel_course_path(dont_gone_schedule.id) %>
+          <%= render "show_course", schedule: dont_gone_schedule %>
+          <div class="row">
+            <div class="mx-3">
+              <%= link_to "日時の修正", edit_my_schedule_path(dont_gone_schedule.id), class: "btn btn-secondary" %>
+            </div>
+            <div class="mx-3">
+              <%= link_to "予定の削除",
+                my_schedule_path(dont_gone_schedule.id),
+                method: :delete,
+                data:{ confirm: "削除しますか？" },
+                class: "btn btn-secondary"
+              %>
+            </div>
+            <div class="mx-3">
+              <%= link_to "旅行詳細", my_travel_course_path(dont_gone_schedule.id), class: "btn btn-secondary" %>
+            </div>
           </div>
           <hr>
         <% end %>
