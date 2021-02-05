@@ -1,4 +1,6 @@
-<h1>観光地一覧</h1>
-<%= link_to "マイページへ戻る", user_path(current_user.id) %>
+<h5><%= link_to "マイページへ戻る", user_path(current_user.id) %></h5>
 <hr>
+<div class="text-center mb-3">
+  <h2>観光地一覧</h2>
+</div>
 <%= render 'shared/all_spots_list' %>

@@ -1,26 +1,36 @@
 <div class="container">
   <%= render 'shared/flash' %>
-  <h2><%= current_user.nickname %>さんのマイページ</h2>
+  <div class="text-center">
+    <h2><%= current_user.nickname %>さんのマイページ</h2>
+  </div>
   
   <div class="row">
-    <div class="col-12 col-md-10 col-lg-10">
-      <div class="text-center">
-        <p><%= link_to "行きたい観光地を選択する", spots_path %></p>
-      </div>
+    <div class="col-12 col-md-10 col-lg-10 mx-5">
       <div class="overflow-auto card border-dark mb-3">
-        <h3>行きたい観光地一覧</h3>
+        <div class="row justify-content-md-center">
+          <div class="m-4">
+            <h3>あなたの行きたい観光地リスト</h3>
+          </div>
+          <div class="m-4">
+            <%= link_to "行きたい観光地の選択", spots_path, class: "btn btn-success" %>
+          </div>
+        </div>
         <div class="row">
           <% @want_spots.each do |spot| %>
             <div class="col col-lg-3 card">
-              <%= image_tag spot.image, :size => '150x150' %>
-              <p><%= link_to spot.name,  spot_path(spot) %></p>
+              <div class="mx-auto m-2">
+                <%= image_tag spot.image, :size => '150x150' %>
+                <div class="text-center m-2">
+                  <%= link_to spot.name,  spot_path(spot), class: "btn btn-info" %>
+                </div>
+              </div>
             </div>
           <% end %>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-4">
     <div class="col-12 col-md-6 col-lg-6">
       <div class="text-center">
         <h3>旅行予定一覧</h3>
@@ -28,16 +38,22 @@
       </div>
       <div class="card border-dark mb-3 overflow-auto mx-auto"style="width:500px; height:400px;">
         <% @gone_false_schedules.each do |dont_gone_schedule| %>
-          <%= render 'show_course', schedule: dont_gone_schedule %>
-          <div>
-            <%= link_to "日時の修正", edit_my_schedule_path(dont_gone_schedule.id) %>
-            <%= link_to "予定の削除",
-              my_schedule_path(dont_gone_schedule.id),
-              method: :delete,
-              data:{ confirm: "削除しますか？" }
-            %>
-
-            <%= link_to "旅行詳細", my_travel_course_path(dont_gone_schedule.id) %>
+          <%= render "show_course", schedule: dont_gone_schedule %>
+          <div class="row">
+            <div class="mx-3">
+              <%= link_to "日時の修正", edit_my_schedule_path(dont_gone_schedule.id), class: "btn btn-secondary" %>
+            </div>
+            <div class="mx-3">
+              <%= link_to "予定の削除",
+                my_schedule_path(dont_gone_schedule.id),
+                method: :delete,
+                data:{ confirm: "削除しますか？" },
+                class: "btn btn-secondary"
+              %>
+            </div>
+            <div class="mx-3">
+              <%= link_to "旅行の詳細", my_travel_course_path(dont_gone_schedule.id), class: "btn btn-secondary" %>
+            </div>
           </div>
           <hr>
         <% end %>
@@ -45,14 +61,14 @@
     </div>
     <div class="col-12 col-md-6 col-lg-6">
       <div class="text-center">
-        <h3>行った旅行一覧</h3>
+        <h3>完了した旅行一覧</h3>
         <p>&nbsp;</p>
       </div>
       <div class="card border-dark mb-3 overflow-auto mx-auto"style="width:500px; height:400px;">
         <% @gone_true_schedules.each do |gone_schedule| %>
           <%= render 'show_course', schedule: gone_schedule %>
           <div>
-            <%= link_to "記録の入力", my_travel_course_path(gone_schedule.id)%>
+            <%= link_to "記録の入力", my_travel_course_path(gone_schedule.id), class: "btn btn-success"%>
           </div>
           <hr>
         <% end %>
