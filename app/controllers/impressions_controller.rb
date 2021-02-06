@@ -1,6 +1,6 @@
 class ImpressionsController < ApplicationController
   def index
-    @impressions = Impression.order(created_at: "DESC")
+    @impressions = Impression.order(created_at: "DESC").limit(100).page(params[:page]).per(5)
   end
 
   def new
