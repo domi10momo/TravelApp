@@ -1,12 +1,18 @@
 
 <% @impressions.each do |impression| %>
-  <div class="row">
+  <div class="row  justify-content-md-center">
     <div class="col-12 col-md-4 col-lg-4 impression-text">
-      <p>投稿者：<%= User.id_name(MySchedule.find_id(impression)) %></p>
-      <p>旅行日：<%= MySchedule.find_id(impression).date %></p>
-      <p>観光地名：<%= Spot.find(impression.spot_id).name %></p>
-      <p>感想：<%= impression.text %></p>
-      <p>投稿時間：<%= impression.created_at.to_s(:datetime_jp) %></p>
+      <b>投稿者:<%= User.id_name(MySchedule.find_id(impression)) %></b>
+      <div class="row mx-1">
+        <p><%= MySchedule.find_id(impression).date %></p>
+        <div class="mx-4">
+          <%= Spot.find(impression.spot_id).name %></p>
+        </div>
+      </div>
+      <textarea readonly><%= impression.text %></textarea>
+      <div class="mt-4">
+        <p>投稿時間：<%= impression.created_at.to_s(:datetime_jp) %></p>
+      </div>
     </div>
     <div class="col-12 col-md-4 col-lg-4">
       <% if impression.image? %> 
@@ -18,3 +24,7 @@
   </div>
   <hr>
 <% end %>
+
+<div class="justify-content-md-center">
+  <%= paginate @impressions %>
+</div>
