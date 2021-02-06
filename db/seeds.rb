@@ -3,6 +3,7 @@ require 'csv'
 puts 'Delete Data'
 CourseRoute.delete_all
 ModelCourse.delete_all
+MyTravelCourses.delete_all
 Distance.delete_all
 Spot.delete_all
 Area.delete_all
