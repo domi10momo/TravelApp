@@ -24,11 +24,10 @@ class ModelCourse < ApplicationRecord
       end.inject(:+)
     end
 
-    def create_model_courses(area, a_path)
+    def create_model_courses(id_count, area, a_path)
       distance = path_length(a_path)
-      @@count = 0
       ModelCourse.create!(
-        id: @@count += 1,
+        id: id_count += 1,
         area_id: area.id,
         score: distance,
         distance: distance
