@@ -54,7 +54,6 @@ areas.each do |area|
   path_pop.pop(ModelCourse::INITIAL_MODELCOURSE_NUM - ModelCourse::MODELCORSES_PER_AREA_NUM)
   path_pop.each do |a_path|
     model_course = ModelCourse.create_model_courses(@@model_course_id, area, a_path)
-    binding.pry
     @@course_route_id = CourseRoute.create_course_routes(@@course_route_id, model_course, a_path)
     @@model_course_id += 1
   end
