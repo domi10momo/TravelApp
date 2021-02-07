@@ -46,7 +46,7 @@ puts 'Finish Distance'
 puts "Insert ModelCourse"
 areas = Area.all
 @@model_course_id = 1
-@@course_route_id = 1
+@@course_route_id = 0
 areas.each do |area|
   spots_per_area = Spot.includes(:area).where(area_id: area.id)
   path_pop = ModelCourse.init_path_array(spots_per_area).dup
