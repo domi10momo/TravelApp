@@ -22,7 +22,7 @@
         </div>
         <% if Impression.find_by(my_schedule_id: @schedule.id, spot_id: spot.spot_id).image.present? %>
           <div class="col-12 col-md-4 col-lg-4">
-            <%= image_tag "/assets/#{Impression.find_by(my_schedule_id: @schedule.id, spot_id: spot.spot_id).image.identifier}", :size => '200x200' %>
+            <%= image_tag Impression.find_by(my_schedule_id: @schedule.id, spot_id: spot.spot_id).image.identifier, :size => '200x200' %>
           </div>
         <% end %>
       <% end %>
