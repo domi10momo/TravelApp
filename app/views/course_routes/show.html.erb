@@ -8,7 +8,7 @@
           <div class="card-body">
             <p><%= course_spot.order %>. <%= @spots.id_name(course_spot) %></p>
             <p><%= @spots.id_description(course_spot) %></p>
-            <%= image_tag @spots.id_image(course_spot), :size => '350x350' %>
+            <%= image_tag "/assets/#{@spots.id_image(course_spot)}", :size => '300x300' %>
           </div>
         </div>
       </div>

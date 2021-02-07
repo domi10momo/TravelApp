@@ -18,7 +18,7 @@
       <% if impression.image? %> 
         <p><%= image_tag impression.image.url, :size => '250x250' %></p>
       <% else %>
-        <p><%= image_tag "no_image_square.jpg", :size => '250x250' %></p>
+        <p><%= image_tag "/assets/no_image_square.jpg", :size => '250x250' %></p>
       <% end %>
     </div>
   </div>
