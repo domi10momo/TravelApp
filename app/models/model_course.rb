@@ -2,8 +2,8 @@ class ModelCourse < ApplicationRecord
   belongs_to :area
   has_many :course_routes, dependent: :destroy
   ROUTE_SPOT_NUM = 5
-  INITIAL_MODELCOURSE_NUM = 1000
-  MODELCORSES_PER_AREA_NUM = 100
+  INITIAL_MODELCOURSE_NUM = 10
+  MODELCORSES_PER_AREA_NUM = 5
 
   class << self
     # 以下で、1000コースの中から距離が短い100コースをcourse_routesテーブルへ格納
@@ -27,7 +27,7 @@ class ModelCourse < ApplicationRecord
     def create_model_courses(model_course_id, area, a_path)
       distance = path_length(a_path)
       ModelCourse.create!(
-        id: model_course_id += 1,
+        id: model_course_id,
         area_id: area.id,
         score: distance,
         distance: distance
