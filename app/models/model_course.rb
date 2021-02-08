@@ -2,8 +2,8 @@ class ModelCourse < ApplicationRecord
   belongs_to :area
   has_many :course_routes, dependent: :destroy
   ROUTE_SPOT_NUM = 5
-  INITIAL_MODELCOURSE_NUM = 10
-  MODELCORSES_PER_AREA_NUM = 5
+  INITIAL_MODELCOURSE_NUM = 1000
+  MODELCORSES_PER_AREA_NUM = 100
 
   class << self
     # 以下で、1000コースの中から距離が短い100コースをcourse_routesテーブルへ格納
