@@ -1,4 +1,4 @@
-if Rails.env.production?
+# if Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_credentials = {
       provider: 'AWS',
@@ -9,4 +9,4 @@ if Rails.env.production?
     config.fog_directory = Rails.application.credentials.dig(:aws, :bucket)
     config.asset_host = "https://d1qnw7ypcxdxuq.cloudfront.net"
   end
-end
+# end
