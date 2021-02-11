@@ -15,7 +15,7 @@ class CourseRoute < ApplicationRecord
           spot_id: Spot.find(spot).id
         )
       end
-      return course_route_id
+      course_route_id
     end
   end
 end
