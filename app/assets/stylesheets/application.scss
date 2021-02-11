@@ -34,3 +34,8 @@ textarea:read-only {
   outline: none;
   width: 100%;
 }
+
+.row-eq-height {
+  display: flex;
+  flex-wrap: wrap;
+}

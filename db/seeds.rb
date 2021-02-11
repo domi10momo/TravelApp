@@ -1,7 +1,9 @@
 require 'csv'
 
 puts 'Delete Data'
+CourseRoute.delete_all
 ModelCourse.delete_all
+MyTravelCourse.delete_all
 Distance.delete_all
 Spot.delete_all
 Area.delete_all
@@ -43,14 +45,17 @@ puts 'Finish Distance'
 
 puts "Insert ModelCourse"
 areas = Area.all
+@@model_course_id = 1
+@@course_route_id = 0
 areas.each do |area|
   spots_per_area = Spot.includes(:area).where(area_id: area.id)
   path_pop = ModelCourse.init_path_array(spots_per_area).dup
   path_pop.sort!{|a,b| ModelCourse.path_length(a)<=>ModelCourse.path_length(b)}
   path_pop.pop(ModelCourse::INITIAL_MODELCOURSE_NUM - ModelCourse::MODELCORSES_PER_AREA_NUM)
   path_pop.each do |a_path|
-    model_course = ModelCourse.create_model_courses(area, a_path)
-    CourseRoute.create_course_routes(model_course, a_path)
+    model_course = ModelCourse.create_model_courses(@@model_course_id, area, a_path)
+    @@course_route_id = CourseRoute.create_course_routes(@@course_route_id, model_course, a_path)
+    @@model_course_id += 1
   end
 end
 puts "Finish ModelCourse"
