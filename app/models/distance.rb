@@ -3,6 +3,9 @@ class Distance < ApplicationRecord
   require "net/http"
   require "uri"
   require "json"
+  validates :value, numericality: { greater_than_or_equal_to: 0 }
+  validates :travel_time, numericality: { greater_than_or_equal_to: 0 }
+
   POINT_NUMBER_2 = 2  # 2地点
   POINT_NUMBER_5 = 5  # course内の地点数（5地点）
   belongs_to :spot, optional: true

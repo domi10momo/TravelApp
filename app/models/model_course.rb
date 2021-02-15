@@ -1,6 +1,8 @@
 class ModelCourse < ApplicationRecord
   belongs_to :area
   has_many :course_routes, dependent: :destroy
+  validates :score, numericality: { greater_than_or_equal_to: 0 }
+  validates :distance, numericality: { greater_than_or_equal_to: 0 }
   ROUTE_SPOT_NUM = 5
   INITIAL_MODELCOURSE_NUM = 1000
   MODELCORSES_PER_AREA_NUM = 100

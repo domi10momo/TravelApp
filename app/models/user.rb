@@ -7,5 +7,8 @@ class User < ApplicationRecord
   has_many :wants, dependent: :destroy
   has_many :wanted_spots, through: :wants, source: :spot
   has_many :my_schedules, dependent: :destroy
+  validates :email, presence: true
+  validates :nickname, presence: true
+
   scope :id_name, ->(table) { find(table.user_id).nickname }
 end
