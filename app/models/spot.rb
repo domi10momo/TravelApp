@@ -5,7 +5,6 @@ class Spot < ApplicationRecord
   has_many :distances, dependent: :destroy
   has_many :course_routes, dependent: :destroy
   validates :name, presence: true
-  validates :stay_time, numericality: { greater_than_or_equal_to: 0 }
   validates :description, presence: true
   validates :address, presence: true
   validates :image, presence: true
