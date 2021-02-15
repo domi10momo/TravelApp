@@ -1,14 +1,16 @@
 <div class="row">
-  <div class="col-12 col-md-4 col-lg-4">
-    <div class="card border-dark mb-3" style="margin: 1rem">
+  <div class="col-12 col-md-5 col-lg-5">
+    <div class="card border-dark mb-3 p-3" style="margin: 1rem">
+      <div class="text-center text-secondly">
       <h3><%= @spot.name %></h3>
-      <%= image_tag @spot.image, :size => '350x350' %>
+      </div>
+      <%= image_tag @spot.image %>
       <p>住所：<%= @spot.address %></p>
       <p><%= @spot.description %></p>
       <p><%= render 'want', spot: @spot %></p>
     </div>
   </div>
-  <div class="col-12 col-md-4 col-lg-4">
+  <div class="col-12 col-md-5 col-lg-5 mt-5">
     <div class="col-md-9" id="map" value="<%= @spot.name %>"style="width:620px; height:400px"></div>
     <script type="text/javascript">
       elementMap = document.getElementById("map")
