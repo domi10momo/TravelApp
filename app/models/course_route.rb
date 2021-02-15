@@ -3,6 +3,7 @@ class CourseRoute < ApplicationRecord
   belongs_to :spot
   scope :course_ids, ->(course) { where(model_course_id: course.ids) }
   scope :course, ->(course_id) { where(model_course_id: course_id) }
+  validates :order, numericality: { greater_than_or_equal_to: 1 }
 
   class << self
     def create_course_routes(course_route_id, model_course, a_path)
