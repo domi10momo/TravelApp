@@ -21,7 +21,7 @@
               <div class="mx-auto m-2">
                 <%= image_tag spot.image, :size => '150x150' %>
                 <div class="text-center m-2">
-                  <%= link_to spot.name,  spot_path(spot), class: "btn btn-info" %>
+                  <%= link_to spot.name,  spot_path(spot), class: "btn btn-success" %>
                 </div>
               </div>
             </div>
@@ -34,7 +34,7 @@
     <div class="col-12 col-md-6 col-lg-6">
       <div class="text-center">
         <h3>旅行予定一覧</h3>
-        <p><%= link_to "モデルコースを選択する", model_courses_path %></p>
+        <p><%= link_to "モデルコースを選択する", model_courses_path, class: "btn btn-success"%></p>
       </div>
       <div class="card border-dark mb-3 overflow-auto mx-auto"style="width:500px; height:400px;">
         <% @gone_false_schedules.each do |dont_gone_schedule| %>
@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="col-12 col-md-6 col-lg-6">
-      <div class="text-center">
+      <div class="text-center m-1 mb-4">
         <h3>完了した旅行一覧</h3>
         <p>&nbsp;</p>
       </div>
