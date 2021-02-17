@@ -3,8 +3,8 @@ class CreateDistances < ActiveRecord::Migration[6.0]
     create_table :distances do |t|
       t.references :start_spot, null: false
       t.references :end_spot, null: false
-      t.float :value
-      t.integer :travel_time
+      t.float :value, null: false
+      t.integer :travel_time, null: false
 
       t.timestamps
     end
