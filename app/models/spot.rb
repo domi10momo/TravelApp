@@ -2,7 +2,8 @@ class Spot < ApplicationRecord
   belongs_to :area
   has_many :wants, dependent: :destroy
   has_many :wanted_users, through: :wants, source: :user
-  has_many :distances, dependent: :destroy
+  has_many :distances, dependent: :destroy, foreign_key: "start_spot_id"
+  has_many :distances, dependent: :destroy, foreign_key: "end_spot_id"
   has_many :course_routes, dependent: :destroy
   validates :name, presence: true
   validates :description, presence: true

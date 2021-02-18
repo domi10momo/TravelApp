@@ -29,12 +29,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors[:email]).to include("を入力してください")        
       end
-
-      it "nicknameがnilの時失敗" do
-        @user.update(nickname: nil)
-        @user.valid?
-        expect(@user.errors[:nickname]).to include("を入力してください")        
-      end
     end
   end
 end

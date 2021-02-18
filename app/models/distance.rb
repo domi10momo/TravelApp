@@ -8,7 +8,8 @@ class Distance < ApplicationRecord
 
   POINT_NUMBER_2 = 2  # 2地点
   POINT_NUMBER_5 = 5  # course内の地点数（5地点）
-  belongs_to :spot, optional: true
+  belongs_to :spot, foreign_key: "start_spot_id"
+  belongs_to :spot, foreign_key: "end_spot_id"
 
   class << self
     def get_course_list(areas, spots)
