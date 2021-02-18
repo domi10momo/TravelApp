@@ -16,14 +16,14 @@ ActiveRecord::Schema.define(version: 2020_12_23_071528) do
   enable_extension "plpgsql"
 
   create_table "areas", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "course_routes", force: :cascade do |t|
     t.bigint "model_course_id", null: false
-    t.integer "order"
+    t.integer "order", null: false
     t.bigint "spot_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 2020_12_23_071528) do
   create_table "distances", force: :cascade do |t|
     t.bigint "start_spot_id", null: false
     t.bigint "end_spot_id", null: false
-    t.float "value"
-    t.integer "travel_time"
+    t.float "value", null: false
+    t.integer "travel_time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_spot_id"], name: "index_distances_on_end_spot_id"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_071528) do
   create_table "impressions", force: :cascade do |t|
     t.bigint "my_schedule_id", null: false
     t.bigint "spot_id", null: false
-    t.string "text"
+    t.string "text", null: false
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 2020_12_23_071528) do
 
   create_table "model_courses", force: :cascade do |t|
     t.bigint "area_id", null: false
-    t.float "score"
-    t.float "distance"
+    t.float "score", null: false
+    t.float "distance", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["area_id"], name: "index_model_courses_on_area_id"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_071528) do
 
   create_table "my_travel_courses", force: :cascade do |t|
     t.bigint "my_schedule_id", null: false
-    t.integer "order"
+    t.integer "order", null: false
     t.bigint "spot_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -84,13 +84,13 @@ ActiveRecord::Schema.define(version: 2020_12_23_071528) do
 
   create_table "spots", force: :cascade do |t|
     t.bigint "area_id", null: false
-    t.string "name"
+    t.string "name", null: false
     t.integer "stay_time"
-    t.string "image"
+    t.string "image", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "description"
-    t.string "address"
+    t.string "description", null: false
+    t.string "address", null: false
     t.index ["area_id"], name: "index_spots_on_area_id"
   end
 
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_071528) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "nickname"
+    t.string "nickname", null: false
     t.string "icon"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
