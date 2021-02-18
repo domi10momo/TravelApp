@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
   before :each do
@@ -21,15 +21,14 @@ RSpec.describe User, type: :model do
       it "nicknameがnilの時失敗" do
         @user.update(nickname: nil)
         @user.valid?
-        expect(@user.errors[:nickname]).to include("を入力してください")        
+        expect(@user.errors[:nickname]).to include("を入力してください")
       end
 
       it "emailがnilの時失敗" do
         @user.update(email: nil)
         @user.valid?
-        expect(@user.errors[:email]).to include("を入力してください")        
+        expect(@user.errors[:email]).to include("を入力してください")
       end
     end
   end
 end
-  
