@@ -6,6 +6,7 @@ class Spot < ApplicationRecord
   has_many :distances, dependent: :destroy, foreign_key: "end_spot_id", inverse_of: :spot
   has_many :course_routes, dependent: :destroy
   has_many :my_travel_courses, dependent: :destroy
+  has_many :impressions, dependent: :destroy
   validates :name, presence: true
   validates :description, presence: true
   validates :address, presence: true

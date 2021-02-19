@@ -1,8 +1,8 @@
 FactoryBot.define do
-  factory :my_travel_course do
+  factory :impression do
     association :my_schedule
-    order { 1 }
     association :spot
-    fill_in_impression { "false" }
+    text { "string" }
+    image { "string" }
   end
 end
