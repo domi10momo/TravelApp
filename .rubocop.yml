@@ -13,8 +13,6 @@ AllCops:
     - 'node_modules/**/*'
     - 'db/**/*'
     - 'test/**/*'
-    - 'spec/**/*'
-    # - 'app/models/**/*'
 
 # クラスのコメント必須を無視
 Style/Documentation:
@@ -39,3 +37,13 @@ ClassAndModuleChildren:
 # メソッドの行数が 10 行から20行までに変更
 Metrics/MethodLength:
   Max: 20
+
+Metrics/BlockLength:
+  Enabled: True
+  Exclude:
+    - "spec/**/*"
+
+Layout/CommentIndentation:
+  Enabled: True
+  Exclude:
+    - "spec/spec_helper.rb"

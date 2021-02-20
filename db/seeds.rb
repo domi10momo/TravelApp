@@ -28,15 +28,15 @@ CSV.foreach('db/csv_data/spot.csv') do |row|
     description: row[4]
   })
 end
-puts 'Finish SPot'
+puts 'Finish Spot'
 
 puts "Insert Distance"
 @@count = 0
 CSV.foreach('db/csv_data/distance.csv') do |row|
   Distance.create!({
     id: @@count += 1,
-    start_spot_id: row[0].to_i,
-    end_spot_id: row[1].to_i,
+    start_spot_id: row[0],
+    end_spot_id: row[1],
     value: row[2].to_f,
     travel_time: row[3].to_i
   })
