@@ -17,10 +17,14 @@
 @import "bootstrap/scss/bootstrap";
 
 body {
-  padding-top: 4rem;
+  padding-top: 6rem;
 }
 
 .header-container {
+  height: 4rem;
+}
+
+.header-icon {
   height: 4rem;
 }
 
@@ -44,4 +48,12 @@ img {
   margin: 5% auto;
   max-width: 80%;
   height: 200px;
+}
+
+.top-bgimage {
+  overflow: hidden;
+  position: relative;
+  padding-top: 0rem;
+  //background-image: url("/assets/toppage.png");
+  background-color: #a7f1ff;
 }
