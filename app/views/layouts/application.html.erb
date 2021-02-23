@@ -9,10 +9,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body>
-    <header>
-      <%= render "layouts/header" %>
-    </header>
-    <%= yield %>
-  </body>
-</html>
+  <% if params["controller"] == "users" && params["action"] == "index" %>
+    <body class="top-bgimage">
+    <% else %>
+      <body>
+      <% end %>
+      <header>
+        <%= render "layouts/header" %>
+      </header>
+      <%= yield %>
+    </body>
+  </html>

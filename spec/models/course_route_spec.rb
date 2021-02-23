@@ -45,6 +45,7 @@ RSpec.describe :course_route, type: :model do
 
       context "spotを削除した場合" do
         it "関係性を持つcourse_routeレコードも削除される" do
+          binding.pry
           @spot.destroy
           @after_route = Want.find_by(id: @course_route.id)
           expect(@after_route).to_not be_present
