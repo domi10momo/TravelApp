@@ -1,9 +1,11 @@
-<p>
-  日程：<%= schedule.date %> 
-  <button class="btn btn-info m-2 flag-btn" disabled >
-    <%= MyTravelCourse.gone_text(schedule.gone) %>
-  </button>
-</p>
-<% @my_travel_courses.schedule_id(schedule).each do |spot| %>
-  <p><%= spot.order %>.  <%= @spots.id_name(spot) %></p>
-<% end %>
+<div class="px-5">
+  <b><p>
+    日程：<%= schedule.date %> 
+    <button class="btn btn-info m-2 flag-btn" disabled >
+      <%= MyTravelCourse.gone_text(schedule.gone) %>
+    </button>
+  </p></b>
+  <% @my_travel_courses.schedule_id(schedule).each do |spot| %>
+    <b><p><%= spot.order %>.  <%= @spots.id_name(spot) %></p></b>
+  <% end %>
+</div>
