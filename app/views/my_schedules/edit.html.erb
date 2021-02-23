@@ -1,9 +1,9 @@
 <div class="text-center">
   <%= form_with model: @schedule, url: my_schedule_path(@schedule), method: :patch, local: true do |f| %>
     <%= render 'shared/calendar_date', f: f %>
-    <div class="container">
-      <div class="form-group col-md-6">
-        <%= f.submit "変更" %>
+    <div class="container row-eq-height">
+      <div class="form-group col-md-6 mt-3 mx-auto">
+        <%= f.submit "変更", class: "btn btn-success" %>
       </div>
     </div>
   <% end %>
