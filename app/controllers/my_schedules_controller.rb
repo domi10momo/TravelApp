@@ -4,9 +4,8 @@ class MySchedulesController < ApplicationController
   end
 
   def create
-    if my_schedule_params[:date].empty?
-      return null_date(CourseRoute.find(params["course_id"]))
-    end
+    return null_date(CourseRoute.find(params["course_id"])) if my_schedule_params[:date].empty?
+
     my_schedule = MySchedule.create!(my_schedule_params)
     my_travel_course_create(my_schedule)
     redirect_to user_path(current_user)
