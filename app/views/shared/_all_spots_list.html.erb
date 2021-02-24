@@ -2,21 +2,27 @@
   <% @spots.each do |spot| %>
     <div class="col-12 col-md-6 col-lg-4 row-eq-height">
       <div class="card border-dark mb-3" style="margin: 1rem">
-        <h3><%= spot.name %></h3>
-        <div class="mx-1">
+        <div class="text-center mt-2">
+          <h3><b><%= spot.name %></b></h3>
+        </div>
+        <div class="ml-5">
           <%= image_tag "/assets/#{spot.image}", :size => '300x300' %>
         </div>
         <p>エリア名：<%= spot.area.name %></p>
         <p><%= spot.description %></p>
-        <%= link_to "詳細を確認する", spot_path(spot) %>
-        <% if @travel_spot %>
-          <div class="form-group col-md-6">
+
+        <div class="form-group row justify-content-center mt-3">
+          <div btn-group>
+          <%= link_to "詳細を確認する", spot_path(spot), class: "btn btn-success" %>
+          <% if @travel_spot %>
             <%= link_to "この場所を選択する",
               my_travel_course_path(params:{spot_id: spot, course_id: @travel_spot}),
-              method: :patch
+              method: :patch,
+              class: "btn btn-success"
             %>
+          <% end %>
           </div>
-        <% end %>
+        </div>
       </div>
     </div>
   <% end %>

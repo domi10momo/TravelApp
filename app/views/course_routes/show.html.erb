@@ -1,9 +1,9 @@
 <div class="container">
   <%= render 'shared/flash' %>
-  <%= form_with model: @my_schedule, url: my_schedules_path, local: true do |f| %>  
+  <%= form_with model: @my_schedule, url: my_schedules_path, local: true do |f| %> 
     <%= render 'shared/calendar_date', f: f %>
     <% @course_route.each do |course_spot| %>
-      <div class="col-12 col-md-6 col-lg-6">
+      <div class="col-12 col-md-6 col-lg-6 mx-auto">
         <div class="card border-dark mb-3">
           <div class="card-body">
             <p><%= course_spot.order %>. <%= @spots.id_name(course_spot) %></p>
@@ -14,6 +14,8 @@
       </div>
     <% end %>
     <%= f.hidden_field :course_id, value: params[:id] %>
-    <%= f.submit "このコースを選択する", class: "btn btn-success" %>
+    <div class="form-group row justify-content-center">
+      <%= f.submit "このコースを選択する", class: "btn btn-success mt-4" %>
+    </div>
   <% end %>
 </div>

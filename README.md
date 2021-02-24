@@ -1,36 +1,88 @@
 # TravelApp
 
 旅行の予定作成、感想の共有ができるサイトです。
+https://young-ravine-41583.herokuapp.com/
 
+# サービス概要
 
-* Ruby version
+自分の行きたい、過去に行った旅行コースの保存、記録ができるサービスです。
 
-* System dependencies
+- 行きたい観光地をマイページに保存
+- 行く予定、完了した旅行の編集、記録
+- サービス利用者の観光地に訪れた感想を閲覧可能
 
-* Configuration
+<img width="1253" alt="トップページ" src="https://user-images.githubusercontent.com/35606852/108947041-0aed4200-76a3-11eb-9471-721033654ca5.png">
 
-* Database creation
+<img width="1258" alt="マイページ" src="https://user-images.githubusercontent.com/35606852/108947092-21939900-76a3-11eb-9f39-b96dc14292c9.png">
 
-* Database initialization
+# 使用技術
 
-* How to run the test suite
+## フロントエンド
 
-* Services (job queues, cache servers, search engines, etc.)
+- HTML
+- JavaScript
+- Bootstrap
 
-* Deployment instructions
+## バックエンド
 
-* ...
+- Ruby 2.6.6
+- Rails 6.0.3.4
 
-# ER図
+## 本番環境
+
+- Heroku
+
+# ER 図
+
 https://drive.google.com/file/d/1JL8MXSTKiYSkCFS34SQZQvXed4gDjvv4/view?usp=sharing
 
 # テーブル設計
+
 https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxFUsY/edit?usp=sharing
 
-
 # 機能一覧
-- ユーザ登録、ログイン機能（devise)
+
+- ユーザ登録、編集ログイン機能（devise)
 - 行きたい観光地の保存機能
-- モデルコース作成（Directions API)
-- 旅行モデルコース選択機能（5箇所回るコースを距離が短い順にエリア毎に100コース提示）
+- モデルコース作成（Directions API にて地点間距離取得)
 - 観光地感想入力機能
+- 旅行モデルコース選択機能（5 箇所回るコースを距離が短い順にエリア毎に 100 コース提示）
+- 選択モデルコースの編集機能
+- 画像アップロード機能(Amazon S3)
+
+# 工夫した点
+
+## モデルコースの作成方法
+
+### （課題)
+
+5 つの地点を選ぶ組み合わせ全てをデータに格納した場合、データが膨大となります。<br>
+現時点で全 24405360 通り
+
+### （解決）
+
+1. エリア（長崎、佐世保）毎に 1000 通りのコースをランダムで作成します。<br>
+2. その中から、合計移動距離が少ない 100 通りずつをユーザに表示するモデルコースとして model_courses テーブルに格納。（レコード数　計 200 )
+
+### (利点)
+
+1.  データ処理の負荷軽減。
+2.  最初に 1000 通りしか選択しないことで、最後に残る 100 通りのコースの内容にばらつきが生まれます。
+
+## モデルコースの表示順序が、行きたい観光地リストの内容によって変化する
+
+### (課題)
+
+利用者は、ただ移動距離が短いコースではなく、自分が行きたい場所が含まれ、かつ近くにある観光地を周りたいと考えるのではと考えました。
+
+### (解決)
+
+モデルコースの中に、行きたい観光地が含まれていた場合<br>
+モデルコースの score を減算<br>
+➡︎ score が低い順にソート<br>
+➡︎ 距離が短く、行きたい観光地がより多く含まれているコースが上位に表示されます。
+
+### (利点)
+
+ユーザが行きたい観光地が含まれたモデルコースを見落とすことがなくなります。<br>
+行きたい観光地が多く含まれるほど上位に表示されるため、行きたい観光地が含まれるコースの中でも差別化が可能です。

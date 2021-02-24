@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :check_guest, only: %i[update destroy]
+  before_action :check_guest, only: [:edit, :destroy]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   def check_guest
-    redirect_to root_path, alert: "ゲストユーザは変更、削除できません。" if resource.email == "guest@example.com"
+    user = User.find_by(email: "guest@example.com")
+    flash[:danger] = "ゲストユーザは変更、削除できません。"
+    redirect_to user_path(user) if resource.email == "guest@example.com"
   end
   # GET /resource/sign_up
   # def new

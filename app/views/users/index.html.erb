@@ -1,10 +1,13 @@
-<div class="row-eq-height mt-5">
-  <%= image_tag "/assets/logo.png", width: "30%", height: "60%" %>
-</div>
-<div class="text-center">
-  <h2>あなたの長崎旅をお助けします</h2>
-  <h2>旅行予定作成、記録アプリ</h2>
-  <div class="mt-5">
-    <%= link_to 'ログイン', new_user_session_path, class: "btn btn-lg btn-info" %>
+<div class="container">
+  <%= render 'shared/flash' %>
+  <div class="row-eq-height mt-5">
+    <%= image_tag "/assets/logo.png", width: "30%", height: "60%" %>
+  </div>
+  <div class="text-center">
+    <h2>あなたの長崎旅をお助けします</h2>
+    <h2>旅行予定作成、記録アプリ</h2>
+    <div class="mt-5">
+      <%= link_to 'ログイン', new_user_session_path, class: "btn btn-lg btn-info" %>
+    </div>
   </div>
 </div>

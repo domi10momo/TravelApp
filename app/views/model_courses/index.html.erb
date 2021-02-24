@@ -1,4 +1,8 @@
-<h2>どの地域に行きたいですか？</h2>
-<% @areas.each do |area| %>
-  <p><%= link_to area.name, model_course_path(area.id) %></p>
-<% end %>
+<div class="m-3 mx-5">
+  <h2>どの地域に行きたいですか？</h2>
+  <% @areas.each do |area| %>
+    <div class="m-4">
+      <p><%= link_to area.name, model_course_path(area.id), class: "btn btn-lg btn-success" %></p>
+    </div>
+  <% end %>
+</div>
