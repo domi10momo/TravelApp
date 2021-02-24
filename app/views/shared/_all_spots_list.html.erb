@@ -8,15 +8,19 @@
         </div>
         <p>エリア名：<%= spot.area.name %></p>
         <p><%= spot.description %></p>
-        <%= link_to "詳細を確認する", spot_path(spot) %>
-        <% if @travel_spot %>
-          <div class="form-group col-md-6">
+
+        <div class="form-group col-md-6 btn-toolbar">
+          <div btn-group>
+          <%= link_to "詳細を確認する", spot_path(spot), class: "btn btn-success" %>
+          <% if @travel_spot %>
             <%= link_to "この場所を選択する",
               my_travel_course_path(params:{spot_id: spot, course_id: @travel_spot}),
-              method: :patch
+              method: :patch,
+              class: "btn btn-success"
             %>
+          <% end %>
           </div>
-        <% end %>
+        </div>
       </div>
     </div>
   <% end %>
