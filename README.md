@@ -2,35 +2,59 @@
 
 旅行の予定作成、感想の共有ができるサイトです。
 
+# サービス概要
 
-* Ruby version
+自分の行きたい、過去に行った旅行コースの保存、記録ができるサービスです。
 
-* System dependencies
+- 行きたい観光地をマイページに保存
+- 行く予定、完了した旅行の編集、記録
+- サービス利用者の観光地に訪れた感想を閲覧可能
 
-* Configuration
+# 使用技術
 
-* Database creation
+## フロントエンド
 
-* Database initialization
+- HTML
+- JavaScript
+- Bootstrap
 
-* How to run the test suite
+## バックエンド
 
-* Services (job queues, cache servers, search engines, etc.)
+- Ruby 2.6.6
+- Rails 6.0.3.4
 
-* Deployment instructions
+## 本番環境
 
-* ...
+- Heroku
 
-# ER図
+# ER 図
+
 https://drive.google.com/file/d/1JL8MXSTKiYSkCFS34SQZQvXed4gDjvv4/view?usp=sharing
 
 # テーブル設計
+
 https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxFUsY/edit?usp=sharing
 
-
 # 機能一覧
-- ユーザ登録、ログイン機能（devise)
+
+- ユーザ登録、編集ログイン機能（devise)
 - 行きたい観光地の保存機能
-- モデルコース作成（Directions API)
-- 旅行モデルコース選択機能（5箇所回るコースを距離が短い順にエリア毎に100コース提示）
+- モデルコース作成（Directions API にて地点間距離取得)
 - 観光地感想入力機能
+- 旅行モデルコース選択機能（5 箇所回るコースを距離が短い順にエリア毎に 100 コース提示）
+- 選択モデルコースの編集機能
+- 画像アップロード機能(Amazon S3)
+
+# 工夫した点
+
+- モデルコースの作成方法
+  （課題）<br>
+  5 つの地点を選ぶ組み合わせ全てをデータに格納した場合、データが膨大になる。<br>
+  現時点で全 24405360 通り
+  （解決）<br>
+  エリア（長崎、佐世保）毎に 1000 通りのコースをランダムで作成する。<br>
+  その中から、合計移動距離が少ない 100 通りずつをユーザに表示するモデルコースとして model_courses テーブルに格納する。
+  (利点)<br>
+
+1. データ処理の負荷軽減
+2. 最初に 1000 通りしか選択しないことで、最後に残る 100 通りのコースの内容にばらつきが生まれる
