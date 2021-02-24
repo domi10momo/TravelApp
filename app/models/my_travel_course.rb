@@ -9,7 +9,7 @@ class MyTravelCourse < ApplicationRecord
     def gone_text(gone_flag)
       return "旅行に行きました" if gone_flag
 
-      "まだ旅行に行ってません"
+      "旅行予定"
     end
   end
 end
