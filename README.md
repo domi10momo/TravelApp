@@ -79,7 +79,7 @@ https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxF
 
 モデルコースの中に、行きたい観光地が含まれていた場合<br>
 モデルコースの score を減算<br>
-➡︎ score が低い順にソート
+➡︎ score が低い順にソート<br>
 ➡︎ 距離が短く、行きたい観光地がより多く含まれているコースが上位に表示されます。
 
 ### (利点)
