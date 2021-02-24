@@ -10,9 +10,9 @@
 - 行く予定、完了した旅行の編集、記録
 - サービス利用者の観光地に訪れた感想を閲覧可能
 
-![スクリーンショット 2021-02-24 13 09 32（2）](https://user-images.githubusercontent.com/35606852/108946531-f6f51080-76a1-11eb-9300-55b1e0477b24.png)
+<img width="1253" alt="トップページ" src="https://user-images.githubusercontent.com/35606852/108947041-0aed4200-76a3-11eb-9471-721033654ca5.png">
 
-![スクリーンショット 2021-02-24 13 10 01（2）](https://user-images.githubusercontent.com/35606852/108946543-fe1c1e80-76a1-11eb-8f6d-39c515b24ce2.png)
+<img width="1258" alt="マイページ" src="https://user-images.githubusercontent.com/35606852/108947092-21939900-76a3-11eb-9f39-b96dc14292c9.png">
 
 # 使用技術
 
@@ -60,8 +60,8 @@ https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxF
 
 ### （解決）
 
-エリア（長崎、佐世保）毎に 1000 通りのコースをランダムで作成します。<br>
-その中から、合計移動距離が少ない 100 通りずつをユーザに表示するモデルコースとして model_courses テーブルに格納。
+1. エリア（長崎、佐世保）毎に 1000 通りのコースをランダムで作成します。<br>
+2. その中から、合計移動距離が少ない 100 通りずつをユーザに表示するモデルコースとして model_courses テーブルに格納。（レコード数　計 200 )
 
 ### (利点)
 
@@ -76,8 +76,7 @@ https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxF
 
 ### (解決)
 
-モデルコースの中に、行きたい観光地が含まれていた場合は、モデルコースの score を修正。<br>
-行きたい観光地がより多く含まれている順にソートを行うことで、上位に表示されます。
+モデルコースの中に、行きたい観光地が含まれていた場合は、モデルコースの score を減算し、距離が短く、行きたい観光地がより多く含まれている順にソートを行うことで、上位に表示されます。
 
 ### (利点)
 
