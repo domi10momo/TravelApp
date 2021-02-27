@@ -36,9 +36,9 @@ https://young-ravine-41583.herokuapp.com/
 
 https://drive.google.com/file/d/1JL8MXSTKiYSkCFS34SQZQvXed4gDjvv4/view?usp=sharing
 
-# テーブル設計
+# [テーブル設計](https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxFUsY/edit?usp=sharing)
 
-https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxFUsY/edit?usp=sharing
+
 
 # 機能一覧
 
