@@ -28,16 +28,17 @@ https://young-ravine-41583.herokuapp.com/
 - Ruby 2.6.6
 - Rails 6.0.3.4
 
+## DB
+- PostgreSQL 13.1
+
 ## 本番環境
 
 - Heroku
 
 # ER 図
+<img width="951" alt="ER図" src="https://user-images.githubusercontent.com/35606852/109402530-04f4ab00-799a-11eb-8332-41eeeb63e2e9.png"><br>
 
-https://drive.google.com/file/d/1JL8MXSTKiYSkCFS34SQZQvXed4gDjvv4/view?usp=sharing
-
-# [テーブル設計](https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxFUsY/edit?usp=sharing)
-
+## [テーブル設計](https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxFUsY/edit?usp=sharing)<br>
 
 
 # 機能一覧
