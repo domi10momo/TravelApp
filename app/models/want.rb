@@ -5,12 +5,12 @@ class Want < ApplicationRecord
   validates :spot_id, presence: true
 
   class << self
-    def change_score(courses, routes, param_spot_id)
+    def change_score(courses, routes, param_spot_id, weight)
       param_id = []
       param_id << param_spot_id.to_i
       courses.each do |course|
         spot_ids = routes.where(model_course_id: course.id).pluck(:spot_id)
-        course.update!(score: course.score * 0.1) if spot_ids.any? { |i| param_id.include?(i) }
+        course.update!(score: course.score * weight) if spot_ids.any? { |i| param_id.include?(i) }
       end
     end
   end
