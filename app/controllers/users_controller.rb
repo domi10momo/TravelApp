@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
   def show
-    @spots = Spot.all_spots
+    @spots = Spot.includes(:area)
     @want_spots = current_user.wanted_spots
-    @gone_true_schedules = MySchedule.user_schedules(current_user, true)
-    @gone_false_schedules = MySchedule.user_schedules(current_user, false)
+    @my_schedules = current_user.my_schedules
     @my_travel_courses = MyTravelCourse.includes(:my_schedule)
   end
 end
