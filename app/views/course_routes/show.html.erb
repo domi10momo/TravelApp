@@ -1,9 +1,14 @@
-<div class="container">
+<div class="container-fluid">
+  <% if current_user %>
+    <h5><%= link_to "マイページへ戻る", user_path(current_user.id) %></h5>
+  <% else %>
+    <h5><%= link_to "ホームへ戻る", root_path %></h5>
+  <% end %>
   <%= render 'shared/flash' %>
   <%= form_with model: @my_schedule, url: my_schedules_path, local: true do |f| %> 
     <%= render 'shared/calendar_date', f: f %>
     <% @course_route.each do |course_spot| %>
-      <div class="col-12 col-md-6 col-lg-6 mx-auto">
+      <div class="col-12 col-md-6 col-lg-6 mx-auto mt-3">
         <div class="card border-dark mb-3">
           <div class="card-body">
             <p><%= course_spot.order %>. <%= @spots.id_name(course_spot) %></p>
@@ -13,9 +18,11 @@
         </div>
       </div>
     <% end %>
-    <%= f.hidden_field :course_id, value: params[:id] %>
-    <div class="form-group row justify-content-center">
-      <%= f.submit "このコースを選択する", class: "btn btn-success mt-4" %>
-    </div>
+    <% if current_user %>
+      <%= f.hidden_field :course_id, value: params[:id] %>
+      <div class="form-group row justify-content-center">
+        <%= f.submit "このコースを選択する", class: "btn btn-success mt-4" %>
+      </div>
+    <% end %>
   <% end %>
 </div>

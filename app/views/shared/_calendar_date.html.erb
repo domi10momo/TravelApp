@@ -1,6 +1,8 @@
-<div class="container">
-  <div class="form-group row col-12 col-md-6 col-lg-6 mx-auto">
-    <%= f.label "旅行日を選択してください", class: 'control-label' %>
-    <%= f.date_field :date, class: 'form-control' %>
+<% if current_user %>
+  <div class="container">
+    <div class="form-group row col-12 col-md-6 col-lg-6 mx-auto">
+      <%= f.label "旅行日を選択してください", class: 'control-label' %>
+      <%= f.date_field :date, class: 'form-control' %>
+    </div>
   </div>
-</div>
+<% end %>
