@@ -1,8 +1,15 @@
-<div class="m-3 mx-5">
-  <h2>どの地域に行きたいですか？</h2>
-  <% @areas.each do |area| %>
-    <div class="m-4">
-      <p><%= link_to area.name, model_course_path(area.id), class: "btn btn-lg btn-success" %></p>
-    </div>
+<div class="container-fluid">
+  <% if current_user %>
+    <h5><%= link_to "マイページへ戻る", user_path(current_user.id) %></h5>
+  <% else %>
+    <h5><%= link_to "ホームへ戻る", root_path %></h5>
   <% end %>
+  <div class="m-3 mx-5">
+  <h2>どの地域に行きたいですか？</h2>
+    <% @areas.each do |area| %>
+      <div class="m-4">
+        <p><%= link_to area.name, model_course_path(area.id), class: "btn btn-lg btn-success" %></p>
+      </div>
+    <% end %>
+  </div>
 </div>
