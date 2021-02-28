@@ -4,7 +4,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <div>
-      <%= image_tag "/assets/logo.png", class: "header-icon" %>
+      <%= link_to image_tag("/assets/logo.png", class: "header-icon"), users_path %>
     </div>
     <div class="navbar-nav mr-0"> 
       <%= link_to '観光地一覧', spots_path, class: "navbar-brand nav-item nav-link text-white" %>
