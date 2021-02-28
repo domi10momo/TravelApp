@@ -5,8 +5,8 @@ class ImpressionsController < ApplicationController
 
   def new
     @choice_spot = MyTravelCourse.find(param_format)
-    @gone_date = MySchedule.travel_date(@choice_spot)
-    @spot_name = Spot.id_name(@choice_spot)
+    @gone_date = @choice_spot.my_schedule.date
+    @spot_name = @choice_spot.spot.name
   end
 
   def create
@@ -17,7 +17,7 @@ class ImpressionsController < ApplicationController
       text: params_impression[:text],
       image: params_impression[:image]
     )
-    updated_my_travel_course
+    @choice_spot.update(fill_in_impression: true)
     redirect_to impressions_path
   end
 
@@ -29,10 +29,5 @@ class ImpressionsController < ApplicationController
 
   def params_impression
     params.require(:my_travel_course).permit(:text, :image)
-  end
-
-  def updated_my_travel_course
-    @travel_spot = MyTravelCourse.find(params[:format])
-    @travel_spot.update(fill_in_impression: true)
   end
 end

@@ -5,13 +5,13 @@ class WantsController < ApplicationController
 
   def create
     current_user.wants.create!(spot_id: param_spot_id)
-    Want.change_score(@model_courses, @course_routes, param_spot_id, WANT_SCORE_WEIGHT)
+    Want.change_score(@model_courses, param_spot_id, WANT_SCORE_WEIGHT)
     redirect_to spots_path
   end
 
   def destroy
     current_user.wants.find_by(spot_id: param_spot_id).destroy!
-    Want.change_score(@model_courses, @course_routes, param_spot_id, RESTORE_SCORE_WEIGHT)
+    Want.change_score(@model_courses, param_spot_id, RESTORE_SCORE_WEIGHT)
     redirect_to spots_path
   end
 
@@ -22,7 +22,6 @@ class WantsController < ApplicationController
   end
 
   def tables
-    @model_courses = ModelCourse.all
-    @course_routes = CourseRoute.all
+    @model_courses = ModelCourse.includes(:area)
   end
 end

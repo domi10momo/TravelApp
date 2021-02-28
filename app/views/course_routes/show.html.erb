@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <% if current_user %>
-    <h5><%= link_to "マイページへ戻る", user_path(current_user.id) %></h5>
+    <h5><%= link_to "モデルコース一覧へ戻る", "javascript:history.back()" %></h5>
   <% else %>
-    <h5><%= link_to "ホームへ戻る", root_path %></h5>
+    <h5><%= link_to "ホームへ戻る", users_path %></h5>
   <% end %>
   <%= render 'shared/flash' %>
   <%= form_with model: @my_schedule, url: my_schedules_path, local: true do |f| %> 
@@ -11,9 +11,9 @@
       <div class="col-12 col-md-6 col-lg-6 mx-auto mt-3">
         <div class="card border-dark mb-3">
           <div class="card-body">
-            <p><%= course_spot.order %>. <%= @spots.id_name(course_spot) %></p>
-            <p><%= @spots.id_description(course_spot) %></p>
-            <%= image_tag "/assets/#{@spots.id_image(course_spot)}", :size => '300x300' %>
+            <p><%= course_spot.order %>. <%= course_spot.spot.name %></p>
+            <p><%= course_spot.spot.description %></p>
+            <%= image_tag "/assets/#{ course_spot.spot.image }", :size => '300x300' %>
           </div>
         </div>
       </div>

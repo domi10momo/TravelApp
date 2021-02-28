@@ -4,7 +4,7 @@ class MySchedulesController < ApplicationController
   end
 
   def create
-    return null_date(CourseRoute.find(params["course_id"])) if my_schedule_params[:date].empty?
+    return null_date if my_schedule_params[:date].empty?
 
     my_schedule = MySchedule.create!(my_schedule_params)
     my_travel_course_create(my_schedule)
@@ -14,17 +14,17 @@ class MySchedulesController < ApplicationController
   end
 
   def edit
-    @schedule = MySchedule.find(my_schedule_id)
+    @schedule = MySchedule.find(schedule_param)
   end
 
   def update
-    schedule = MySchedule.find(my_schedule_id)
+    schedule = MySchedule.find(schedule_param)
     schedule.update(my_schedule_edit_params)
     redirect_to user_path(current_user)
   end
 
   def destroy
-    schedule = MySchedule.find(my_schedule_id)
+    schedule = MySchedule.find(schedule_param)
     schedule.destroy
     redirect_to user_path(current_user)
   end
@@ -45,16 +45,16 @@ class MySchedulesController < ApplicationController
     params.permit(:model_course)
   end
 
-  def create_model_course_id
+  def model_course_id
     params.require(:course_id)
   end
 
-  def my_schedule_id
+  def schedule_param
     params.require(:id)
   end
 
   def my_travel_course_create(my_schedule)
-    choice_route = CourseRoute.course(create_model_course_id)
+    choice_route = ModelCourse.find(model_course_id).course_routes
     choice_route.each do |spot|
       MyTravelCourse.create!(
         my_schedule_id: my_schedule.id,
@@ -64,8 +64,9 @@ class MySchedulesController < ApplicationController
     end
   end
 
-  def null_date(course_id)
+  def null_date
+    course = CourseRoute.find(params["course_id"])
     flash[:danger] = "日付が指定されていません。入力し直してください"
-    redirect_to course_route_path(course_id)
+    redirect_to course_route_path(course)
   end
 end

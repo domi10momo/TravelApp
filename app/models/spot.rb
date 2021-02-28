@@ -12,17 +12,8 @@ class Spot < ApplicationRecord
   validates :description, presence: true
   validates :address, presence: true
   validates :image, presence: true
-  scope :id_name, ->(spot) { find(spot.spot_id).name }
-  scope :id_description, ->(spot) { find(spot.spot_id).description }
-  scope :id_image, ->(spot) { find(spot.spot_id).image }
 
   def wanted_by?(user)
     wants.where(user_id: user.id).exists?
-  end
-
-  class << self
-    def all_spots
-      Spot.includes(:area)
-    end
   end
 end
