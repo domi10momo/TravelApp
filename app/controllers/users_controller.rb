@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-  def index
-    @users = User.all
-  end
-
   def show
     @spots = Spot.all_spots
     @want_spots = current_user.wanted_spots
