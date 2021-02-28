@@ -9,5 +9,8 @@
     <div class="mt-5">
       <%= link_to 'ログイン', new_user_session_path, class: "btn btn-lg btn-info" %>
     </div>
+    <div class="mt-4">
+      <%= link_to 'ゲストログイン（閲覧用）', users_guest_login_path, method: :post, class: "btn btn-info" %>
+    </div>
   </div>
 </div>
