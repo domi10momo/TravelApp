@@ -1,7 +1,6 @@
 class CourseRoute < ApplicationRecord
   belongs_to :model_course
   belongs_to :spot
-  scope :course, ->(course_id) { where(model_course_id: course_id) }
   validates :order, numericality: { greater_than_or_equal_to: 1 }
 
   class << self
