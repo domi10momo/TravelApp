@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
     user_path(resource)
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    flash[:danger] = "アプリ内に該当する情報はありませんでした。"
+    redirect_to action: "index" 
+  end
+
   protected
 
   def configure_permitted_parameters
@@ -15,4 +20,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
+
+  private
+  
+  def error_controller
+    params[:controller]
+  end
 end
+
