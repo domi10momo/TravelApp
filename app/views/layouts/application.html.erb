@@ -10,9 +10,9 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <% if params["controller"] == "users" && params["action"] == "index" %>
-    <body class="top-bgimage">
+    <body class="top-bgimage container-fluid">
     <% else %>
-      <body>
+      <body class="container-fluid">
       <% end %>
       <header>
         <%= render "layouts/header" %>

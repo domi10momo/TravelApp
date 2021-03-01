@@ -1,20 +1,18 @@
-<div class="container-fluid">
-  <% if current_user %>
-    <h5><%= link_to "地域選択画面へ戻る", model_courses_path %></h5>
-  <% else %>
-    <h5><%= link_to "ホームへ戻る", root_path %></h5>
-  <% end %>
-  <div class="mx-4 mt-3">
-    <% @courses_in_area.each do |course| %>
-      <% course.course_routes.each do |course_spot| %>
-        <p><%= course_spot.order %>. <%= course_spot.spot.name %></p>
-      <% end %>
-      <p>移動距離： <%= course.distance.round(2) %>km</p>
-      <p>スコア： <%= course.score.round(4) %> </p>
-      <%= link_to "詳細を見る", course_route_path(course), class: "btn btn-success" %>
-      <hr>
+<% if current_user %>
+  <h5><%= link_to "地域選択画面へ戻る", model_courses_path %></h5>
+<% else %>
+  <h5><%= link_to "ホームへ戻る", root_path %></h5>
+<% end %>
+<div class="mx-4 mt-3">
+  <% @courses_in_area.each do |course| %>
+    <% course.course_routes.each do |course_spot| %>
+      <p><%= course_spot.order %>. <%= course_spot.spot.name %></p>
     <% end %>
-  </div>
+    <p>移動距離： <%= course.distance.round(2) %>km</p>
+    <p>スコア： <%= course.score.round(4) %> </p>
+    <%= link_to "詳細を見る", course_route_path(course), class: "btn btn-success" %>
+    <hr>
+  <% end %>
 </div>
 
 <%= paginate @courses_in_area %>

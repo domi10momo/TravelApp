@@ -1,28 +1,26 @@
-<div class="container-fluid">
-  <% if current_user %>
-    <h5><%= link_to "モデルコース一覧へ戻る", "javascript:history.back()" %></h5>
-  <% else %>
-    <h5><%= link_to "ホームへ戻る", users_path %></h5>
-  <% end %>
-  <%= render 'shared/flash' %>
-  <%= form_with model: @my_schedule, url: my_schedules_path, local: true do |f| %> 
-    <%= render 'shared/calendar_date', f: f %>
-    <% @course_route.each do |course_spot| %>
-      <div class="col-12 col-md-6 col-lg-6 mx-auto mt-3">
-        <div class="card border-dark mb-3">
-          <div class="card-body">
-            <p><%= course_spot.order %>. <%= course_spot.spot.name %></p>
-            <p><%= course_spot.spot.description %></p>
-            <%= image_tag "/assets/#{ course_spot.spot.image }", :size => '300x300' %>
-          </div>
+<% if current_user %>
+  <h5><%= link_to "モデルコース一覧へ戻る", "javascript:history.back()" %></h5>
+<% else %>
+  <h5><%= link_to "ホームへ戻る", users_path %></h5>
+<% end %>
+<%= render 'shared/flash' %>
+<%= form_with model: @my_schedule, url: my_schedules_path, local: true do |f| %> 
+  <%= render 'shared/calendar_date', f: f %>
+  <% @course_route.each do |course_spot| %>
+    <div class="col-12 col-md-6 col-lg-6 mx-auto mt-3">
+      <div class="card border-dark mb-3">
+        <div class="card-body">
+          <p><%= course_spot.order %>. <%= course_spot.spot.name %></p>
+          <p><%= course_spot.spot.description %></p>
+          <%= image_tag "/assets/#{ course_spot.spot.image }", :size => '300x300' %>
         </div>
       </div>
-    <% end %>
-    <% if current_user %>
-      <%= f.hidden_field :course_id, value: params[:id] %>
-      <div class="form-group row justify-content-center">
-        <%= f.submit "このコースを選択する", class: "btn btn-success mt-4" %>
-      </div>
-    <% end %>
+    </div>
   <% end %>
-</div>
+  <% if current_user %>
+    <%= f.hidden_field :course_id, value: params[:id] %>
+    <div class="form-group row justify-content-center">
+      <%= f.submit "このコースを選択する", class: "btn btn-success mt-4" %>
+    </div>
+  <% end %>
+<% end %>
