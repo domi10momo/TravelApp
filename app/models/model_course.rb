@@ -3,9 +3,9 @@ class ModelCourse < ApplicationRecord
   has_many :course_routes, dependent: :destroy
   validates :score, numericality: { greater_than_or_equal_to: 0 }
   validates :distance, numericality: { greater_than_or_equal_to: 0 }
-  ROUTE_SPOT_NUM = 5
-  INITIAL_MODELCOURSE_NUM = 1000
-  MODELCORSES_PER_AREA_NUM = 100
+  ROUTE_SPOT_NUM = 5              # 1モデルコースの観光地数
+  INITIAL_MODELCOURSE_NUM = 1000  # 初期ランダムで生成するモデルコース数
+  MODELCORSES_PER_AREA_NUM = 100  # model_coursesテーブルに格納する地域あたりのモデルコース数
 
   class << self
     # 以下で、1000コースの中から距離が短い100コースをcourse_routesテーブルへ格納

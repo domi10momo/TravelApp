@@ -5,7 +5,8 @@
       <%= MyTravelCourse.gone_text(schedule.gone) %>
     </button>
   </p></b>
-  <% @my_travel_courses.schedule_id(schedule).each do |spot| %>
-    <b><p><%= spot.order %>.  <%= @spots.id_name(spot) %></p></b>
+
+  <% @my_schedules.route_order(schedule).each do |route_spot| %>
+    <b><p><%= route_spot.order %>.  <%= route_spot.spot.name %></p></b>
   <% end %>
 </div>

@@ -6,8 +6,8 @@
   <% end %>
   <div class="mx-4 mt-3">
     <% @courses_in_area.each do |course| %>
-      <% @model_routes.course(course.id).each do |course_spot| %>
-        <p><%= course_spot.order %>. <%= @spots.id_name(course_spot) %></p>
+      <% course.course_routes.each do |course_spot| %>
+        <p><%= course_spot.order %>. <%= course_spot.spot.name %></p>
       <% end %>
       <p>移動距離： <%= course.distance.round(2) %>km</p>
       <p>スコア： <%= course.score.round(2) %> </p>

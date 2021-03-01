@@ -1,12 +1,12 @@
 class MyTravelCoursesController < ApplicationController
   def show
-    @spots = Spot.all_spots
-    @course = MyTravelCourse.schedule_id(my_schedule_id)
-    @schedule = MySchedule.find(my_schedule_id)
+    @spots = Spot.includes(:area)
+    @schedule = MySchedule.find(schedule_param)
+    @course = @schedule.my_travel_courses.order(order: "ASC")
   end
 
   def edit
-    @spots = Spot.all_spots
+    @spots = Spot.includes(:area)
     @travel_spot = MyTravelCourse.find(travel_spot_id)
   end
 
@@ -17,13 +17,13 @@ class MyTravelCoursesController < ApplicationController
   end
 
   def gone_flag
-    MySchedule.is_gone(format_params)
+    MySchedule.find(format_params).update(gone: true)
     redirect_to my_travel_course_path(format_params)
   end
 
   private
 
-  def my_schedule_id
+  def schedule_param
     params.require(:id)
   end
 
