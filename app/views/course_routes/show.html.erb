@@ -3,7 +3,6 @@
 <% else %>
   <h5><%= link_to "ホームへ戻る", users_path %></h5>
 <% end %>
-<%= render 'shared/flash' %>
 <%= form_with model: @my_schedule, url: my_schedules_path, local: true do |f| %> 
   <%= render 'shared/calendar_date', f: f %>
   <% @course_route.each do |course_spot| %>

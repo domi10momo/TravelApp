@@ -1,10 +1,10 @@
-<div class="px-5">
-  <b><p>
-    日程：<%= schedule.date %> 
-    <button class="btn btn-info m-2 flag-btn" disabled >
+<div class="mx-auto">
+  <b><p><h5>
+    日程：<%= schedule.date %>
+    <button class="btn btn-info m-2 flag-btn btn-sm" disabled >
       <%= MyTravelCourse.gone_text(schedule.gone) %>
     </button>
-  </p></b>
+  </h5></p></b>
 
   <% @my_schedules.route_order(schedule).each do |route_spot| %>
     <b><p><%= route_spot.order %>.  <%= route_spot.spot.name %></p></b>

@@ -1,4 +1,3 @@
-<%= render 'shared/flash' %>
 <div class="text-center">
   <h2><%= current_user.nickname %>さんのマイページ</h2>
 </div>
@@ -7,27 +6,27 @@
   <%= render "want_spots_list", want_spots: @want_spots %>
 </div>
 <div class="row mt-4">
-  <div class="col-12 col-md-6 col-lg-6">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-6">
     <div class="text-center">
       <h3>旅行予定一覧</h3>
       <p><%= link_to "モデルコースを選択する", model_courses_path, class: "btn btn-success"%></p>
     </div>
-    <div class="card border-dark mb-3 overflow-auto mx-auto"style="width:500px; height:400px;">
+    <div class="card border-dark mb-3 overflow-auto mx-auto" style="width:90%; height:70%;">
       <% @my_schedules.gone_flag(false).each do |schedule| %>
         <%= render "show_course", schedule: schedule %>
         <%= render "plan_course_button", schedule: schedule %>
       <% end %>
     </div>
   </div>
-  <div class="col-12 col-md-6 col-lg-6">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-6">
     <div class="text-center m-1 mb-4">
       <h3>完了した旅行一覧</h3>
       <p>&nbsp;</p>
     </div>
-    <div class="card border-dark mb-3 overflow-auto mx-auto"style="width:500px; height:400px;">
+    <div class="card border-dark mb-3 overflow-auto mx-auto" style="width:90%; height:70%;">
       <% @my_schedules.gone_flag(true).each do |schedule| %>
         <%= render 'show_course', schedule: schedule %>
-        <div class="px-5">
+        <div class="mx-auto">
           <%= link_to "記録の入力", my_travel_course_path(schedule.id), class: "btn btn-secondary"%>
         </div>
         <hr>
