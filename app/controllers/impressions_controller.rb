@@ -14,7 +14,6 @@ class ImpressionsController < ApplicationController
   end
 
   def create
-    binding.pry
     return record_not_message if params_impression[:text].empty?
 
     @choice_spot = MyTravelCourse.find(param_format)

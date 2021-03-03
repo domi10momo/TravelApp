@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def record_not_message
     flash[:danger] = "アプリ内に該当する情報はありませんでした。"
-    redirect_to action: "index" 
+    redirect_to action: "index"
   end
 
   def routing_error_message
@@ -28,4 +28,3 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
 end
-
