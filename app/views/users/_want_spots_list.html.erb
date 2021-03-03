@@ -1,4 +1,4 @@
-<div class="overflow-auto card border-dark mb-3">
+<div class="overflow-auto card border-dark mb-3 mx-auto">
   <div class="row justify-content-md-center">
     <div class="m-4">
       <h3>あなたの行きたい観光地リスト</h3>
@@ -7,16 +7,19 @@
       <%= link_to "行きたい観光地の選択", spots_path, class: "btn btn-success" %>
     </div>
   </div>
-  <div class="row flex-row flex-nowrap overflow-auto">
+  <div class="row">
     <% want_spots.each do |spot| %>
-      <div class="col col-3 card card-block">
+      <div class="col col-12 col-sm-6 col-md-6 col-lg-3 card card-block">
         <div class="mx-auto m-2">
           <%= image_tag spot.image, class: "want-spot-img row-eq-height" %>
-          <div class="text-center m-2">
+          <div class="text-center mt-2">
             <%= link_to spot.name,  spot_path(spot), class: "btn btn-success" %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
+  <div class="mx-auto mt-3">
+    <%= paginate want_spots %>
+</div>
 </div>

@@ -6,7 +6,7 @@ class MyTravelCourse < ApplicationRecord
 
   class << self
     def gone_text(gone_flag)
-      return "旅行に行きました" if gone_flag
+      return "旅行完了" if gone_flag
 
       "旅行予定"
     end
