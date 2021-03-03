@@ -7,9 +7,16 @@ class ApplicationController < ActionController::Base
     user_path(resource)
   end
 
-  rescue_from ActiveRecord::RecordNotFound do |e|
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_message
+  rescue_from ActionController::RoutingError, with: :routing_error_message
+
+  def record_not_message
     flash[:danger] = "アプリ内に該当する情報はありませんでした。"
     redirect_to action: "index" 
+  end
+
+  def routing_error_message
+    render "index"
   end
 
   protected
@@ -19,12 +26,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
-  end
-
-  private
-  
-  def error_controller
-    params[:controller]
   end
 end
 
