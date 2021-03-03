@@ -1,7 +1,7 @@
 class ImpressionsController < ApplicationController
   MAX_IMPRESSION_NUM = 100  # 最大表示感想数
   IMPRESSION_PER_PAGE = 5   # １ページに表示する感想数
-  
+
   def index
     @impressions = Impression.order(created_at: "DESC").limit(MAX_IMPRESSION_NUM)
                              .page(params[:page]).per(IMPRESSION_PER_PAGE)
@@ -14,6 +14,9 @@ class ImpressionsController < ApplicationController
   end
 
   def create
+    binding.pry
+    return record_not_message if params_impression[:text].empty?
+
     @choice_spot = MyTravelCourse.find(param_format)
     Impression.create!(
       my_schedule_id: @choice_spot.my_schedule_id,
@@ -33,5 +36,10 @@ class ImpressionsController < ApplicationController
 
   def params_impression
     params.require(:my_travel_course).permit(:text, :image)
+  end
+
+  def record_not_message
+    flash[:danger] = "感想を入力してください。"
+    redirect_to new_impression_path(param_format)
   end
 end
