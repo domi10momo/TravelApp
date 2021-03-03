@@ -1,26 +1,24 @@
-<div class="container">
-  <div class="row m-3">
-    <div class="col-12 col-md-6 col-lg-6">
-      <div class="card border-dark overflow-auto mx-auto">
-        <div class="m-2 text-center">
-          <h2>アカウントの編集</h2>
-        </div>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <%= render 'edit_params', f: f %>
-        <% end %>
+<div class="row m-3">
+  <div class="col-12 col-md-6 col-lg-6">
+    <div class="card border-dark overflow-auto mx-auto">
+      <div class="m-2 text-center">
+        <h2>アカウントの編集</h2>
       </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render 'edit_params', f: f %>
+      <% end %>
     </div>
-    <div class="col-12 col-md-6 col-lg-6">
-      <div class="card border-dark overflow-auto mx-auto">
-        <div class="m-2 text-center">
-          <h3>アカウントの削除</h3>
-        </div>
-        <p><%= button_to "削除",
-                         registration_path(resource_name),
-                         class: "btn btn-success mx-auto d-block",
-                         data: { confirm: "本当に削除しますか？" },
-                         method: :delete %></p>
+  </div>
+  <div class="col-12 col-md-6 col-lg-6">
+    <div class="card border-dark overflow-auto mx-auto">
+      <div class="m-2 text-center">
+        <h3>アカウントの削除</h3>
       </div>
+      <p><%= button_to "削除",
+                        registration_path(resource_name),
+                        class: "btn btn-success mx-auto d-block",
+                        data: { confirm: "本当に削除しますか？" },
+                        method: :delete %></p>
     </div>
   </div>
 </div>

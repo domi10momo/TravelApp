@@ -1,37 +1,35 @@
-<div class="container-fluid">
-  <% if current_user %>
-    <h5><%= link_to "旅行コースへ戻る", "javascript:history.back()" %></h5>
-  <% else %>
-    <h5><%= link_to "ホームへ戻る", root_path %></h5>
+<% if current_user %>
+  <h5><%= link_to "旅行コースへ戻る", "javascript:history.back()" %></h5>
+<% else %>
+  <h5><%= link_to "ホームへ戻る", root_path %></h5>
+<% end %>
+<div class="text-center">
+  <h2>感想の入力</h2>
+
+  <%= form_with model: @choice_spot, url: impressions_path(@choice_spot), method: :post, local: true do |f| %>
+    <div class="row mt-4 justify-content-md-center">
+      <div class="col col-md-5 col-lg-5 text-right">
+        <h3><%= @gone_date %></h3>
+      </div>
+      <div class="col col-md-5 col-lg-5 text-left">
+        <h3><%= @spot_name %></h3>
+      </div>
+    </div>
+    <div class="field mt-4">
+      <div>
+        <%= f.label :text, "感想の入力" %>
+      </div>
+      <%= f.text_area :text, size: "70x10" %>
+    </div>
+
+    <div class="field mt-4">
+      <div>
+        <%= f.label :image, "写真のアップロード" %>
+      </div>
+      <%= f.file_field :image, class: "btn btn-light" %>
+    </div>
+    <div class="mt-4">
+      <%= f.submit "登録", class: "btn btn-success" %>
+    </div>
   <% end %>
-  <div class="text-center">
-    <h2>感想の入力</h2>
-
-    <%= form_with model: @choice_spot, url: impressions_path(@choice_spot), method: :post, local: true do |f| %>
-      <div class="row mt-4 justify-content-md-center">
-        <div class="col col-md-5 col-lg-5 text-right">
-          <h3><%= @gone_date %></h3>
-        </div>
-        <div class="col col-md-5 col-lg-5 text-left">
-          <h3><%= @spot_name %></h3>
-        </div>
-      </div>
-      <div class="field mt-4">
-        <div>
-          <%= f.label :text, "感想の入力" %>
-        </div>
-        <%= f.text_area :text, size: "70x10" %>
-      </div>
-
-      <div class="field mt-4">
-        <div>
-          <%= f.label :image, "写真のアップロード" %>
-        </div>
-        <%= f.file_field :image, class: "btn btn-light" %>
-      </div>
-      <div class="mt-4">
-        <%= f.submit "登録", class: "btn btn-success" %>
-      </div>
-    <% end %>
-  </div>
 </div>

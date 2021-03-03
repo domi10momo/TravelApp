@@ -1,12 +1,11 @@
-<div class="container-fluid">
-  <% if current_user %>
-    <h5><%= link_to "マイページへ戻る", user_path(current_user.id) %></h5>
-  <% else %>
-    <h5><%= link_to "ホームへ戻る", root_path %></h5>
-  <% end %>
-  <hr>
-  <div class="text-center mb-3">
-    <h2>観光地一覧</h2>
-  </div>
-  <%= render 'shared/all_spots_list' %>
+<% if current_user %>
+  <h5><%= link_to "マイページへ戻る", user_path(current_user.id) %></h5>
+<% else %>
+  <h5><%= link_to "ホームへ戻る", root_path %></h5>
+<% end %>
+<hr>
+<div class="text-center mb-3">
+  <h2>観光地一覧</h2>
 </div>
+<%= render 'shared/all_spots_list' %>
+

@@ -1,8 +1,6 @@
-<div class="container-fluid">
-  <% if current_user %>
-    <h5><%= link_to "マイページへ戻る", user_path(current_user.id) %></h5>
-  <% else %>
-    <h5><%= link_to "ホームへ戻る", root_path %></h5>
-  <% end %>
-  <%= render 'shared/all_spots_list' %>
-</div>
+<% if current_user %>
+  <h5><%= link_to "マイページへ戻る", user_path(current_user.id) %></h5>
+<% else %>
+  <h5><%= link_to "ホームへ戻る", root_path %></h5>
+<% end %>
+<%= render 'shared/all_spots_list' %>

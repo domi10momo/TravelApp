@@ -1,38 +1,37 @@
-<div class="container-fluid">
-  <% if current_user %>
-    <h5><%= link_to "マイページへ戻る", user_path(current_user.id) %></h5>
-  <% else %>
-    <h5><%= link_to "ホームへ戻る", root_path %></h5>
-  <% end %>
-  <% @impressions.each do |impression| %>
-    <div class="row  justify-content-md-center">
-      <div class="col-12 col-md-4 col-lg-4">
-        <% if impression.image? %> 
-          <p><%= image_tag impression.image.url %></p>
-        <% else %>
-          <p><%= image_tag "/assets/no_image_square.jpg", :size => '250x250' %></p>
-        <% end %>
-      </div>
+<% if current_user %>
+  <h5><%= link_to "マイページへ戻る", user_path(current_user.id) %></h5>
+<% else %>
+  <h5><%= link_to "ホームへ戻る", root_path %></h5>
+<% end %>
 
-      <div class="col-12 col-md-4 col-lg-4 impression-text">
-        <div class="row btn btn-secondary">
-          <h5>
-            <%= MySchedule.find_id(impression).date %> &nbsp;
-            <%= Spot.find(impression.spot_id).name %>
-          </h5>
-        </div>
-        <div class="mt-3">
-          <textarea readonly><%= impression.text %></textarea>
-        </div>
-        <div class="mt-4">
-          <p>投稿者:<%= User.id_name(MySchedule.find_id(impression)) %></p>
-          <p>投稿時間：<%= impression.created_at.to_s(:datetime_jp) %></p>
-        </div>
+<% @impressions.each do |impression| %>
+  <div class="row  justify-content-md-center">
+    <div class="col-12 col-md-4 col-lg-4">
+      <% if impression.image? %> 
+        <p><%= image_tag impression.image.url %></p>
+      <% else %>
+        <p><%= image_tag "/assets/no_image_square.jpg", :size => '250x250' %></p>
+      <% end %>
+    </div>
+
+    <div class="col-12 col-md-4 col-lg-4 impression-text">
+      <div class="row btn btn-secondary">
+        <h5>
+          <%= MySchedule.find_id(impression).date %> &nbsp;
+          <%= Spot.find(impression.spot_id).name %>
+        </h5>
+      </div>
+      <div class="mt-3">
+        <textarea readonly><%= impression.text %></textarea>
+      </div>
+      <div class="mt-4">
+        <p>投稿者:<%= User.id_name(MySchedule.find_id(impression)) %></p>
+        <p>投稿時間：<%= impression.created_at.to_s(:datetime_jp) %></p>
       </div>
     </div>
-    <hr>
-  <% end %>
-</div>
+  </div>
+  <hr>
+<% end %>
 
 <div class="justify-content-md-center">
   <%= paginate @impressions %>
