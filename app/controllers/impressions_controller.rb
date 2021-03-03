@@ -1,6 +1,10 @@
 class ImpressionsController < ApplicationController
+  MAX_IMPRESSION_NUM = 100  # 最大表示感想数
+  IMPRESSION_PER_PAGE = 5   # １ページに表示する感想数
+  
   def index
-    @impressions = Impression.order(created_at: "DESC").limit(100).page(params[:page]).per(5)
+    @impressions = Impression.order(created_at: "DESC").limit(MAX_IMPRESSION_NUM)
+                             .page(params[:page]).per(IMPRESSION_PER_PAGE)
   end
 
   def new
