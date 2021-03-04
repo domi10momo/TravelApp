@@ -6,7 +6,7 @@
 
 <% @impressions.each do |impression| %>
   <div class="row  justify-content-md-center">
-    <div class="col-12 col-md-4 col-lg-4">
+    <div class="col-12 col-md-5 col-lg-5">
       <% if impression.image? %> 
         <p><%= image_tag impression.image.url %></p>
       <% else %>
@@ -14,7 +14,7 @@
       <% end %>
     </div>
 
-    <div class="col-12 col-md-4 col-lg-4 impression-text">
+    <div class="col-12 col-md-5 col-lg-5 impression-text">
       <div class="row btn btn-secondary">
         <h5>
           <%= MySchedule.find_id(impression).date %> &nbsp;
