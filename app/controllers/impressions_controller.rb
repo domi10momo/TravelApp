@@ -1,6 +1,10 @@
 class ImpressionsController < ApplicationController
+  before_action :message_is_empty, only: [:create]
+  before_action :message_length_over, only: [:create]
+
   MAX_IMPRESSION_NUM = 100  # 最大表示感想数
   IMPRESSION_PER_PAGE = 5   # １ページに表示する感想数
+  MAX_TEXT_LENGTH = 500   # 感想文の最大文字数
 
   def index
     @impressions = Impression.order(created_at: "DESC").limit(MAX_IMPRESSION_NUM)
@@ -14,8 +18,6 @@ class ImpressionsController < ApplicationController
   end
 
   def create
-    return record_not_message if params_impression[:text].empty?
-
     @choice_spot = MyTravelCourse.find(param_format)
     Impression.create!(
       my_schedule_id: @choice_spot.my_schedule_id,
@@ -37,8 +39,13 @@ class ImpressionsController < ApplicationController
     params.require(:my_travel_course).permit(:text, :image)
   end
 
-  def record_not_message
+  def message_is_empty
     flash[:danger] = "感想を入力してください。"
-    redirect_to new_impression_path(param_format)
+    redirect_to new_impression_path(param_format) if params_impression[:text].empty?
+  end
+
+  def message_length_over
+    flash[:danger] = "感想は300文字以内で入力してください"
+    render :new if params_impression[:text].length > MAX_TEXT_LENGTH
   end
 end
