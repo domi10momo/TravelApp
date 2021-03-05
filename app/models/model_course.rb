@@ -3,6 +3,8 @@ class ModelCourse < ApplicationRecord
   has_many :course_routes, dependent: :destroy
   validates :score, numericality: { greater_than_or_equal_to: 0 }
   validates :distance, numericality: { greater_than_or_equal_to: 0 }
+
+  MEASUREMENT_NUM = 2             # 距離、時間を測定する地点数
   ROUTE_SPOT_NUM = 5              # 1モデルコースの観光地数
   INITIAL_MODELCOURSE_NUM = 1000  # 初期ランダムで生成するモデルコース数
   MODELCORSES_PER_AREA_NUM = 100  # model_coursesテーブルに格納する地域あたりのモデルコース数
@@ -21,18 +23,24 @@ class ModelCourse < ApplicationRecord
     end
 
     def path_length(path)
-      path.each_cons(2).map do |start_id, end_id|
-        Distance.find_by(start_spot_id: start_id, end_spot_id: end_id).value
-      end.inject(:+)
+      total_distance = 0
+      total_time = 0
+      path.each_cons(MEASUREMENT_NUM).map do |start_id, end_id|
+        two_spots = Distance.find_by(start_spot_id: start_id, end_spot_id: end_id)
+        total_distance += two_spots.value
+        total_time += two_spots.travel_time
+      end
+      [total_distance, total_time]
     end
 
     def create_model_courses(model_course_id, area, a_path)
-      distance = path_length(a_path)
+      distance, total_time = path_length(a_path)
       ModelCourse.create!(
         id: model_course_id,
         area_id: area.id,
         score: distance,
-        distance: distance
+        distance: distance,
+        total_time: total_time
       )
     end
   end
