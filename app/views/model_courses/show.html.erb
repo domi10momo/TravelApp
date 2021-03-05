@@ -13,10 +13,7 @@
               <button class="btn btn-lg btn-primary mt-2" disabled >
                 <%= course_spot.order %>. <%= course_spot.spot.name %>
               </button>
-              <% if course_spot.next_distance != 0 && course_spot.next_time != 0%>
-                次の観光地までの距離: <%= course_spot.next_distance %> km
-                車での移動時間: <%= course_spot.next_time %> 分
-              <% end %>
+              <%= render 'shared/show_to_next_distance_and_time' %>
             <% end %>
             <div class="mt-3">
               総移動距離： <%= course.distance.round(2) %> km<br>

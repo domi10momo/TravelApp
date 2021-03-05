@@ -59,7 +59,9 @@ class MySchedulesController < ApplicationController
       MyTravelCourse.create!(
         my_schedule_id: my_schedule.id,
         order: spot.order,
-        spot_id: spot.spot_id
+        spot_id: spot.spot_id,
+        next_distance: spot.next_distance,
+        next_time: spot.next_time
       )
     end
   end
