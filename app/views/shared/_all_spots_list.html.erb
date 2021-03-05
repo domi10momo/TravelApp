@@ -12,7 +12,6 @@
         <p><%= spot.description %></p>
 
         <div class="form-group row justify-content-center mt-3">
-          <div btn-group>
           <%= link_to "詳細を確認する", spot_path(spot), class: "btn btn-success" %>
           <% if @travel_spot %>
             <%= link_to "この場所を選択する",
@@ -21,7 +20,6 @@
               class: "btn btn-success"
             %>
           <% end %>
-          </div>
         </div>
       </div>
     </div>
