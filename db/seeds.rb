@@ -1,6 +1,8 @@
 require 'csv'
 
 puts 'Delete Data'
+Want.delete_all
+Impression.delete_all
 CourseRoute.delete_all
 ModelCourse.delete_all
 MyTravelCourse.delete_all

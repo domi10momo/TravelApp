@@ -12,6 +12,13 @@ class Distance < ApplicationRecord
   belongs_to :end_spot, class_name: "Spot", inverse_of: :end_spots
 
   class << self
+    def fetch_next_distance_and_time(start_id, end_id)
+      Distance.find_by(
+        start_spot_id: start_id,
+        end_spot_id: end_id
+      )
+    end
+
     def get_course_list(areas, spots)
       get_permutation(areas, spots, POINT_NUMBER_5)
     end
