@@ -1,6 +1,6 @@
-<div>
+<div class="text-left mx-5">
   <% if course_spot.next_distance != 0 && course_spot.next_time != 0%>
-    次の観光地までの距離: <%= course_spot.next_distance %> km
-    車での移動時間: <%= course_spot.next_time %> 分
+    ⇓ 距離: <%= course_spot.next_distance %> km <br>
+    ⇓ 車での移動時間: <%= course_spot.next_time %> 分
   <% end %>
 </div>

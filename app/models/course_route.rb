@@ -19,15 +19,22 @@ class CourseRoute < ApplicationRecord
           next_time: two_spots.travel_time
         )
       end
+      course_route_id, spot_count = create_record(
+        course_route_id, model_course, spot_count, a_path.last, 0, 0
+      )
+      course_route_id
+    end
+
+    def create_record(course_route_id, model_course, spot_count, spot_id, distance, time)
       CourseRoute.create!(
         id: course_route_id += 1,
         model_course_id: model_course.id,
         order: spot_count += 1,
-        spot_id: a_path.last,
-        next_distance: 0,
-        next_time: 0
+        spot_id: spot_id,
+        next_distance: distance,
+        next_time: time
       )
-      course_route_id
+      [course_route_id, spot_count]
     end
   end
 end

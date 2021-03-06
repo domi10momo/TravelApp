@@ -15,7 +15,7 @@
           <%= link_to "詳細を確認する", spot_path(spot), class: "btn btn-success" %>
           <% if @travel_spot %>
             <%= link_to "この場所を選択する",
-              my_travel_course_path(params:{spot_id: spot, course_id: @travel_spot}),
+              my_travel_course_path(params:{spot_id: spot, course_id: @travel_spot, course_ids: @course_ids}),
               method: :patch,
               class: "btn btn-success"
             %>

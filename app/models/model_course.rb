@@ -26,7 +26,7 @@ class ModelCourse < ApplicationRecord
       total_distance = 0
       total_time = 0
       path.each_cons(MEASUREMENT_NUM).map do |start_id, end_id|
-        two_spots = Distance.find_by(start_spot_id: start_id, end_spot_id: end_id)
+        two_spots = Distance.fetch_next_distance_and_time(start_id, end_id)
         total_distance += two_spots.value
         total_time += two_spots.travel_time
       end
