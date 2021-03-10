@@ -28,6 +28,7 @@ class MyTravelCoursesController < ApplicationController
   end
 
   def update_distance_and_time(update_course, start_spot, end_spot)
+    return flash[:danger] = "同じ観光地から同じ観光地へは移動できません" if start_spot == end_spot
     two_spots = Distance.fetch_next_distance_and_time(start_spot, end_spot)
     update_course.update!(
       next_distance: two_spots.value,
@@ -44,6 +45,10 @@ class MyTravelCoursesController < ApplicationController
 
   def my_course_params
     params.permit(:id, :course_id, :spot_id, :format, course_ids: [])
+  end
+
+  def same_spot
+    redirect_to spots_path, danger: "元の観光地と違う観光地を選択してください"  
   end
 
   # def my_course_edit_params
