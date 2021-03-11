@@ -10,7 +10,6 @@
         </div>
         <p>エリア名：<%= spot.area.name %></p>
         <textarea readonly><%= spot.description %></textarea>
-
         <div class="form-group row justify-content-center">
           <%= link_to "詳細を確認する", spot_path(spot), class: "btn btn-success" %>
         </div>
@@ -32,7 +31,11 @@
               %>
             <% end %>
           <% end %>
+          <div>
+            行きたいを押している人数: <%= spot.wanted_users.length %>人
+          </div>
         </div>
+
         <div>
           <% if @travel_spot %>
             <%= link_to "この場所を選択する",
