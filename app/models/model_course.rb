@@ -33,10 +33,10 @@ class ModelCourse < ApplicationRecord
       [total_distance, total_time]
     end
 
-    def create_model_courses(model_course_id, area, a_path)
+    def create_model_courses(course_params, area, a_path)
       distance, total_time = path_length(a_path)
       ModelCourse.create!(
-        id: model_course_id,
+        id: course_params.upper_course_id,
         area_id: area.id,
         score: distance,
         distance: distance,

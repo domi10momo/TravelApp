@@ -4,7 +4,6 @@ class WantsController < ApplicationController
   RESTORE_SCORE_WEIGHT = 1 / WANT_SCORE_WEIGHT  # 行きたい観光地解除した際にスコアを戻すためのウェイト
 
   def create
-    binding.pry
     current_user.wants.create!(spot_id: param_spot_id)
     Want.change_score(@course_routes, param_spot_id, WANT_SCORE_WEIGHT)
     redirect_to spots_path
