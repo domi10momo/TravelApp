@@ -15,35 +15,33 @@
         </div>
         <div class="form-group row justify-content-center mt-2">
           <% if user_signed_in? %>
-            <% if @wanted_spot_ids.include?(spot.id) %>
-              <%= link_to "「行きたい」を取り消す",
-                spot_wants_path(spot.id),
-                method: :delete,
-                remote: true,
-                class: "btn btn-success spot-buttons"
+            <% if @travel_spot %>
+              <%= link_to "この場所を選択する",
+                my_travel_course_path(params:{spot_id: spot, course_id: @travel_spot, course_ids: @course_ids}),
+                method: :patch,
+                class: "btn btn-success"
               %>
             <% else %>
-              <%= link_to "「行きたい」に追加する",
-                spot_wants_path(spot.id),
-                method: :post,
-                remote: true,
-                class: "btn btn-success spot-buttons"
-              %>
+              <% if @wanted_spot_ids.include?(spot.id) %>
+                <%= link_to "「行きたい」を取り消す",
+                  spot_wants_path(spot.id),
+                  method: :delete,
+                  remote: true,
+                  class: "btn btn-success spot-buttons"
+                %>
+              <% else %>
+                <%= link_to "「行きたい」に追加する",
+                  spot_wants_path(spot.id),
+                  method: :post,
+                  remote: true,
+                  class: "btn btn-success spot-buttons"
+                %>
+              <% end %>
             <% end %>
           <% end %>
           <div>
             行きたいを押している人数: <%= spot.wanted_users.length %>人
           </div>
-        </div>
-
-        <div>
-          <% if @travel_spot %>
-            <%= link_to "この場所を選択する",
-              my_travel_course_path(params:{spot_id: spot, course_id: @travel_spot, course_ids: @course_ids}),
-              method: :patch,
-              class: "btn btn-success"
-            %>
-          <% end %>
         </div>
       </div>
     </div>

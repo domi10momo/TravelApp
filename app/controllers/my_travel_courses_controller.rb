@@ -9,6 +9,7 @@ class MyTravelCoursesController < ApplicationController
 
   def edit
     @spots = Spot.includes(:area)
+    @wanted_spot_ids = current_user.wants.pluck(:spot_id)
     @travel_spot = MyTravelCourse.find(my_course_params[:id])
     @course_ids = my_course_params[:course_ids]
   end
