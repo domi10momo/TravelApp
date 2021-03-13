@@ -10,8 +10,8 @@
         <div class="row">
           <div class="card border-dark mt-4 pb-3" style="width:90%; height:40%;">  
             <% course.course_routes.each do |course_spot| %>
-              <button class="btn btn-primary btn-lg m-3" disabled >
-                <%= course_spot.order %>. <%= course_spot.spot.name %>
+              <button class="btn btn-info btn-lg m-3" disabled >
+                <b><%= course_spot.order %>. <%= course_spot.spot.name %></b>
               </button>
               <%= render 'shared/show_to_next_distance_and_time', course_spot: course_spot %>
             <% end %>

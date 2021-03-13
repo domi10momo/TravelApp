@@ -1,3 +1,8 @@
+<% if current_user %>
+  <h5><%= link_to "観光地一覧へ戻る", spots_path %></h5>
+<% else %>
+  <h5><%= link_to "ホームへ戻る", root_path %></h5>
+<% end %>
 <div class="row">
   <div class="col-12 col-md-5 col-lg-5">
     <div class="card border-dark mb-3 p-3" style="margin: 1rem">
@@ -7,7 +12,25 @@
       <%= image_tag @spot.image %>
       <p>住所：<%= @spot.address %></p>
       <p><%= @spot.description %></p>
-      <p><%= render 'want', spot: @spot %></p>
+      <div class="form-group row justify-content-center mt-2">
+          <% if user_signed_in? %>
+            <% if @wanted_spot_ids.include?(@spot.id) %>
+              <%= link_to "「行きたい」を取り消す",
+                spot_wants_path(@spot.id),
+                method: :delete,
+                remote: true,
+                class: "btn btn-success spot-buttons"
+              %>
+            <% else %>
+              <%= link_to "「行きたい」に追加する",
+                spot_wants_path(@spot.id),
+                method: :post,
+                remote: true,
+                class: "btn btn-success spot-buttons"
+              %>
+            <% end %>
+          <% end %>
+        </div>
     </div>
   </div>
   <div class="col-12 col-md-5 col-lg-5 mt-5">

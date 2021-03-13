@@ -9,6 +9,7 @@ class MyTravelCoursesController < ApplicationController
 
   def edit
     @spots = Spot.includes(:area)
+    @wanted_spot_ids = current_user.wants.pluck(:spot_id)
     @travel_spot = MyTravelCourse.find(my_course_params[:id])
     @course_ids = my_course_params[:course_ids]
   end
@@ -29,6 +30,7 @@ class MyTravelCoursesController < ApplicationController
 
   def update_distance_and_time(update_course, start_spot, end_spot)
     return flash[:danger] = "同じ観光地から同じ観光地へは移動できません" if start_spot == end_spot
+
     two_spots = Distance.fetch_next_distance_and_time(start_spot, end_spot)
     update_course.update!(
       next_distance: two_spots.value,
@@ -48,12 +50,6 @@ class MyTravelCoursesController < ApplicationController
   end
 
   def same_spot
-    redirect_to spots_path, danger: "元の観光地と違う観光地を選択してください"  
+    redirect_to spots_path, danger: "元の観光地と違う観光地を選択してください"
   end
-
-  # def my_course_edit_params
-  #   params.require(:my_travel_course)
-  #         .permit(:date)
-  #         .merge(user_id: current_user.id)
-  # end
 end
