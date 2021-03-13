@@ -40,12 +40,16 @@ class ImpressionsController < ApplicationController
   end
 
   def message_is_empty
-    flash[:danger] = "感想を入力してください。"
-    redirect_to new_impression_path(param_format) if params_impression[:text].empty?
+    if params_impression[:text].empty?
+      flash[:danger] = "感想を入力してください。"
+      redirect_to new_impression_path(param_format)
+    end
   end
 
   def message_length_over
-    flash[:danger] = "感想は300文字以内で入力してください"
-    render :new if params_impression[:text].length > MAX_TEXT_LENGTH
+    if (params_impression[:text].length > MAX_TEXT_LENGTH)
+      flash[:danger] = "感想は300文字以内で入力してください"
+      render :new
+    end
   end
 end
