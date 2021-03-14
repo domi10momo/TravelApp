@@ -46,7 +46,7 @@ https://young-ravine-41583.herokuapp.com/
 
 <img width="951" alt="ER図" src="https://user-images.githubusercontent.com/35606852/109402530-04f4ab00-799a-11eb-8332-41eeeb63e2e9.png"><br>
 
-## [テーブル設計](https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxFUsY/edit?usp=sharing)<br>
+## [テーブル設計](https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxFUsY/edit?usp=sharing)（リンクが開きます）<br>
 
 # 機能一覧
 
