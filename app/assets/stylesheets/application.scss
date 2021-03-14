@@ -68,7 +68,13 @@ img {
 
 .want-spot-img {
   width: 70%;
-  height: 50%;
+  height: 100px;
+}
+
+.want-button {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .top-bgimage {
