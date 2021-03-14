@@ -10,10 +10,10 @@
   <div class="row">
     <% want_spots.each do |spot| %>
       <div class="col col-12 col-sm-6 col-md-6 col-lg-3 card card-block">
-        <div class="mx-auto m-2">
+        <div class="mx-auto p-2">
           <%= image_tag spot.image, class: "want-spot-img row-eq-height" %>
           <div class="text-center mt-2">
-            <%= link_to spot.name,  spot_path(spot), class: "btn btn-success" %>
+            <%= link_to spot.name,  spot_path(spot), class: "btn btn-success", style: "max-width: 60%;"%>
           </div>
         </div>
       </div>
