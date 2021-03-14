@@ -11,9 +11,15 @@ https://young-ravine-41583.herokuapp.com/
 - 行く予定、完了した旅行の編集、記録
 - サービス利用者の観光地に訪れた感想を閲覧可能
 
-<img width="1253" alt="トップページ" src="https://user-images.githubusercontent.com/35606852/108947041-0aed4200-76a3-11eb-9471-721033654ca5.png">
+<img width="1253" alt="トップページ" src="https://user-images.githubusercontent.com/35606852/111029322-77a46280-843f-11eb-9a39-fd98dc4d60bc.png">
 
-<img width="1258" alt="マイページ" src="https://user-images.githubusercontent.com/35606852/108947092-21939900-76a3-11eb-9f39-b96dc14292c9.png">
+<img width="1258" alt="マイページ" src="https://user-images.githubusercontent.com/35606852/111029975-1f6f5f80-8443-11eb-8b8a-34ece8649c8e.png">
+
+# 製作した経緯
+
+私は、各地に旅行に行くことが好きです。しかし旅行後、知らない観光地が紹介されているのを知り、事前に調べて無かったことを後悔することがあります。
+現住している長崎県は歴史的な観光地が多いですが、まだ一般的には知られていない観光地も多くあります。<br><br>
+そのため、有名な観光地の近くに、知られていない観光地がたくさんあることを知って頂きたいです。そして、予定に無かった場所にも足を運んで頂き、観光した人がもっと長崎を好きになって旅を終えて欲しいと考え、このアプリを製作いたしました。
 
 # 使用技術
 
@@ -29,6 +35,7 @@ https://young-ravine-41583.herokuapp.com/
 - Rails 6.0.3.4
 
 ## DB
+
 - PostgreSQL 13.1
 
 ## 本番環境
@@ -36,10 +43,10 @@ https://young-ravine-41583.herokuapp.com/
 - Heroku
 
 # ER 図
+
 <img width="951" alt="ER図" src="https://user-images.githubusercontent.com/35606852/109402530-04f4ab00-799a-11eb-8332-41eeeb63e2e9.png"><br>
 
-## [テーブル設計](https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxFUsY/edit?usp=sharing)<br>
-
+## [テーブル設計](https://docs.google.com/spreadsheets/d/10A_GsEgb5wQqrcDWASthG0lN_xqloFSHQpEWQGxFUsY/edit?usp=sharing)（リンクが開きます）<br>
 
 # 機能一覧
 
