@@ -88,6 +88,13 @@ img {
   }
 }
 
+.model-index-text {
+  font-size: 1.5em;
+  @media only screen and (max-width: 680px) {
+    font-size: 1em;
+  }
+}
+
 .logo-size {
   width: 25%;
   height: 25%;

@@ -2,7 +2,11 @@
   <b><p><h5>
     日程：<%= schedule.date %>
     <button class="btn btn-info m-2 btn-sm" disabled >
-      <%= MyTravelCourse.gone_text(schedule.gone) %>
+      <% if schedule.gone %>
+        旅行完了
+      <% else %>
+        旅行予定
+      <% end %>
     </button>
   </h5></p></b>
 

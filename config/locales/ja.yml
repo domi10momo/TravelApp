@@ -1,9 +1,9 @@
 ja:
   devise:
     sessions:
-      signed_in: ''
-      signed_out: ''
-      
+      signed_in: ""
+      signed_out: ""
+
   views:
     pagination:
       first: "&laquo; 最初"
@@ -15,8 +15,8 @@ ja:
   helpers:
     label:
       user:
-        nickname: 名前
-        email: メールアドレス
-        password: パスワード
+        nickname: "　　名　前　　　"
+        email: "　メールアドレス"
+        password: "　パスワード　　"
         password_confirmation: パスワード(確認)
         remember_me: パスワードを記憶

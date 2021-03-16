@@ -4,11 +4,15 @@
   <h5><%= link_to "ホームへ戻る", root_path %></h5>
 <% end %>
 
-<div class="m-3 mx-5">
-<h2>どの地域に行きたいですか？</h2>
-  <% @areas.each do |area| %>
-    <div class="m-4">
-      <p><%= link_to area.name, model_course_path(area.id), class: "btn btn-lg btn-success" %></p>
+<div class="row m-3 mx-5">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="card border border-0 mb-3 overflow-auto mx-auto text-center">
+      <div class="model-index-text">どの地域に行きたいですか？</div>
+      <% @areas.each do |area| %>
+        <div class="m-3">
+          <p><%= link_to area.name, model_course_path(area.id), class: "btn btn-lg btn-success" %></p>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>

@@ -47,7 +47,7 @@ class ImpressionsController < ApplicationController
   end
 
   def message_length_over
-    if (params_impression[:text].length > MAX_TEXT_LENGTH)
+    if params_impression[:text].length > MAX_TEXT_LENGTH
       flash[:danger] = "感想は300文字以内で入力してください"
       render :new
     end

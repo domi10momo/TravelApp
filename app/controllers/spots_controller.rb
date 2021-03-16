@@ -1,7 +1,7 @@
 class SpotsController < ApplicationController
   def index
     @spots = Spot.includes(:area)
-    @wanted_spot_ids = current_user.wants.pluck(:spot_id) if current_user
+    @wanted_spot_ids = current_user.wanted_spots.pluck(:spot_id) if current_user
   end
 
   def show
