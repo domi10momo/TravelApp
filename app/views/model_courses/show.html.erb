@@ -1,18 +1,16 @@
+<% if current_user %>
+  <h5><%= link_to "地域選択画面へ戻る", model_courses_path %></h5>
+<% else %>
+  <h5><%= link_to "ホームへ戻る", root_path %></h5>
+<% end %>
 <div class="text-center">
-  <% if current_user %>
-    <h5><%= link_to "地域選択画面へ戻る", model_courses_path %></h5>
-  <% else %>
-    <h5><%= link_to "ホームへ戻る", root_path %></h5>
-  <% end %>
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-6 mx-auto">
       <% @courses_in_area.each do |course| %>
         <div class="row">
           <div class="card border-dark mt-4 pb-3" style="width:90%; height:40%;">  
             <% course.course_routes.each do |course_spot| %>
-              <button class="btn btn-info btn-lg m-3" disabled >
-                <b><%= course_spot.order %>. <%= course_spot.spot.name %></b>
-              </button>
+              <%= render 'shared/travel_spot_name_and_order', course_spot: course_spot %>
               <%= render 'shared/show_to_next_distance_and_time', course_spot: course_spot %>
             <% end %>
             <div class="mt-3">

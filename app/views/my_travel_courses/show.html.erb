@@ -8,33 +8,24 @@
   <% @course.each do |course_spot| %>
     <div class="row justify-content-md-center">
       <div class="col">
-        <button class="btn btn-info btn-lg m-3" style="width: 50%;" disabled >
-          <b><%= course_spot.order %>. <%= course_spot.spot.name %></b>
-        </button>
-
-        <div class="mx-5 mb-3">
-          <% if @schedule.gone %>
-            <%= link_to "感想の入力", new_impression_path(course_spot), class: "btn btn-secondary" %>
-          <% else %>
-            <%= link_to "コースの修正", edit_my_travel_course_path(course_spot, course_ids: @course.ids.sort), class: "btn btn-secondary" %>
-          <% end %>
-        </div>
-      </div>
+        <%= render 'shared/travel_spot_name_and_order', course_spot: course_spot %>
+        <% if @schedule.gone %>
+          <%= link_to "感想の入力", new_impression_path(course_spot), class: "btn btn-secondary ml-5" %>
+        <% else %>
+          <%= link_to "コースの修正", edit_my_travel_course_path(course_spot, course_ids: @course.ids.sort), class: "btn btn-secondary ml-3" %>
+        <% end %>
+      </div> 
     </div>
     <div class="row justify-content-md-center">
-      <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-        <%= render 'shared/show_to_next_distance_and_time', course_spot: course_spot %>
-      </div>
       <% if course_spot.fill_in_impression %>
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+        <%= render 'shared/impression_image',
+          impression: Impression.find_by(my_schedule_id: @schedule.id, spot_id: course_spot.spot_id)
+        %>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-5 px-3">
           <textarea readonly><%= Impression.find_by(my_schedule_id: @schedule.id, spot_id: course_spot.spot_id).text %></textarea>
         </div>
-        <% if Impression.find_by(my_schedule_id: @schedule.id, spot_id: course_spot.spot_id).image.present? %>
-          <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-            <%= image_tag Impression.find_by(my_schedule_id: @schedule.id, spot_id: course_spot.spot_id).image.url, :size => '200x200' %>
-          </div>
-        <% end %>
       <% end %>
+      <%= render 'shared/show_to_next_distance_and_time', course_spot: course_spot %>
     </div>
     <hr>
   <% end %>
