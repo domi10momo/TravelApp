@@ -4,39 +4,33 @@
   <h5><%= link_to "ホームへ戻る", root_path %></h5>
 <% end %>
 <div class="text-center">
-  <h4>日程： <%= @schedule.date %></h4>
+  <h3>旅行日： <%= @schedule.date %></h3>
   <% @course.each do |course_spot| %>
-    <div class="row">
-      <h5><%= course_spot.order %>. <%= course_spot.spot.name %></h5>
-      <% if @schedule.gone %>
-        <div class="mx-5">
-          <%= link_to "感想の入力", new_impression_path(course_spot), class: "btn btn-secondary btn-sm" %>
-        </div>
-      <% else %>
-        <div class="mx-5">
-          <%= link_to "コースの修正", edit_my_travel_course_path(course_spot, course_ids: @course.ids.sort), class: "btn btn-secondary btn-sm" %>
-        </div>
-      <% end %>
+    <div class="row justify-content-md-center">
+      <div class="col">
+        <%= render 'shared/travel_spot_name_and_order', course_spot: course_spot %>
+        <% if @schedule.gone %>
+          <%= link_to "感想の入力", new_impression_path(course_spot), class: "btn btn-secondary ml-5" %>
+        <% else %>
+          <%= link_to "コースの修正", edit_my_travel_course_path(course_spot, course_ids: @course.ids.sort), class: "btn btn-secondary ml-3" %>
+        <% end %>
+      </div> 
     </div>
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-        <%= render 'shared/show_to_next_distance_and_time', course_spot: course_spot %>
-      </div>
+    <div class="row justify-content-md-center">
       <% if course_spot.fill_in_impression %>
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+        <%= render 'shared/impression_image',
+          impression: Impression.find_by(my_schedule_id: @schedule.id, spot_id: course_spot.spot_id)
+        %>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-5 px-3">
           <textarea readonly><%= Impression.find_by(my_schedule_id: @schedule.id, spot_id: course_spot.spot_id).text %></textarea>
         </div>
-        <% if Impression.find_by(my_schedule_id: @schedule.id, spot_id: course_spot.spot_id).image.present? %>
-          <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-            <%= image_tag Impression.find_by(my_schedule_id: @schedule.id, spot_id: course_spot.spot_id).image.url, :size => '200x200' %>
-          </div>
-        <% end %>
       <% end %>
+      <%= render 'shared/show_to_next_distance_and_time', course_spot: course_spot %>
     </div>
     <hr>
   <% end %>
   <% unless @schedule.gone %>
-    <div>
+    <div class="mb-3">
       <%= button_to "旅行終了", my_travel_courses_gone_flag_path(@schedule), class: "btn btn-success" %>
     </div>
   <% end %>

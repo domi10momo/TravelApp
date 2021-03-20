@@ -46,7 +46,7 @@ body {
 }
 
 textarea:read-only {
-  border: none;
+  // border: none;
   resize: none;
   outline: none;
   width: 100%;
@@ -91,6 +91,13 @@ img {
   }
   @media only screen and (max-width: 300px) {
     font-size: calc(80% + 0.2vw);
+  }
+}
+
+.model-index-text {
+  font-size: 1.5em;
+  @media only screen and (max-width: 680px) {
+    font-size: 1em;
   }
 }
 
