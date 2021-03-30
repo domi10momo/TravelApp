@@ -9,24 +9,10 @@
       <p>住所：<%= @spot.address %></p>
       <p><%= @spot.description %></p>
       <div class="form-group row justify-content-center mt-2">
-          <% if user_signed_in? %>
-            <% if @wanted_spot_ids.include?(@spot.id) %>
-              <%= link_to "「行きたい」を取り消す",
-                spot_wants_path(@spot.id),
-                method: :delete,
-                remote: true,
-                class: "btn btn-success spot-buttons"
-              %>
-            <% else %>
-              <%= link_to "「行きたい」に追加する",
-                spot_wants_path(@spot.id),
-                method: :post,
-                remote: true,
-                class: "btn btn-success spot-buttons"
-              %>
-            <% end %>
-          <% end %>
-        </div>
+        <% if user_signed_in? %>
+          <%= render 'shared/want_spot_button', {wanted_spot_ids: @wanted_spot_ids, spot_id: @spot.id} %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="col-12 col-md-5 col-lg-5 mt-5">

@@ -10,7 +10,7 @@
       <div class="model-index-text">どの地域に行きたいですか？</div>
       <% @areas.each do |area| %>
         <div class="m-3">
-          <p><%= link_to area.name, model_course_path(area.id), class: "btn btn-lg btn-success" %></p>
+          <p><%= link_to area.name, model_course_path(area.id), class: "btn btn-lg btn-success area-btn" %></p>
         </div>
       <% end %>
     </div>
