@@ -19,7 +19,7 @@
       </div>
     <% end %>
   </div>
-  <div class="mx-auto mt-3">
-    <%= paginate want_spots %>
+  <div class="mt-3">
+    <%= paginate want_spots, param_name: "want_page" %>
   </div>
 </div>
