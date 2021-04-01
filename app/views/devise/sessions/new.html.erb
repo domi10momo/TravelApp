@@ -27,11 +27,11 @@
           <%= f.submit "ログイン", class: "btn btn-lg btn-success btn-width" %>
         </div>
       <% end %>
-
-      <%= render "devise/shared/links" %>
-      <div>
+      <div class="mt-3">
         <%= link_to 'ゲストログイン（閲覧用）', users_guest_login_path, method: :post, class: "btn btn-sm btn-info btn-width" %>
       </div>
+
+      <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>
