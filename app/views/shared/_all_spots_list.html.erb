@@ -1,7 +1,7 @@
 <div class="row">
   <% @spots.each do |spot| %>
     <div class="col-12 col-md-6 col-lg-4 row-eq-height">
-      <div class="card border-dark mb-3" style="margin: 1rem">
+      <div class="card border-dark mb-3 p-2">
         <div class="text-center mt-2">
           <h3><b><%= spot.name %></b></h3>
         </div>
@@ -9,9 +9,9 @@
           <%= image_tag "/assets/#{spot.image}", :size => '300x300' %>
         </div>
         <p>エリア名：<%= spot.area.name %></p>
-        <textarea readonly><%= spot.description %></textarea>
+        <textarea readonly class="border-0"><%= spot.description %></textarea>
         <div class="form-group row justify-content-center">
-          <%= link_to "詳細を確認する", spot_path(spot), class: "btn btn-success" %>
+          <%= link_to "詳細を確認する", spot_path(spot), class: "btn btn-success spot-btn" %>
         </div>
         <div class="form-group row justify-content-center mt-2">
           <% if user_signed_in? %>
@@ -19,27 +19,13 @@
               <%= link_to "この場所を選択する",
                 my_travel_course_path(params:{spot_id: spot, course_id: @travel_spot, course_ids: @course_ids}),
                 method: :patch,
-                class: "btn btn-success"
+                class: "btn btn-success spot-btn"
               %>
             <% else %>
-              <% if @wanted_spot_ids.include?(spot.id) %>
-                <%= link_to "「行きたい」を取り消す",
-                  spot_wants_path(spot.id),
-                  method: :delete,
-                  remote: true,
-                  class: "btn btn-success spot-buttons"
-                %>
-              <% else %>
-                <%= link_to "「行きたい」に追加する",
-                  spot_wants_path(spot.id),
-                  method: :post,
-                  remote: true,
-                  class: "btn btn-success spot-buttons"
-                %>
-              <% end %>
+              <%= render 'shared/want_spot_button', {wanted_spot_ids: @wanted_spot_ids, spot_id: spot.id} %>
             <% end %>
           <% end %>
-          <div>
+          <div class="small">
             行きたいを押している人数: <%= spot.wanted_users.length %>人
           </div>
         </div>

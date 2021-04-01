@@ -24,14 +24,14 @@
         <% end %>
 
         <div class="actions mt-4 mx-auto">
-          <%= f.submit "ログイン", class: "btn btn-lg btn-success" %>
+          <%= f.submit "ログイン", class: "btn btn-lg btn-success btn-width" %>
         </div>
       <% end %>
+      <div class="mt-3">
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_login_path, method: :post, class: "btn btn-sm btn-info btn-width" %>
+      </div>
 
       <%= render "devise/shared/links" %>
-      <div>
-        <%= link_to 'ゲストログイン（閲覧用）', users_guest_login_path, method: :post, class: "btn btn-sm btn-info" %>
-      </div>
     </div>
   </div>
 </div>
