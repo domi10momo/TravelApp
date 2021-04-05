@@ -2,10 +2,10 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  <div>
+    <%= link_to image_tag("/assets/logo.png", class: "header-icon"), users_path %>
+  </div>
   <div class="collapse navbar-collapse mx-5" id="navbarResponsive">
-    <div>
-      <%= link_to image_tag("/assets/logo.png", class: "header-icon"), users_path %>
-    </div>
     <div class="navbar-nav mr-0"> 
       <%= link_to '観光地一覧', spots_path, class: "navbar-brand nav-item nav-link text-white" %>
       <%= link_to '感想一覧', impressions_path, class: "navbar-brand nav-item nav-link text-white" %>
