@@ -6,24 +6,7 @@
 <div class="text-center">
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-6 mx-auto">
-      <% @courses_in_area.each do |course| %>
-        <div class="row">
-          <div class="card border-dark mt-4 pb-3" style="width:90%; height:40%;">  
-            <% course.course_routes.each do |course_spot| %>
-              <%= render 'shared/travel_spot_name_and_order', course_spot: course_spot %>
-              <%= render 'shared/show_to_next_distance_and_time', course_spot: course_spot %>
-            <% end %>
-            <div class="mt-3">
-              総移動距離： <%= course.distance.round(2) %> km<br>
-              総移動時間： <%= course.total_time %> 分<br>
-              スコア： <%= course.score.round(4) %> <br>
-            </div>
-            <div class="mt-3">
-              <%= link_to "詳細を見る", course_route_path(course), class: "btn btn-success spot-btn" %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      <%= render 'show_modelcourse_and_route', courses_in_area: @courses_in_area %>
     </div>
   </div>
 </div>
