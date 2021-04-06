@@ -9,8 +9,6 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :nickname, presence: true
 
-  scope :id_name, ->(table) { find(table.user_id).nickname }
-
   def self.guest
     find_or_create_by!(email: "guest@example.com") do |user|
       user.nickname = "鈴木 悟"

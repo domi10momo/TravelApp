@@ -9,8 +9,8 @@
     <div class="row">
       <div class="btn btn-info mx-auto">
         <h5>
-          <%= MySchedule.find_id(impression).date %> &nbsp;
-          <%= Spot.find(impression.spot_id).name %>
+          <%= impression.my_schedule.date %> &nbsp;
+          <%= impression.spot.name %>
         </h5>
       </div>
     </div>
@@ -21,7 +21,7 @@
           <textarea readonly><%= impression.text %></textarea>
         </div>
         <div class="mt-4">
-          <p>投稿者:<%= User.id_name(MySchedule.find_id(impression)) %></p>
+          <p>投稿者:<%= impression.my_schedule.user.nickname %></p>
           <p>投稿時間：<%= impression.created_at.to_s(:datetime_jp) %></p>
         </div>
       </div>

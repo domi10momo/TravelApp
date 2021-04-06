@@ -7,7 +7,7 @@ class ImpressionsController < ApplicationController
   MAX_TEXT_LENGTH = 500   # 感想文の最大文字数
 
   def index
-    @impressions = Impression.order(created_at: "DESC").limit(MAX_IMPRESSION_NUM)
+    @impressions = Impression.eager_load(:spot, :my_schedule).order(created_at: "DESC").limit(MAX_IMPRESSION_NUM)
                              .page(params[:page]).per(IMPRESSION_PER_PAGE)
   end
 

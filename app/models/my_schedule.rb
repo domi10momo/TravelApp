@@ -6,6 +6,5 @@ class MySchedule < ApplicationRecord
   validates :date, presence: true
   validates :gone, inclusion: [true, false]
   scope :gone_flag, ->(gone) { where(gone: gone).to_a }
-  scope :find_id, ->(model) { find(model.my_schedule_id) }
   scope :route_order, ->(schedule) { find(schedule.id).my_travel_courses.preload(:spot).order(order: "ASC") }
 end
