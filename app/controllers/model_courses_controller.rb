@@ -1,6 +1,6 @@
 class ModelCoursesController < ApplicationController
   before_action :fetch_areas_and_spots
-  NUMBER_PER_PAGE = 10  # 1ページ当たりの表示コース数
+  NUMBER_PER_PAGE = 10  # 1ページ当たりの表示コース数 * 1コースの観光地数
 
   def index
     @model_courses = ModelCourse.includes(:area)
@@ -8,8 +8,10 @@ class ModelCoursesController < ApplicationController
 
   def show
     # 選択したエリアのコースリストを選択
-    area = Area.find(area_id)
-    @courses_in_area = area.model_courses.order(score: "ASC").page(params[:page]).per(NUMBER_PER_PAGE)
+    #area = Area.find(area_id)
+    @courses_in_area = ModelCourse.eager_load(:course_routes).where(area_id: area_id)
+                                  .order(score: "ASC").order(order: "ASC")
+                                  .page(params[:page]).per(NUMBER_PER_PAGE)
   end
 
   private
@@ -19,8 +21,8 @@ class ModelCoursesController < ApplicationController
   end
 
   def fetch_areas_and_spots
-    @areas = Area.includes(:spots)
-    @spots = Spot.includes(:area)
+    @areas = Area.preload(:spots)
+    @spots = Spot.preload(:area)
     [@areas, @spots]
   end
 end
