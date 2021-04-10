@@ -12,13 +12,11 @@ class ImpressionsController < ApplicationController
   end
 
   def new
-    @choice_spot = MyTravelCourse.find(param_format)
-    @gone_date = @choice_spot.my_schedule.date
-    @spot_name = @choice_spot.spot.name
+    @choice_spot = MyTravelCourse.eager_load(:my_schedule, :spot).find(param_format)
   end
 
   def create
-    @choice_spot = MyTravelCourse.find(param_format)
+    @choice_spot = MyTravelCourse.eager_load(:my_schedule, :spot).find(param_format)
     Impression.create!(
       my_schedule_id: @choice_spot.my_schedule_id,
       spot_id: @choice_spot.spot_id,

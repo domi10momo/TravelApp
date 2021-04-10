@@ -22,7 +22,7 @@ class WantsController < ApplicationController
   end
 
   def tables
-    @model_courses = ModelCourse.includes(:area)
-    @course_routes = CourseRoute.includes(:model_course)
+    @model_courses = ModelCourse.preload(:area)
+    @course_routes = CourseRoute.preload(:model_course)
   end
 end

@@ -2,14 +2,15 @@ class MyTravelCoursesController < ApplicationController
   COURSE_NUM = 5  # 1コースあたりの観光地数
 
   def show
-    @spots = Spot.includes(:area)
+    @spots = Spot.preload(:area)
     @schedule = MySchedule.find(my_course_params[:id])
-    @course = @schedule.my_travel_courses.order(order: "ASC")
+    @courses = MyTravelCourse.eager_load(:spot, :my_schedule, my_schedule: [:impressions])
+                             .where(my_schedule_id: my_course_params[:id]).order(order: "ASC")
   end
 
   def edit
-    @spots = Spot.includes(:area)
-    @wanted_spot_ids = current_user.wants.pluck(:spot_id)
+    @spots = Spot.preload(:area, :wanted_users)
+    @wanted_spot_ids = Want.eager_load(:user).where(user_id: current_user.id).pluck(:spot_id)
     @travel_spot = MyTravelCourse.find(my_course_params[:id])
     @course_ids = my_course_params[:course_ids]
   end
