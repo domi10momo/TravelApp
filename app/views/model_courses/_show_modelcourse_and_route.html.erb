@@ -1,7 +1,7 @@
 <% courses_in_area.each do |course| %>
   <div class="row">
     <div class="card border-dark mt-4 pb-3" style="width:90%; height:40%;">  
-      <% course.course_routes.preload(:spot).each do |course_spot| %>
+      <% course.course_routes.preload(spot: [:wants, :wanted_users]).map do |course_spot| %>
         <%= render 'shared/travel_spot_name_and_order', course_spot: course_spot %>
         <%= render 'shared/show_to_next_distance_and_time', course_spot: course_spot %>
       <% end %>

@@ -7,8 +7,8 @@ class ModelCoursesController < ApplicationController
 
   def show
     # 選択したエリアのコースリストを選択
-    @courses_in_area = ModelCourse.eager_load(:course_routes).where(area_id: area_id)
-                                  .order(score: "ASC").order(order: "ASC")
+    @courses_in_area = ModelCourse.eager_load(:course_routes)
+                                  .where(area_id: area_id).order(score: "ASC")
                                   .page(params[:page]).per(NUMBER_PER_PAGE)
   end
 
