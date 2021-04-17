@@ -18,9 +18,11 @@
     </div>
     <div class="row justify-content-md-center">
       <% if course_spot.fill_in_impression %>
-        <%= render 'shared/impression_image',
-          impression: course_spot.my_schedule.impressions.find_by(spot_id: course_spot.spot_id)
-        %>
+        <div class="col-12 col-md-5 col-lg-5">
+          <%= render 'shared/impression_image',
+            impression: course_spot.my_schedule.impressions.find_by(spot_id: course_spot.spot_id)
+          %>
+        </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-5 px-3">
           <textarea readonly><%= course_spot.my_schedule.impressions.find_by(spot_id: course_spot.spot_id).text %></textarea>
         </div>

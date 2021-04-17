@@ -1,35 +1,29 @@
-<div class="row">
-  <% @spots.each do |spot| %>
-    <div class="col-12 col-md-6 col-lg-4 row-eq-height">
-      <div class="card border-dark mb-3 p-2">
-        <div class="text-center mt-2">
-          <h3><b><%= spot.name %></b></h3>
-        </div>
-        <div class="ml-5">
-          <%= image_tag "/assets/#{spot.image}", :size => '300x300' %>
-        </div>
-        <p>エリア名：<%= spot.area.name %></p>
-        <textarea readonly class="border-0"><%= spot.description %></textarea>
-        <div class="form-group row justify-content-center">
-          <%= link_to "詳細を確認する", spot_path(spot), class: "btn btn-success spot-btn" %>
-        </div>
-        <div class="form-group row justify-content-center mt-2">
-          <% if user_signed_in? %>
-            <% if @travel_spot %>
-              <%= link_to "この場所を選択する",
-                my_travel_course_path(params:{spot_id: spot, course_id: @travel_spot, course_ids: @course_ids}),
-                method: :patch,
-                class: "btn btn-success spot-btn"
-              %>
-            <% else %>
-              <%= render 'shared/want_spot_button', {wanted_spot_ids: @wanted_spot_ids, spot_id: spot.id} %>
-            <% end %>
-          <% end %>
-          <div class="small">
-            行きたいを押している人数: <%= spot.wanted_users.length %>人
-          </div>
-        </div>
-      </div>
+<div class="card border-dark mb-3 p-2">
+  <div class="text-center mt-2">
+    <h3><b><%= spot.name %></b></h3>
+  </div>
+  <div class="ml-5">
+    <%= image_tag "/assets/#{spot.image}", :size => '300x300' %>
+  </div>
+  <p>エリア名：<%= spot.area.name %></p>
+  <textarea readonly class="border-0"><%= spot.description %></textarea>
+  <div class="form-group row justify-content-center">
+    <%= link_to "詳細を確認する", spot_path(spot), class: "btn btn-success spot-btn" %>
+  </div>
+  <div class="form-group row justify-content-center mt-2">
+    <% if user_signed_in? %>
+      <% if @travel_spot %>
+        <%= link_to "この場所を選択する",
+          my_travel_course_path(params:{spot_id: spot, course_id: @travel_spot, course_ids: @course_ids}),
+          method: :patch,
+          class: "btn btn-success spot-btn"
+        %>
+      <% else %>
+        <%= render 'shared/want_spot_button', {wanted_spot_ids: @wanted_spot_ids, spot_id: spot.id} %>
+      <% end %>
+    <% end %>
+    <div class="small">
+      行きたいを押している人数: <%= spot.wanted_users.length %>人
     </div>
-  <% end %>
+  </div>
 </div>
