@@ -7,5 +7,12 @@
 <div class="text-center mb-3">
   <h2>観光地一覧</h2>
 </div>
-<%= render 'shared/all_spots_list' %>
+
+<div class="row">
+  <% @spots.each do |spot| %>
+    <div class="col-12 col-md-6 col-lg-4 row-eq-height">
+      <%= render 'shared/all_spots_list', spot: spot %>
+    </div>
+  <% end %>
+</div>
 

@@ -5,24 +5,26 @@
 <% end %>
 <div class="text-center">
   <h3>旅行日： <%= @schedule.date %></h3>
-  <% @course.each do |course_spot| %>
+  <% @courses.each do |course_spot| %>
     <div class="row justify-content-md-center">
       <div class="col">
         <%= render 'shared/travel_spot_name_and_order', course_spot: course_spot %>
         <% if @schedule.gone %>
           <%= link_to "感想の入力", new_impression_path(course_spot), class: "btn btn-secondary ml-5" %>
         <% else %>
-          <%= link_to "コースの修正", edit_my_travel_course_path(course_spot, course_ids: @course.ids.sort), class: "btn btn-secondary ml-3" %>
+          <%= link_to "コースの修正", edit_my_travel_course_path(course_spot, course_ids: @courses.ids.sort), class: "btn btn-secondary ml-3" %>
         <% end %>
       </div> 
     </div>
     <div class="row justify-content-md-center">
       <% if course_spot.fill_in_impression %>
-        <%= render 'shared/impression_image',
-          impression: Impression.find_by(my_schedule_id: @schedule.id, spot_id: course_spot.spot_id)
-        %>
+        <div class="col-12 col-md-5 col-lg-5">
+          <%= render 'shared/impression_image',
+            impression: course_spot.my_schedule.impressions.find_by(spot_id: course_spot.spot_id)
+          %>
+        </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-5 px-3">
-          <textarea readonly><%= Impression.find_by(my_schedule_id: @schedule.id, spot_id: course_spot.spot_id).text %></textarea>
+          <textarea readonly><%= course_spot.my_schedule.impressions.find_by(spot_id: course_spot.spot_id).text %></textarea>
         </div>
       <% end %>
       <%= render 'shared/show_to_next_distance_and_time', course_spot: course_spot %>

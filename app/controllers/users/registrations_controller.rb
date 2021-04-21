@@ -6,9 +6,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   def check_guest
-    user = User.find_by(email: "guest@example.com")
-    flash[:danger] = "ゲストユーザは変更、削除できません。"
-    redirect_to user_path(user) if resource.email == "guest@example.com"
+    if resource.email == "guest@example.com"
+      user = User.find_by(email: "guest@example.com")
+      flash[:danger] = "ゲストユーザは変更、削除できません。"
+      redirect_to user_path(user)
+    end
   end
   # GET /resource/sign_up
   # def new

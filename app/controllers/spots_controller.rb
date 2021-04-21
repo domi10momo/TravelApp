@@ -1,6 +1,6 @@
 class SpotsController < ApplicationController
   def index
-    @spots = Spot.includes(:area)
+    @spots = Spot.preload(:area, :wanted_users)
     @wanted_spot_ids = current_user.wanted_spots.pluck(:spot_id) if current_user
   end
 
