@@ -1,0 +1,27 @@
+<% @impressions.each do |impression| %>
+  <div class="justify-content-md-center">
+    <div class="row">
+      <div class="btn btn-info mx-auto">
+        <h5>
+          <%= impression.my_schedule.date %> &nbsp;
+          <%= impression.spot.name %>
+        </h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-5 col-lg-5">
+        <%= render 'shared/impression_image', impression: impression %>
+      </div>
+      <div class="col-12 col-md-5 col-lg-5 impression-text mx-auto">
+        <div class="mt-3">
+          <textarea readonly><%= impression.text %></textarea>
+        </div>
+        <div class="mt-4">
+          <p>投稿者:<%= impression.my_schedule.user.nickname %></p>
+          <p>投稿時間：<%= impression.created_at.to_s(:datetime_jp) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+<% end %>
