@@ -2,14 +2,13 @@ class UsersController < ApplicationController
   WANT_SPOT_PER_PAGE = 4   # １ページに表示する感想数
   SCHEDULE_PER_PAGE = 3    # 1ページに表示する旅行予定数
   COURSE_PER_PAGE = 3      # 1ページに表示する完了旅行数
-
+  SPOT_PER_PAGE = 5        # 1ページに表示する観光地
   MAX_COURSE_NUM = 3       # モデルコースの表示数
-  MAX_SPOT_NUM = 5         # 観光地の表示数
   MAX_IMPRESSION_NUM = 5   # 感想の表示数
 
   def index
-    @example_model_courses = ModelCourse.eager_load(:course_routes).where(area_id: 1).limit(MAX_COURSE_NUM)
-    @spots = Spot.preload(:area, :wants, :wanted_users).limit(MAX_SPOT_NUM)
+    @areas = Area.preload(:spots)
+    @spots = Spot.preload(:area, :wants, :wanted_users).page(params[:spot_page]).per(SPOT_PER_PAGE)
     @impressions = Impression.eager_load(:spot, :my_schedule).order(created_at: "DESC").limit(MAX_IMPRESSION_NUM)
   end
 
