@@ -4,15 +4,15 @@ class WantsController < ApplicationController
   RESTORE_SCORE_WEIGHT = 1 / WANT_SCORE_WEIGHT  # 行きたい観光地解除した際にスコアを戻すためのウェイト
 
   def create
+    @want_spot = Spot.find(param_spot_id)
     current_user.wants.create!(spot_id: param_spot_id)
     Want.change_score(@course_routes, param_spot_id, WANT_SCORE_WEIGHT)
-    redirect_to spots_path
   end
 
   def destroy
+    @want_spot = Spot.find(param_spot_id)
     current_user.wants.find_by(spot_id: param_spot_id).destroy!
     Want.change_score(@course_routes, param_spot_id, RESTORE_SCORE_WEIGHT)
-    redirect_to spots_path
   end
 
   private
@@ -22,7 +22,6 @@ class WantsController < ApplicationController
   end
 
   def tables
-    @model_courses = ModelCourse.preload(:area)
     @course_routes = CourseRoute.preload(:model_course)
   end
 end

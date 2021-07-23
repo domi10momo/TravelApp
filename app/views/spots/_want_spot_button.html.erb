@@ -1,0 +1,7 @@
+<div id="spot-<%= spot.id %>">
+  <% if wanted_spot_ids.include?(spot.id) %>
+    <%= render 'release', spot: spot %>
+  <% else %>
+    <%= render 'add_wants', spot: spot %>
+  <% end %>
+</div>
