@@ -1,4 +1,4 @@
-<div id="spot-<%= spot.id %>">
+<div id="spot-<%= spot.id %>" class="form-group row justify-content-center mt-2">
   <% if wanted_spot_ids.include?(spot.id) %>
     <%= render 'release', spot: spot %>
   <% else %>
