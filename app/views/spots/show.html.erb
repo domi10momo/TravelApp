@@ -10,7 +10,7 @@
       <p><%= @spot.description %></p>
       <div class="form-group row justify-content-center mt-2">
         <% if user_signed_in? %>
-          <%= render 'spots/want_spot_button', {wanted_spot_ids: @wanted_spot_ids, spot_id: @spot.id} %>
+          <%= render 'spots/want_spot_button', {wanted_spot_ids: @wanted_spot_ids, spot: @spot} %>
         <% end %>
       </div>
     </div>
