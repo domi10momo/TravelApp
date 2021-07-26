@@ -1,0 +1,10 @@
+<%= link_to "「行きたい」を取り消す",
+  spot_wants_path(spot.id),
+  method: :delete,
+  remote: true,
+  class: "btn btn-secondary spot-btn",
+  spot_id: spot.id
+%>
+<div class="small">
+  行きたいを押している人数: <%= spot.wanted_users.length %>人
+</div>

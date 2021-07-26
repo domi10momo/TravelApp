@@ -3,14 +3,14 @@
   <div class="col-12 col-md-6 col-lg-6">
     <div class="card border-dark mb-3 p-3" style="margin: 1rem">
       <div class="text-center text-secondly">
-      <h3><%= @spot.name %></h3>
+        <h3><%= @spot.name %></h3>
       </div>
       <%= image_tag @spot.image %>
       <p>住所：<%= @spot.address %></p>
       <p><%= @spot.description %></p>
       <div class="form-group row justify-content-center mt-2">
         <% if user_signed_in? %>
-          <%= render 'shared/want_spot_button', {wanted_spot_ids: @wanted_spot_ids, spot_id: @spot.id} %>
+          <%= render 'spots/want_spot_button', {wanted_spot_ids: @wanted_spot_ids, spot: @spot} %>
         <% end %>
       </div>
     </div>
@@ -19,14 +19,13 @@
     <div class="mx-auto" id="map" value="<%= @spot.name %>"style="width:90%; height:400px"></div>
     <script type="text/javascript">
       elementMap = document.getElementById("map")
-
+      
       function initMap() {
         geocoder = new google.maps.Geocoder()
         makePinOnMap(elementMap)
       }
     </script>
     <script async defer type="text/javascript"
-      src="<%= @map_url %>&callback=initMap">
-    </script>
+      src="<%= @map_url %>&callback=initMap"></script>
   </div>
-</div>  
+</div>

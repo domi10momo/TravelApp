@@ -1,0 +1,10 @@
+<%= link_to "「行きたい」に追加する",
+  spot_wants_path(spot.id),
+  method: :post,
+  remote: true,
+  class: "btn btn-success spot-btn",
+  spot_id: spot.id
+%>
+<div class="small">
+  行きたいを押している人数: <%= spot.wanted_users.length %>人
+</div>

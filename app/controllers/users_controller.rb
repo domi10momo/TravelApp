@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     @areas = Area.preload(:spots)
     @spots = Spot.preload(:area, :wants, :wanted_users).page(params[:spot_page]).per(SPOT_PER_PAGE)
     @impressions = Impression.eager_load(:spot, :my_schedule).order(created_at: "DESC").limit(MAX_IMPRESSION_NUM)
+    if current_user
+      @wanted_spot_ids = current_user.wants.pluck(:spot_id) 
+      redirect_to user_path(current_user)
+    end
   end
 
   def show

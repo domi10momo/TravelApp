@@ -3,11 +3,10 @@
 <% else %>
   <h5><%= link_to "ホームへ戻る", root_path %></h5>
 <% end %>
-
 <div class="row">
   <% @spots.each do |spot| %>
     <div class="col-12 col-md-6 col-lg-4 row-eq-height">
-      <%= render 'shared/all_spots_list', spot: spot %>
+      <%= render 'spots/all_spots_list', spot: spot %>
     </div>
   <% end %>
 </div>

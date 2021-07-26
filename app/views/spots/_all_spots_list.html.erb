@@ -10,20 +10,20 @@
   <div class="form-group row justify-content-center">
     <%= link_to "詳細を確認する", spot_path(spot), class: "btn btn-success spot-btn" %>
   </div>
-  <div class="form-group row justify-content-center mt-2">
-    <% if user_signed_in? %>
-      <% if @travel_spot %>
+  <% if user_signed_in? %>
+    <% if @travel_spot %>
+      <div class="form-group row justify-content-center mt-2">
         <%= link_to "この場所を選択する",
           my_travel_course_path(params:{spot_id: spot, course_id: @travel_spot, course_ids: @course_ids}),
           method: :patch,
           class: "btn btn-success spot-btn"
         %>
-      <% else %>
-        <%= render 'shared/want_spot_button', {wanted_spot_ids: @wanted_spot_ids, spot_id: spot.id} %>
-      <% end %>
+        <div class="small">
+          行きたいを押している人数: <%= spot.wanted_users.length %>人
+        </div>
+      </div>
+    <% else %>
+      <%= render 'spots/want_spot_button', {wanted_spot_ids: @wanted_spot_ids, spot: spot} %>
     <% end %>
-    <div class="small">
-      行きたいを押している人数: <%= spot.wanted_users.length %>人
-    </div>
-  </div>
+  <% end %>
 </div>
