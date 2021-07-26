@@ -17,8 +17,4 @@
     </button>
   <% end %>
 </div>
-
-<%= render "application_desc", model: @example_model_course %>
-
-
-
+<%= render "application_desc", {model: @example_model_course, spots: @spots} %>
