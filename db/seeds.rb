@@ -13,8 +13,13 @@ puts 'Finished Delete'
 
 puts 'Insert Area'
 @@count = 0
-CSV.foreach('db/csv_data/area.csv') do |row|
-  Area.create!({ id: @@count += 1, name: row[0] })
+begin
+  CSV.foreach('db/csv_data/area.csv') do |row|
+    Area.create!({ id: @@count += 1, name: row[0] })
+  end
+rescue ActiveRecord::RecordInvalid => e
+  puts "#{e}"
+  exit
 end
 puts 'Finish Area'
 
