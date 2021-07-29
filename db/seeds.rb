@@ -13,22 +13,33 @@ puts 'Finished Delete'
 
 puts 'Insert Area'
 @@count = 0
-CSV.foreach('db/csv_data/area.csv') do |row|
-  Area.create!({ id: @@count += 1, name: row[0] })
+begin
+  CSV.foreach('db/csv_data/area.csv') do |row|
+    Area.create!({ id: @@count += 1, name: row[0] })
+  end
+rescue ActiveRecord::RecordInvalid => e
+  puts "#{e}"
+  exit
 end
 puts 'Finish Area'
 
 puts 'Insert Spot'
 @@count = 0
-CSV.foreach('db/csv_data/spot.csv') do |row|
-  Spot.create!({
-    id: @@count += 1,
-    area_id: row[0],
-    name: row[1],
-    address: row[2],
-    image: row[3],
-    description: row[4]
-  })
+begin
+  # raise ActiveRecord::RecordInvalid
+  CSV.foreach('db/csv_data/spot.csv') do |row|
+    Spot.create!({
+      id: @@count += 1,
+      area_id: row[0],
+      name: row[1],
+      address: row[2],
+      image: row[3],
+      description: row[4]
+    })
+  end
+rescue ActiveRecord::RecordInvalid => e
+  puts e
+  exit
 end
 puts 'Finish Spot'
 

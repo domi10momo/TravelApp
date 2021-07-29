@@ -18,9 +18,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+  rescue ActiveRecord::RecordInvalid => e
+    flash[:danger] = e
+    redirect_to new_user_session_path
+  end
 
   # GET /resource/edit
   # def edit
